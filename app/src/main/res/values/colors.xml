@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#1976D2</color>
+    <color name="colorAccent">#03A9F4</color>
+    <color name="colorPrimarytext">#212121</color>
+    <color name="borda_imagem">#e4e4e4</color>
+    <color name="divider">#cfcece</color>
+    <color name="linha_par">#f6f6f6</color>
+    <color name="linha_impar">#eae8e8</color>
+
+    <color name="colorFAB">#03A9F4</color>
+    <color name="colorFABpressed">#1976D2</color>
+</resources>

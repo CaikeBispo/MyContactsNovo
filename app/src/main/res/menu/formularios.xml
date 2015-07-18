@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="br.com.mycontacts.Formulario">
+    <item
+        android:id="@+id/add_campo"
+        android:title="Adicionar campo"
+        android:showAsAction="never"/>
+</menu>
