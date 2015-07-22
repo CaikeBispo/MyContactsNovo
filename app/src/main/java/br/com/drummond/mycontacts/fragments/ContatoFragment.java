@@ -26,6 +26,12 @@ import br.com.drummond.mycontacts.interfaces.RecyclerViewOnClickListenerHack;
 import br.com.drummond.mycontacts.lista.dao.ContatoDAO;
 import br.com.drummond.mycontacts.lista.modelo.Contato;
 
+
+//FRAGMENT DA CLASSE DE LISTAGEM DE CONTATOS
+/*Novidade:
+  RecyclerView para criação de componentes na listagem de contatos, trabalhando em conjunto com o adapter.
+
+ */
 public class ContatoFragment extends Fragment implements RecyclerViewOnClickListenerHack, View.OnClickListener {
 
     private RecyclerView mRecyclerView;
@@ -68,22 +74,23 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
             /*}
         });*/
 
-
+        //Criando um linear Layout no modo default para listagem de contatos e setando-o no nosso RecyclerView
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(llm);
 
-
+        //Recebendo a lista de contatos
         ContatoDAO dao = new ContatoDAO(getActivity());
         List<Contato> mList = dao.getLista();
         dao.close();
 
+        //Carregando a lista, e chamando o adapter para trabalhar com os eventos e inserção de dados nos componentes
         mList = carregaLista();
         ContatoAdapter adapter = new ContatoAdapter(getActivity(), mList);
         adapter.setRecyclerViewOnClickListenerHack(this);
         mRecyclerView.setAdapter( adapter );
 
-
+        //FLOATING ACTION BUTTON
         FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
         fab.attachToRecyclerView(mRecyclerView, new ScrollDirectionListener() {
             @Override
@@ -113,8 +120,21 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
             }
         });
 
+        //Clique no ACTION BUTTON chama metodo abaixo
         fab.setOnClickListener(this);
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.fab:
+                Intent abrirTecladoLigar = new Intent(Intent.ACTION_DIAL);
+                startActivity(abrirTecladoLigar);
+                break;
+            default:
+                Toast.makeText(getActivity(),"HUMM",Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void onResume() {
@@ -131,6 +151,7 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
 
     @Override
     public void onClickListener(View view, int position) {
+        //Ao clicar em um dos itens da lista de contatos
         ContatoAdapter adapter = (ContatoAdapter) mRecyclerView.getAdapter();
         adapter.dial(position);
 
@@ -143,18 +164,6 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
         List<Contato> listAux = dao.getLista();
         dao.close();
         return (listAux);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.fab:
-                Intent abrirTecladoLigar = new Intent(Intent.ACTION_DIAL);
-                startActivity(abrirTecladoLigar);
-                break;
-            default:
-                Toast.makeText(getActivity(),"HUMM",Toast.LENGTH_SHORT).show();
-        }
     }
 }
 

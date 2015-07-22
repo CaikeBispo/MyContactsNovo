@@ -74,13 +74,6 @@ public class MainActivity extends ActionBarActivity {
             ft.replace(R.id.rl_fragment_container, frag, "mainFrag");
             ft.commit();
         }
-        /*CarFragment frag = (CarFragment) getSupportFragmentManager().findFragmentByTag("mainFrag");
-        if(frag == null) {
-            frag = new CarFragment();
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.rl_fragment_container, frag, "mainFrag");
-            ft.commit();
-        }*/
 
         /*Historico frag = (Historico) getSupportFragmentManager().findFragmentByTag("mainFrag");
         if(frag == null) {
@@ -126,12 +119,11 @@ public class MainActivity extends ActionBarActivity {
                         Fragment frag = null;
                         mItemDrawerSelected = i;
 
-                        if (i == 0) { // ALL CARS
+                        if (i == 0) {
                             //frag = new CarFragment();
                             Intent irSobre = new Intent(MainActivity.this, About.class);
-
                             startActivity(irSobre);
-                        } else if (i == 1) { // LUXURY CAR
+                        } else if (i == 1) {
                             frag = new Historico();
 
                             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -141,6 +133,7 @@ public class MainActivity extends ActionBarActivity {
                         }
 
                         for (int count = 0, tam = navigationDrawerLeft.getDrawerItems().size(); count < tam; count++) {
+                            //Para trocar a cor do icone do item de menu do NavigationDrawer ao ser clicado
                             if (count == mPositionClicked && mPositionClicked <= 2) {
                                 PrimaryDrawerItem aux = (PrimaryDrawerItem) navigationDrawerLeft.getDrawerItems().get(count);
                                 aux.setIcon(getResources().getDrawable( getCorretcDrawerIcon( count, false ) ));
@@ -159,12 +152,14 @@ public class MainActivity extends ActionBarActivity {
                 .withOnDrawerItemLongClickListener(new Drawer.OnDrawerItemLongClickListener() {
                     @Override
                     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
+                        //Clique Longo em algum item do NAVIGATIO N DRAWER
                         Toast.makeText(MainActivity.this, "onItemLongClick: " + i, Toast.LENGTH_SHORT).show();
                         return false;
                     }
                 })
                 .build();
 
+        //Abaixo criando os itens do menu do NAVIGATION DRAWER
         navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Sobre").withIcon(getResources().getDrawable(R.drawable.car_1)));
         navigationDrawerLeft.addItem(new SectionDrawerItem().withName("Grupos"));
         navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Grupo1").withIcon(getResources().getDrawable(R.drawable.car_1)));
@@ -210,21 +205,4 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    /*public List<Car> getSetCarList(int qtd){
-        String[] models = new String[]{"Gallardo", "Vyron", "Corvette", "Pagani Zonda", "Porsche 911 Carrera", "BMW 720i", "DB77", "Mustang", "Camaro", "CT6"};
-        String[] brands = new String[]{"Lamborghini", " bugatti", "Chevrolet", "Pagani", "Porsche", "BMW", "Aston Martin", "Ford", "Chevrolet", "Cadillac"};
-        int[] photos = new int[]{R.drawable.gallardo, R.drawable.vyron, R.drawable.corvette, R.drawable.paganni_zonda, R.drawable.porsche_911, R.drawable.bmw_720, R.drawable.db77, R.drawable.mustang, R.drawable.camaro, R.drawable.ct6};
-        String description = "Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.";
-        List<Car> listAux = new ArrayList<>();
-
-        for(int i = 0; i < qtd; i++){
-            Car c = new Car( models[i % models.length], brands[ i % brands.length], photos[i % models.length] );
-            c.setDescription( description );
-            c.setTel("33221155");
-
-            listAux.add(c);
-        }
-        return(listAux);
-    }*/
 }

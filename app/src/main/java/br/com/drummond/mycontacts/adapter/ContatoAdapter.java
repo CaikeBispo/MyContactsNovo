@@ -63,6 +63,7 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.MyViewHo
             myViewHolder.foto.setImageBitmap(fotoreduzida);
         }
         else{
+            //Ainda não estou conseguindo colocar foto padrão para contatos, caso ainda não tenha foto do proprio contato
             //Drawable draw=fragmentActivity.getResources().getDrawable(R.drawable.ic_person);
             //myViewHolder.foto.setImageDrawable(draw);
         }
@@ -93,6 +94,7 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.MyViewHo
     }
 
     public Intent dial(int position){
+        //Metodo para chamada do teclado para realizar ligações
         Contato contatoLigar = (Contato) mList.get(position);
         Contato registroChamada = (Contato) mList.get(position);
         Intent irParaTelaDeDiscagem = new Intent(Intent.ACTION_CALL);

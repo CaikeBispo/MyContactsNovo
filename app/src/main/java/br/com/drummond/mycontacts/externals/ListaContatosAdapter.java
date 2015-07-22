@@ -51,7 +51,7 @@ public class ListaContatosAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
+        // Popula os itens da lista de contatos
         Contato contato=contatos.get(position);
 
         LayoutInflater inflater=fragmentActivity.getLayoutInflater();
