@@ -1,13 +1,20 @@
 package br.com.drummond.mycontacts;
 
+import android.annotation.TargetApi;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -42,6 +49,8 @@ public class MainActivity extends ActionBarActivity {
     private AccountHeader.Result headerNavigationLeft;
     private int mPositionClicked;
     private int mItemDrawerSelected;
+
+
 
     private OnCheckedChangeListener OnCheckedChangeListener=new OnCheckedChangeListener(){
 
@@ -188,11 +197,45 @@ public class MainActivity extends ActionBarActivity {
         return(0);
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        /*SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView;
+        MenuItem item = menu.findItem(R.id.search);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
+            searchView = (SearchView) item.getActionView();
+        }
+        else{
+            searchView = (SearchView) MenuItemCompat.getActionView( item );
+        }
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setQueryHint(getResources().getString(R.string.abc_search_hint)); */
+
+
+
+
+
+
+
+
+
         return true;
+
     }
+
+    /*
+    * @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.options_menu, menu);
+
+    return true;
+}
+    * */
 
 
     @Override
