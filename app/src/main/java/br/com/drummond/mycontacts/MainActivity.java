@@ -202,7 +202,7 @@ public class MainActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
-        /*SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView;
         MenuItem item = menu.findItem(R.id.search);
 
@@ -213,7 +213,7 @@ public class MainActivity extends ActionBarActivity {
             searchView = (SearchView) MenuItemCompat.getActionView( item );
         }
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        searchView.setQueryHint(getResources().getString(R.string.abc_search_hint)); */
+        searchView.setQueryHint(getResources().getString(R.string.abc_search_hint));
 
 
 
