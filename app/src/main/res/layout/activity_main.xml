@@ -1,9 +1,9 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    fab:fab_type="mini"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
@@ -18,28 +18,17 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <FrameLayout
+    <br.com.drummond.mycontacts.externals.SlidingTabLayout
+        android:id="@+id/slt_tabs"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/tb_main">
-        <RelativeLayout
-            android:id="@+id/rl_fragment_container"
-            android:layout_below="@+id/tb_main"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </RelativeLayout>
+        android:layout_height="wrap_content">
+    </br.com.drummond.mycontacts.externals.SlidingTabLayout>
 
-        <com.melnykov.fab.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:layout_margin="16dp"
-            android:src="@drawable/dial"
-            fab:fab_colorNormal="@color/colorFAB"
-            fab:fab_colorPressed="@color/colorFABpressed"
-            fab:fab_colorRipple="@color/colorFABpressed" /> <!--ripple-->
-    </FrameLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
-</RelativeLayout>
+</LinearLayout>
 

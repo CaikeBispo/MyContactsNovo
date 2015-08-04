@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -36,6 +37,8 @@ import com.mikepenz.materialdrawer.model.interfaces.OnCheckedChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.drummond.mycontacts.adapter.TabsAdapter;
+import br.com.drummond.mycontacts.externals.SlidingTabLayout;
 import br.com.drummond.mycontacts.fragments.ContatoFragment;
 import br.com.drummond.mycontacts.fragments.Historico;
 import br.com.drummond.mycontacts.lista.dao.ContatoDAO;
@@ -50,6 +53,8 @@ public class MainActivity extends ActionBarActivity {
     private int mPositionClicked;
     private int mItemDrawerSelected;
 
+    private SlidingTabLayout mSlidingTabLayout;
+    private ViewPager mViewPager;
 
 
     private OnCheckedChangeListener OnCheckedChangeListener=new OnCheckedChangeListener(){
@@ -71,18 +76,18 @@ public class MainActivity extends ActionBarActivity {
 
         mToolbar = (Toolbar) findViewById(R.id.tb_main);
         mToolbar.setTitle("MyContacts");
-        mToolbar.setLogo(R.drawable.ic_launcher);
+        //mToolbar.setLogo(R.drawable.ic_launcher);
         setSupportActionBar(mToolbar);
 
 
         // FRAGMENT
-        ContatoFragment frag = (ContatoFragment) getSupportFragmentManager().findFragmentByTag("mainFrag");
+        /*ContatoFragment frag = (ContatoFragment) getSupportFragmentManager().findFragmentByTag("mainFrag");
         if(frag == null) {
             frag = new ContatoFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.rl_fragment_container, frag, "mainFrag");
             ft.commit();
-        }
+        }*/
 
         /*Historico frag = (Historico) getSupportFragmentManager().findFragmentByTag("mainFrag");
         if(frag == null) {
@@ -91,6 +96,16 @@ public class MainActivity extends ActionBarActivity {
             ft.replace(R.id.rl_fragment_container, frag, "mainFrag");
             ft.commit();
         }*/
+
+        //TABS
+        mViewPager= (ViewPager) findViewById(R.id.vp_tabs);
+        mViewPager.setAdapter(new TabsAdapter(getSupportFragmentManager(),this));
+
+        mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.slt_tabs);
+        mSlidingTabLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        mSlidingTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.colorAccent));
+        mSlidingTabLayout.setViewPager(mViewPager);
+
 
         //HEADER NAVIGATION DRAWER
         headerNavigationLeft= new AccountHeader()
@@ -125,23 +140,23 @@ public class MainActivity extends ActionBarActivity {
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
-                        Fragment frag = null;
-                        mItemDrawerSelected = i;
+                        /*Fragment frag = null;
+                        mItemDrawerSelected = i;*/
 
                         if (i == 0) {
                             //frag = new CarFragment();
-                            Intent irSobre = new Intent(MainActivity.this, About.class);
-                            startActivity(irSobre);
+                            /*Intent irSobre = new Intent(MainActivity.this, About.class);
+                            startActivity(irSobre);*/
                         } else if (i == 1) {
-                            frag = new Historico();
+                            /*frag = new Historico();
 
                             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                             ft.replace(R.id.rl_fragment_container, frag, "mainFrag");
                             ft.commit();
-                            mToolbar.setTitle( ((PrimaryDrawerItem) iDrawerItem).getName() );
+                            mToolbar.setTitle( ((PrimaryDrawerItem) iDrawerItem).getName() );*/
                         }
 
-                        for (int count = 0, tam = navigationDrawerLeft.getDrawerItems().size(); count < tam; count++) {
+                        /*for (int count = 0, tam = navigationDrawerLeft.getDrawerItems().size(); count < tam; count++) {
                             //Para trocar a cor do icone do item de menu do NavigationDrawer ao ser clicado
                             if (count == mPositionClicked && mPositionClicked <= 2) {
                                 PrimaryDrawerItem aux = (PrimaryDrawerItem) navigationDrawerLeft.getDrawerItems().get(count);
@@ -155,7 +170,7 @@ public class MainActivity extends ActionBarActivity {
                         }
 
                         mPositionClicked = i;
-                        navigationDrawerLeft.getAdapter().notifyDataSetChanged();
+                        navigationDrawerLeft.getAdapter().notifyDataSetChanged();*/
                     }
                 })
                 .withOnDrawerItemLongClickListener(new Drawer.OnDrawerItemLongClickListener() {

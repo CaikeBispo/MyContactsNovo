@@ -36,7 +36,7 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
 
     private RecyclerView mRecyclerView;
     private List<Contato> mList;
-    private FloatingActionButton fab;
+    //private FloatingActionButton fab;
 
 
     @Override
@@ -91,7 +91,7 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
         mRecyclerView.setAdapter( adapter );
 
         //FLOATING ACTION BUTTON
-        FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) getActivity().findViewById(R.id.fab);
         fab.attachToRecyclerView(mRecyclerView, new ScrollDirectionListener() {
             @Override
             public void onScrollDown() {
@@ -118,10 +118,10 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
 
                 List<Contato> listAux = carregaLista();
             }
-        });
+        });*/
 
         //Clique no ACTION BUTTON chama metodo abaixo
-        fab.setOnClickListener(this);
+        //fab.setOnClickListener(this);
         return view;
     }
 
