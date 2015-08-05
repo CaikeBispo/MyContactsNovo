@@ -9,7 +9,7 @@
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/tb_main"
-        android:elevation="4dp"
+        android:elevation="0dp"
         android:layout_height="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:minHeight="?attr/actionBarSize"
@@ -21,6 +21,7 @@
     <br.com.drummond.mycontacts.externals.SlidingTabLayout
         android:id="@+id/slt_tabs"
         android:layout_width="match_parent"
+        android:color="@color/white"
         android:layout_height="wrap_content">
     </br.com.drummond.mycontacts.externals.SlidingTabLayout>
 

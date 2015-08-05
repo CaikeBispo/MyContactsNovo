@@ -80,30 +80,13 @@ public class MainActivity extends ActionBarActivity {
         setSupportActionBar(mToolbar);
 
 
-        // FRAGMENT
-        /*ContatoFragment frag = (ContatoFragment) getSupportFragmentManager().findFragmentByTag("mainFrag");
-        if(frag == null) {
-            frag = new ContatoFragment();
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.rl_fragment_container, frag, "mainFrag");
-            ft.commit();
-        }*/
-
-        /*Historico frag = (Historico) getSupportFragmentManager().findFragmentByTag("mainFrag");
-        if(frag == null) {
-            frag = new Historico();
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.rl_fragment_container, frag, "mainFrag");
-            ft.commit();
-        }*/
-
         //TABS
         mViewPager= (ViewPager) findViewById(R.id.vp_tabs);
         mViewPager.setAdapter(new TabsAdapter(getSupportFragmentManager(),this));
 
         mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.slt_tabs);
         mSlidingTabLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
-        mSlidingTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.colorAccent));
+        mSlidingTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.white));
         mSlidingTabLayout.setViewPager(mViewPager);
 
 
@@ -117,14 +100,6 @@ public class MainActivity extends ActionBarActivity {
                 .addProfiles(
                         new ProfileDrawerItem().withName("Fabiano de Lima").withEmail("teste1@teste.com.br").withIcon(getResources().getDrawable(R.drawable.person_1))
                 )
-                /*.withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
-                    @Override
-                    public boolean onProfileChanged(View view, IProfile iProfile, boolean b) {
-                        Toast.makeText(MainActivity.this,"onProfileChanged: "+iProfile.getName(),Toast.LENGTH_LONG).show();
-                        headerNavigationLeft.setBackgroundRes(R.drawable.vyron);
-                        return false;
-                    }
-                })*/
                 .build();
 
         //NAVIGATION DRAWER LEFT
@@ -140,13 +115,13 @@ public class MainActivity extends ActionBarActivity {
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
-                        /*Fragment frag = null;
-                        mItemDrawerSelected = i;*/
+                        Fragment frag = null;
+                        mItemDrawerSelected = i;
 
                         if (i == 0) {
                             //frag = new CarFragment();
-                            /*Intent irSobre = new Intent(MainActivity.this, About.class);
-                            startActivity(irSobre);*/
+                            Intent irSobre = new Intent(MainActivity.this, About.class);
+                            startActivity(irSobre);
                         } else if (i == 1) {
                             /*frag = new Historico();
 
@@ -156,7 +131,7 @@ public class MainActivity extends ActionBarActivity {
                             mToolbar.setTitle( ((PrimaryDrawerItem) iDrawerItem).getName() );*/
                         }
 
-                        /*for (int count = 0, tam = navigationDrawerLeft.getDrawerItems().size(); count < tam; count++) {
+                        for (int count = 0, tam = navigationDrawerLeft.getDrawerItems().size(); count < tam; count++) {
                             //Para trocar a cor do icone do item de menu do NavigationDrawer ao ser clicado
                             if (count == mPositionClicked && mPositionClicked <= 2) {
                                 PrimaryDrawerItem aux = (PrimaryDrawerItem) navigationDrawerLeft.getDrawerItems().get(count);
@@ -170,7 +145,7 @@ public class MainActivity extends ActionBarActivity {
                         }
 
                         mPositionClicked = i;
-                        navigationDrawerLeft.getAdapter().notifyDataSetChanged();*/
+                        navigationDrawerLeft.getAdapter().notifyDataSetChanged();
                     }
                 })
                 .withOnDrawerItemLongClickListener(new Drawer.OnDrawerItemLongClickListener() {
@@ -230,27 +205,9 @@ public class MainActivity extends ActionBarActivity {
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setQueryHint(getResources().getString(R.string.abc_search_hint));
 
-
-
-
-
-
-
-
-
         return true;
 
     }
-
-    /*
-    * @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-    MenuInflater inflater = getMenuInflater();
-    inflater.inflate(R.menu.options_menu, menu);
-
-    return true;
-}
-    * */
 
 
     @Override
