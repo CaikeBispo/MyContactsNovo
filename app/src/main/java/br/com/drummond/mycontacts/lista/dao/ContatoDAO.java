@@ -101,6 +101,40 @@ public class ContatoDAO extends SQLiteOpenHelper{
         return arrContato;
     }
 
+    public List<Contato> listaSearch() {
+        String[] colunas = {"id", "nome", "telefone", "email", "tipoEmail","endereco","tipoEndereco" ,"foto", "favorito", "operadora"};
+
+        Cursor cursor = getWritableDatabase().query("Contatos", colunas, null, null, null, null, null);
+        //Retorna um Cursor, atraves dele que vamos buscar os dados.
+
+        //moveToNext vai para o primeiro registro, no caso aponta todos os dados de um contato
+
+        //cursor.moveToNext Retorna enquanto tiver registro
+
+        ArrayList<Contato> arrContato = new ArrayList<Contato>();
+
+        while (cursor.moveToNext()) {
+
+            Contato contato = new Contato();
+
+            contato.setId(cursor.getLong(0)); //Forma simplificada
+            String nome = cursor.getString(1); //Forma maior
+            contato.setNome(nome);				//^^^^^^
+            contato.setTelefone(cursor.getString(2));
+            contato.setEmail(cursor.getString(3));
+            contato.setTipoemail(cursor.getInt(4));
+            contato.setEndereco(cursor.getString(5));
+            contato.setTipoendereco(cursor.getInt(6));
+            contato.setFoto(cursor.getString(7));
+            contato.setFavorito(cursor.getDouble(8));
+            contato.setOperadora(cursor.getInt(9));
+
+            arrContato.add(contato);
+        }
+        return arrContato;
+    }
+
+
     public void deletar(Contato contato) {
 
         String[] args = {contato.getId().toString()};

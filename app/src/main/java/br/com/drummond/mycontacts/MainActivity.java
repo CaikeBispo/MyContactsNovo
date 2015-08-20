@@ -206,7 +206,6 @@ public class MainActivity extends ActionBarActivity {
         searchView.setQueryHint(getResources().getString(R.string.abc_search_hint));
 
         return true;
-
     }
 
 

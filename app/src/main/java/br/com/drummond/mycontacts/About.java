@@ -17,13 +17,13 @@ public class About extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        /* Header teste
+        /* Header teste */
         mToolbar= (Toolbar) findViewById(R.id.tb_main);
         setSupportActionBar(mToolbar);
         mToolbar.setTitle("Sobre o MyContacts");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Intent intent = getIntent(); */
+        Intent intent = getIntent();
     }
 
     @Override
