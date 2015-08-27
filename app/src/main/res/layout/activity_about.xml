@@ -7,7 +7,8 @@
     android:orientation="vertical"
 
     tools:context="br.com.drummond.mycontacts.About"
-    android:id="@+id/textView">
+    android:id="@+id/textView"
+    android:weightSum="1">
 
 
     <br.com.drummond.mycontacts.externals.SlidingTabLayout
@@ -33,21 +34,19 @@
          />
 
     <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/corvette"
-        android:paddingTop="110dp" />
+        android:id="@+id/AboutMy"
+        android:layout_width="385dp"
+        android:layout_height="385dp"
+        android:src="@drawable/logomc" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Copyright © MyContacts Inc \nTodos os direitos reservados"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:id="@+id/textView2"
         android:layout_gravity="center_horizontal"
-        android:paddingTop="120dp" />
+        android:layout_marginTop="30dp" />
 
 
 </LinearLayout>
