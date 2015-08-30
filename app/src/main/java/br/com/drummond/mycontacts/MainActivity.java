@@ -186,39 +186,4 @@ public class MainActivity extends ActionBarActivity {
         }
         return(0);
     }
-
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView;
-        MenuItem item = menu.findItem(R.id.search);
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
-            searchView = (SearchView) item.getActionView();
-        }
-        else{
-            searchView = (SearchView) MenuItemCompat.getActionView( item );
-        }
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        searchView.setQueryHint(getResources().getString(R.string.abc_search_hint));
-
-
-
-        return true;
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if(id == R.id.novo){
-            startActivity(new Intent(this, Formulario.class));
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

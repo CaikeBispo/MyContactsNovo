@@ -49,7 +49,7 @@ public class ListaLigacoesAdapter extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
         Ligacao ligacao=ligacoes.get(position);
-        Contato contato=new Contato();
+        Ligacao contato=new Ligacao();
 
         LayoutInflater inflater=fragmentActivity.getLayoutInflater();
         View linha=inflater.inflate(R.layout.linha_listagem, null);

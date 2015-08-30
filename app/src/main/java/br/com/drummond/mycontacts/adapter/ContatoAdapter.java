@@ -25,12 +25,14 @@ import java.util.List;
 import br.com.drummond.mycontacts.MainActivity;
 import br.com.drummond.mycontacts.R;
 import br.com.drummond.mycontacts.interfaces.RecyclerViewOnClickListenerHack;
+import br.com.drummond.mycontacts.lista.dao.LigacaoDAO;
 import br.com.drummond.mycontacts.lista.modelo.Contato;
 
 /**
  * Created by viniciusthiengo on 4/5/15.
  */
 public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.MyViewHolder> {
+    private Context context;
     private List<Contato> mList;
     private LayoutInflater mLayoutInflater;
     private FragmentActivity fragmentActivity;
@@ -39,6 +41,7 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.MyViewHo
 
     public ContatoAdapter(Context c, List<Contato> l){
         mList = l;
+        context=c;
         mLayoutInflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.fragmentActivity = fragmentActivity;
     }
@@ -97,8 +100,12 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.MyViewHo
         //Metodo para chamada do teclado para realizar ligações
         Contato contatoLigar = (Contato) mList.get(position);
         Contato registroChamada = (Contato) mList.get(position);
+
         Intent irParaTelaDeDiscagem = new Intent(Intent.ACTION_CALL);
         Uri discarPara = Uri.parse("tel: " + mList.get(position).getTelefone());
+        LigacaoDAO daoLigacao = new LigacaoDAO(context);
+        daoLigacao.salva(registroChamada); //Salvando conteúdo
+
         irParaTelaDeDiscagem.setData(discarPara);
 
         return irParaTelaDeDiscagem;

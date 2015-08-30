@@ -3,13 +3,23 @@ package br.com.drummond.mycontacts.fragments;
 /**
  * Created by Fabiano de Lima on 11/07/2015.
  */
+import android.annotation.TargetApi;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -19,6 +29,7 @@ import com.melnykov.fab.ScrollDirectionListener;
 
 import java.util.List;
 
+import br.com.drummond.mycontacts.Formulario;
 import br.com.drummond.mycontacts.MainActivity;
 import br.com.drummond.mycontacts.R;
 import br.com.drummond.mycontacts.adapter.ContatoAdapter;
@@ -130,6 +141,7 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
         switch (v.getId()){
             case R.id.fab:
                 Intent abrirTecladoLigar = new Intent(Intent.ACTION_DIAL);
+                abrirTecladoLigar.setPackage("com.android.dialer");
                 startActivity(abrirTecladoLigar);
                 break;
             default:
@@ -146,24 +158,60 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
 
         ContatoAdapter adapter = new ContatoAdapter(getActivity(), listAux);
         adapter.setRecyclerViewOnClickListenerHack(this);
-        mRecyclerView.setAdapter( adapter );
+        mRecyclerView.setAdapter(adapter);
     }
 
     @Override
     public void onClickListener(View view, int position) {
-        //Ao clicar em um dos itens da lista de contatos
+        //Ao clicar em um dos itens da lista de contato
         ContatoAdapter adapter = (ContatoAdapter) mRecyclerView.getAdapter();
-        adapter.dial(position);
 
         getActivity().startActivity(adapter.dial(position));
 
     }
 
-    public List<Contato> carregaLista(){
+    public List<Contato> carregaLista() {
         ContatoDAO dao = new ContatoDAO(getActivity());
         List<Contato> listAux = dao.getLista();
         dao.close();
         return (listAux);
+    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);//Make sure you have this line of code.
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_main, menu); //Aqui deve ser R.menu.principal, mas nao consigo mecher
+
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView;
+        MenuItem item = menu.findItem(R.id.search);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
+            searchView = (SearchView) item.getActionView();
+        }
+        else{
+            searchView = (SearchView) MenuItemCompat.getActionView(item);
+        }
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        searchView.setQueryHint(getResources().getString(R.string.abc_search_hint));
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if(id == R.id.novo){
+            startActivity(new Intent(getActivity(), Formulario.class));
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
 
