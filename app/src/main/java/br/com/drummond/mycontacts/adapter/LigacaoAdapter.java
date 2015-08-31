@@ -52,7 +52,7 @@ public class LigacaoAdapter extends RecyclerView.Adapter<LigacaoAdapter.MyViewHo
             myViewHolder.foto.setImageBitmap(fotoreduzida);
         }
         else{
-            //Ainda nokoçkão estou conseguindo colocar foto padrão para contatos, caso ainda não tenha foto do proprio contato
+            //Ainda nao estou conseguindo colocar foto padrao para contatos, caso ainda nao tenha foto do proprio contato
             //Drawable draw=fragmentActivity.getResources().getDrawable(R.drawable.ic_person);
             //myViewHolder.foto.setImageDrawable(draw);
         }

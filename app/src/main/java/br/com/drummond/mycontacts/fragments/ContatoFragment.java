@@ -16,10 +16,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -84,6 +86,9 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
                 }*/
             }
         });
+
+        //chamada do mGestured
+        mRecyclerView.addOnItemTouchListener(new RecyclerViewTouchListener(getActivity(),mRecyclerView,this));
 
         //Criando um linear Layout no modo default para listagem de contatos e setando-o no nosso RecyclerView
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
@@ -157,7 +162,7 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
         dao.close();
 
         ContatoAdapter adapter = new ContatoAdapter(getActivity(), listAux);
-        adapter.setRecyclerViewOnClickListenerHack(this);
+        //adapter.setRecyclerViewOnClickListenerHack(this);
         mRecyclerView.setAdapter(adapter);
     }
 
@@ -167,6 +172,19 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
         ContatoAdapter adapter = (ContatoAdapter) mRecyclerView.getAdapter();
 
         getActivity().startActivity(adapter.dial(position));
+
+    }
+
+    @Override
+    public void onLongPressClickListener(View view, int position) {
+        ContatoAdapter adapter = (ContatoAdapter) mRecyclerView.getAdapter();
+
+
+        //Toast.makeText(getActivity(), "Long Toast", Toast.LENGTH_SHORT).show();
+        //Ao clicar longo em um dos itens da lista de contato
+        /*ContatoAdapter adapter = (ContatoAdapter) mRecyclerView.getAdapter();
+
+        getActivity().startActivity(adapter.dial(position));*/
 
     }
 
@@ -213,5 +231,56 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
 
         return super.onOptionsItemSelected(item);
     }
+
+    //Iniciando o contato com longPress
+    private static class RecyclerViewTouchListener implements RecyclerView.OnItemTouchListener {
+        private Context mContext;
+        private GestureDetector mGestureDetector;
+        private RecyclerViewOnClickListenerHack mRecyclerViewOnClickListenerHack;
+
+
+        public RecyclerViewTouchListener(Context c, final RecyclerView rv, RecyclerViewOnClickListenerHack rvoclh){
+            mContext = c;
+            mRecyclerViewOnClickListenerHack = rvoclh;
+
+            mGestureDetector = new GestureDetector(mContext, new GestureDetector.SimpleOnGestureListener(){
+                @Override
+                public void onLongPress(MotionEvent e) {
+                    super.onLongPress(e);
+
+                    View cv = rv.findChildViewUnder(e.getX(), e.getY()); //Coordenadas da tela
+
+                    if(cv != null && mRecyclerViewOnClickListenerHack != null){
+                        mRecyclerViewOnClickListenerHack.onLongPressClickListener(cv,
+                                rv.getChildPosition(cv) );
+                    }
+                }
+
+                @Override
+                public boolean onSingleTapUp(MotionEvent e) {
+                    View cv = rv.findChildViewUnder(e.getX(), e.getY());
+
+                    if(cv != null && mRecyclerViewOnClickListenerHack != null){
+                        mRecyclerViewOnClickListenerHack.onClickListener(cv,
+                                rv.getChildPosition(cv) );
+                    }
+
+                    return(true);
+                }
+            });
+        }
+
+        @Override
+        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+            mGestureDetector.onTouchEvent(e);
+            return false;
+        }
+
+        @Override
+        public void onTouchEvent(RecyclerView rv, MotionEvent e) {}
+    }
+
+
+
 }
 

@@ -82,6 +82,12 @@ private RecyclerView mRecyclerView;
     public void onClickListener(View view, int position) {
 
     }
+
+    @Override
+    public void onLongPressClickListener(View view, int position) {
+
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
