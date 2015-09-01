@@ -146,7 +146,7 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
         switch (v.getId()){
             case R.id.fab:
                 Intent abrirTecladoLigar = new Intent(Intent.ACTION_DIAL);
-                abrirTecladoLigar.setPackage("com.android.dialer");
+                abrirTecladoLigar.setData(Uri.parse("tel:"));
                 startActivity(abrirTecladoLigar);
                 break;
             default:
