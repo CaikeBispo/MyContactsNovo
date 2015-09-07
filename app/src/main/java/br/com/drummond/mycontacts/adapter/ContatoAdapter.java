@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.widget.ListPopupWindow;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -18,14 +19,17 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.drummond.mycontacts.MainActivity;
 import br.com.drummond.mycontacts.R;
+import br.com.drummond.mycontacts.domain.ContextMenuItem;
 import br.com.drummond.mycontacts.interfaces.RecyclerViewOnClickListenerHack;
 import br.com.drummond.mycontacts.lista.dao.LigacaoDAO;
 import br.com.drummond.mycontacts.lista.modelo.Contato;
@@ -40,12 +44,21 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.MyViewHo
     private FragmentActivity fragmentActivity;
     private RecyclerViewOnClickListenerHack mRecyclerViewOnClickListenerHack;
 
+    private float scale;
+    private int width, height, roundPixels;
+
 
     public ContatoAdapter(Context c, List<Contato> l){
         mList = l;
         context=c;
         mLayoutInflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.fragmentActivity = fragmentActivity;
+
+        scale = context.getResources().getDisplayMetrics().density;
+        width = context.getResources().getDisplayMetrics().widthPixels - (int)(14 * scale + 0.5f);
+        height = (width / 16) * 9;
+
+        roundPixels = (int)(2 * scale + 0.5f);
     }
 
 
@@ -113,6 +126,14 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.MyViewHo
         return irParaTelaDeDiscagem;
     }
 
+    public void teste(int position){
+        Contato contatoLigar = (Contato) mList.get(position);
+        //Toast.makeText(context,mList.get(position).getNome()+"",Toast.LENGTH_LONG).show();
+        ListPopupWindow listPopupWindow= new ListPopupWindow(context);
+        //listPopupWindow.setAnchorView();
+        Toast.makeText(context,mList.get(position).getNome()+"",Toast.LENGTH_LONG).show();
+    }
+
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public ImageView foto;
         public TextView tvModel;
@@ -130,9 +151,31 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.MyViewHo
 
         @Override
         public void onClick(View v) {
-            if(mRecyclerViewOnClickListenerHack != null){
+            /*if(mRecyclerViewOnClickListenerHack != null){
                 mRecyclerViewOnClickListenerHack.onClickListener(v, getPosition());
-            }
+            }*/
+            //Contato contatoLigar = (Contato) mList.get(position);
+            //Toast.makeText(context,mList.get(position).getNome()+"",Toast.LENGTH_LONG).show();
+
+            List<ContextMenuItem> itens=new ArrayList<>();
+            itens.add(new ContextMenuItem("Ok"));
+
+            ContextMenuAdapter adapter= new ContextMenuAdapter(context,itens);
+
+            ListPopupWindow listPopupWindow= new ListPopupWindow(context);
+            listPopupWindow.setAdapter(adapter);
+            listPopupWindow.setAnchorView(v);
+            listPopupWindow.setWidth((int) (240 * scale + 0.5f));
+            listPopupWindow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Toast.makeText(context, "Clicou", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(context,getAdapterPosition()+"UGuig",Toast.LENGTH_LONG).show();
+                }
+            });
+            listPopupWindow.setModal(true);
+            Toast.makeText(context,"UGuig",Toast.LENGTH_LONG).show();
+            listPopupWindow.show();
         }
     }
 }
