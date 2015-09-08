@@ -57,12 +57,14 @@ public class ContextMenuAdapter extends BaseAdapter {
             holder = new ViewHolder();
             convertView.setTag( holder );
 
+            holder.ivIcon = (ImageView) convertView.findViewById(R.id.iv_icon);
             holder.tvLabel = (TextView) convertView.findViewById(R.id.tv_label);
         }
         else{
             holder = (ViewHolder) convertView.getTag();
         }
 
+        holder.ivIcon.setImageResource( mList.get(position).getIcon() );
         holder.tvLabel.setText( mList.get(position).getLabel() );
 
 
@@ -75,9 +77,9 @@ public class ContextMenuAdapter extends BaseAdapter {
         }
         else{
             ((ViewGroup) convertView).getChildAt(0).setBackgroundResource( R.drawable.context_menu_middle_background );
-        }
+        }*/
 
-        // H_LINE
+        /*// H_LINE
         holder.vwDivider.setVisibility( position == mList.size() - 2 ? View.VISIBLE : View.GONE );
 
         // EXTRA PADDING
@@ -91,6 +93,7 @@ public class ContextMenuAdapter extends BaseAdapter {
 
 
     public static class ViewHolder{
+        ImageView ivIcon;
         TextView tvLabel;
     }
 }

@@ -126,12 +126,61 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.MyViewHo
         return irParaTelaDeDiscagem;
     }
 
-    public void teste(int position){
-        Contato contatoLigar = (Contato) mList.get(position);
-        //Toast.makeText(context,mList.get(position).getNome()+"",Toast.LENGTH_LONG).show();
+    public void createContextMenu(View v,int position){
+        final Contato contato = (Contato) mList.get(position);
+
+        List<ContextMenuItem> itens=new ArrayList<>();
+        itens.add(new ContextMenuItem(R.drawable.car_1,"Ver contato"));
+        itens.add(new ContextMenuItem(R.drawable.car_1,"Alterar"));
+        itens.add(new ContextMenuItem(R.drawable.car_1,"Deletar"));
+        itens.add(new ContextMenuItem(R.drawable.car_1,"Enviar SMS"));
+        itens.add(new ContextMenuItem(R.drawable.car_1,"Enviar e-mail"));
+        itens.add(new ContextMenuItem(R.drawable.car_1,"Ver no mapa"));
+
+        ContextMenuAdapter adapter= new ContextMenuAdapter(context,itens);
+
         ListPopupWindow listPopupWindow= new ListPopupWindow(context);
-        //listPopupWindow.setAnchorView();
-        Toast.makeText(context,mList.get(position).getNome()+"",Toast.LENGTH_LONG).show();
+        listPopupWindow.setAdapter(adapter);
+        listPopupWindow.setAnchorView(v);
+        listPopupWindow.setWidth((int) (240 * scale + 0.5f));
+        listPopupWindow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Toast.makeText(context, position + ", Clicou ," + id, Toast.LENGTH_SHORT).show();
+                switch (position){
+                    case 0:
+                        Toast.makeText(context, "Formulario Ver contato", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 1:
+                        Toast.makeText(context, "Formulario Alterar contato", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 2:
+                        Toast.makeText(context, "Deletar contato", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 3:
+                        Toast.makeText(context, "Enviar SMS", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 4:
+                        Toast.makeText(context, "Enviar e-Mail", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(Intent.ACTION_SEND);
+                        i.setType("message/rfc822");
+                        i.putExtra(Intent.EXTRA_EMAIL  , new String[]{contato.getEmail()});
+				/*i.putExtra(Intent.EXTRA_SUBJECT, "");
+				i.putExtra(Intent.EXTRA_TEXT   , "body of email");*/
+                        try {
+                            context.startActivity(Intent.createChooser(i, "Enviar email com: "));
+                        } catch (Exception e) {
+                            Toast.makeText(context, "O contato não possui email cadastrado!",Toast.LENGTH_SHORT).show();
+                        }
+                        break;
+                    case 5:
+                        Toast.makeText(context, "Ver no mapa", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        });
+        listPopupWindow.setModal(true);
+        listPopupWindow.show();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
@@ -146,36 +195,14 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.MyViewHo
             tvModel = (TextView) itemView.findViewById(R.id.tv_model);
             tvBrand = (TextView) itemView.findViewById(R.id.tv_brand);
 
-            itemView.setOnClickListener(this);
+            //itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            /*if(mRecyclerViewOnClickListenerHack != null){
+            if(mRecyclerViewOnClickListenerHack != null){
                 mRecyclerViewOnClickListenerHack.onClickListener(v, getPosition());
-            }*/
-            //Contato contatoLigar = (Contato) mList.get(position);
-            //Toast.makeText(context,mList.get(position).getNome()+"",Toast.LENGTH_LONG).show();
-
-            List<ContextMenuItem> itens=new ArrayList<>();
-            itens.add(new ContextMenuItem("Ok"));
-
-            ContextMenuAdapter adapter= new ContextMenuAdapter(context,itens);
-
-            ListPopupWindow listPopupWindow= new ListPopupWindow(context);
-            listPopupWindow.setAdapter(adapter);
-            listPopupWindow.setAnchorView(v);
-            listPopupWindow.setWidth((int) (240 * scale + 0.5f));
-            listPopupWindow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Toast.makeText(context, "Clicou", Toast.LENGTH_LONG).show();
-                    //Toast.makeText(context,getAdapterPosition()+"UGuig",Toast.LENGTH_LONG).show();
-                }
-            });
-            listPopupWindow.setModal(true);
-            Toast.makeText(context,"UGuig",Toast.LENGTH_LONG).show();
-            listPopupWindow.show();
+            }
         }
     }
 }
