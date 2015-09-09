@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Contato implements Serializable{
     private Long id;
-    private String nome, telefone, email, endereco, foto, horaLigacao;
+    private String nome, telefone, email, endereco, foto, horaLigacao, opTelein;
     int operadora;
     private int tipoendereco;
     private int tipoemail;
@@ -89,4 +89,9 @@ public class Contato implements Serializable{
     public void setTipoemail(int tipoemail) {
         this.tipoemail = tipoemail;
     }
+
+    public String getOpTelein() { return opTelein; }
+
+    public void setOpTelein(String opTelein) { this.opTelein = opTelein; }
+
 }

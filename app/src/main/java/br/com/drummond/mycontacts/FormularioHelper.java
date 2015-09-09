@@ -7,6 +7,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -20,7 +21,7 @@ public class FormularioHelper {
     private EditText editNome, editTelefone, editEmail, editEndereco;
     private RatingBar ratingFavorito;
     private ImageView foto;
-    private Spinner editOperadora;
+    private Button editOperadora;
     private Spinner emailtipo;
     private Spinner enderecotipo;
     private Contato contato;
@@ -35,19 +36,20 @@ public class FormularioHelper {
         editEndereco = (EditText) formulario.findViewById(R.id.endereco);
         ratingFavorito = (RatingBar) formulario.findViewById(R.id.favorito);
         foto = (ImageView) formulario.findViewById(R.id.foto);
-        editOperadora = (Spinner) formulario.findViewById(R.id.operadora);
+        //editOperadora = (Spinner) formulario.findViewById(R.id.operadora);
+        editOperadora = (Button) formulario.findViewById(R.id.btnOp);
         emailtipo= (Spinner) formulario.findViewById(R.id.emailtipo);
         enderecotipo= (Spinner) formulario.findViewById(R.id.enderecotipo);
 
-        String[] nomesOperadoras ={"Claro", "Nextel", "Oi", "Vivo", "Tim", "Outro"};
+        //String[] nomesOperadoras ={"Claro", "Nextel", "Oi", "Vivo", "Tim", "Outro"};
         String[] tipos ={"Casa", "Trabalho", "Outro"};
 
         int layoutSpinner = android.R.layout.simple_spinner_item;
 
-        adapterSpinner = new ArrayAdapter<String>(formulario, layoutSpinner, nomesOperadoras);
+        //adapterSpinner = new ArrayAdapter<String>(formulario, layoutSpinner, nomesOperadoras);
         adapterSpinnerTipo = new ArrayAdapter<String>(formulario, layoutSpinner, tipos);
 
-        editOperadora.setAdapter(adapterSpinner);
+        //editOperadora.setAdapter(adapterSpinner);
         emailtipo.setAdapter(adapterSpinnerTipo);
         enderecotipo.setAdapter(adapterSpinnerTipo);
 
@@ -62,7 +64,8 @@ public class FormularioHelper {
         contato.setEndereco(editEndereco.getText().toString());
         contato.setTipoendereco((int) enderecotipo.getSelectedItemId());
         contato.setFavorito(Double.valueOf(ratingFavorito.getRating()));
-        contato.setOperadora((int) editOperadora.getSelectedItemId());
+        //contato.setOperadora((int) editOperadora.getSelectedItemId());
+        contato.setOpTelein(editOperadora.getText().toString());
 
         return contato;
     }
@@ -76,7 +79,8 @@ public class FormularioHelper {
         editEndereco.setText(contatoMostrar.getEndereco());
         enderecotipo.setSelection(contatoMostrar.getTipoendereco());
         ratingFavorito.setRating(contatoMostrar.getFavorito().floatValue());
-        editOperadora.setSelection(contatoMostrar.getOperadora());
+        //editOperadora.setSelection(contatoMostrar.getOperadora());
+        editOperadora.setText(contatoMostrar.getOpTelein());
 
         if (contato.getFoto() != null) {
             carregaImagem(contatoMostrar.getFoto());
