@@ -177,10 +177,9 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
     @Override
     public void onLongPressClickListener(View view, int position) {
         ContatoAdapter adapter = (ContatoAdapter) mRecyclerView.getAdapter();
-        adapter.createContextMenu(view,position);
+        adapter.createContextMenu(view, position);
 
     }
-
     public List<Contato> carregaLista() {
         ContatoDAO dao = new ContatoDAO(getActivity());
         List<Contato> listAux = dao.getLista();

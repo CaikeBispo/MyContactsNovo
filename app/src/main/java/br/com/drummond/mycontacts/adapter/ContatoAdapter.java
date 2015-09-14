@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.internal.view.ContextThemeWrapper;
 import android.support.v7.widget.ListPopupWindow;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -31,9 +32,12 @@ import br.com.drummond.mycontacts.Formulario;
 import br.com.drummond.mycontacts.MainActivity;
 import br.com.drummond.mycontacts.R;
 import br.com.drummond.mycontacts.domain.ContextMenuItem;
+import br.com.drummond.mycontacts.fragments.ContatoFragment;
 import br.com.drummond.mycontacts.interfaces.RecyclerViewOnClickListenerHack;
+import br.com.drummond.mycontacts.lista.dao.ContatoDAO;
 import br.com.drummond.mycontacts.lista.dao.LigacaoDAO;
 import br.com.drummond.mycontacts.lista.modelo.Contato;
+import me.drakeet.materialdialog.MaterialDialog;
 
 /**
  * Created by viniciusthiengo on 4/5/15.
@@ -44,6 +48,7 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.MyViewHo
     private LayoutInflater mLayoutInflater;
     private FragmentActivity fragmentActivity;
     private RecyclerViewOnClickListenerHack mRecyclerViewOnClickListenerHack;
+    private MaterialDialog mMaterialDialog;
 
     private float scale;
     private int width, height, roundPixels;
@@ -136,9 +141,9 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.MyViewHo
         context.startActivity(irParaFormulario);
     }
 
-    public void createContextMenu(View v,int position){
+    public void createContextMenu(View v, final int position){
         final Contato contato = (Contato) mList.get(position);
-
+        final int pos=position;
         List<ContextMenuItem> itens=new ArrayList<>();
         itens.add(new ContextMenuItem(R.drawable.glasses,"Ver contato"));
         itens.add(new ContextMenuItem(R.drawable.pencil,"Alterar"));
@@ -149,7 +154,7 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.MyViewHo
 
         ContextMenuAdapter adapter= new ContextMenuAdapter(context,itens);
 
-        ListPopupWindow listPopupWindow= new ListPopupWindow(context);
+        final ListPopupWindow listPopupWindow= new ListPopupWindow(context);
         listPopupWindow.setAdapter(adapter);
         listPopupWindow.setAnchorView(v);
         listPopupWindow.setWidth((int) (240 * scale + 0.5f));
@@ -159,40 +164,46 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.MyViewHo
                 //Toast.makeText(context, position + ", Clicou ," + id, Toast.LENGTH_SHORT).show();
                 switch (position){
                     case 0:
-                        Toast.makeText(context, "Formulario Ver contato", Toast.LENGTH_SHORT).show();
+                        listPopupWindow.dismiss();
                         indoParaFormulario("contatoMostrar", contato);
                         break;
                     case 1:
-                        Toast.makeText(context, "Formulario Alterar contato", Toast.LENGTH_SHORT).show();
+                        listPopupWindow.dismiss();
                         indoParaFormulario("contatoAlterar", contato);
                         break;
                     case 2:
-                        Toast.makeText(context, "Deletar contato", Toast.LENGTH_SHORT).show();
-                        /*MaterialDialog mMaterialDialog = new MaterialDialog(this)
-                                .setTitle("MaterialDialog")
-                                .setMessage("Hello world!")
-                                .setPositiveButton("OK", new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        mMaterialDialog.dismiss();
-                                        ...
-                                    }
-                                })
-                                .setNegativeButton("CANCEL", new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        mMaterialDialog.dismiss();
-                                        ...
-                                    }
-                                });
+                        listPopupWindow.dismiss();
+                        mMaterialDialog = new MaterialDialog(new ContextThemeWrapper(context, R.style.MyAlertDialog));
+                        mMaterialDialog.setTitle("Realmente excluir?");
+                        mMaterialDialog.setMessage("Deseja realmente excluir o contato selecionado?");
+                        mMaterialDialog.setPositiveButton("Sim", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                mMaterialDialog.dismiss();
+                                ContatoDAO dao = new ContatoDAO(context); //Chamada o SQLITE
+                                dao.deletar(contato);
+                                dao.close();
+                                mList.remove(pos);
+                                notifyItemRemoved(pos);
+                                //carregaLista();
+                            }
+                        });
+                        mMaterialDialog.setNegativeButton("Não", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                mMaterialDialog.dismiss();
+                            }
+                        });
 
-                        mMaterialDialog.show();*/
+                        mMaterialDialog.show();
                         break;
                     case 3:
+                        listPopupWindow.dismiss();
                         Intent irParaSMS = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:"+contato.getTelefone()));
                         context.startActivity(irParaSMS);
                         break;
                     case 4:
+                        listPopupWindow.dismiss();
                         Intent i = new Intent(Intent.ACTION_SEND);
                         i.setType("message/rfc822");
                         i.putExtra(Intent.EXTRA_EMAIL  , new String[]{contato.getEmail()});
@@ -203,6 +214,7 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.MyViewHo
                         }
                         break;
                     case 5:
+                        listPopupWindow.dismiss();
                         Toast.makeText(context, "Ver no mapa", Toast.LENGTH_SHORT).show();
                         break;
                 }
