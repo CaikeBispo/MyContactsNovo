@@ -27,6 +27,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.drummond.mycontacts.Formulario;
 import br.com.drummond.mycontacts.MainActivity;
 import br.com.drummond.mycontacts.R;
 import br.com.drummond.mycontacts.domain.ContextMenuItem;
@@ -126,16 +127,25 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.MyViewHo
         return irParaTelaDeDiscagem;
     }
 
+    public void indoParaFormulario(String mostrarOuAlterar,Contato contato){
+        Contato c = contato;
+        Intent irParaFormulario = new Intent(context, Formulario.class);
+
+        //contatoSelecionado é um apelido que sera usado para saber quem é o contato na próxima pagina, qndo usarmos o intent.getSerializableExtra
+        irParaFormulario.putExtra(mostrarOuAlterar, c);
+        context.startActivity(irParaFormulario);
+    }
+
     public void createContextMenu(View v,int position){
         final Contato contato = (Contato) mList.get(position);
 
         List<ContextMenuItem> itens=new ArrayList<>();
-        itens.add(new ContextMenuItem(R.drawable.car_1,"Ver contato"));
-        itens.add(new ContextMenuItem(R.drawable.car_1,"Alterar"));
-        itens.add(new ContextMenuItem(R.drawable.car_1,"Deletar"));
-        itens.add(new ContextMenuItem(R.drawable.car_1,"Enviar SMS"));
-        itens.add(new ContextMenuItem(R.drawable.car_1,"Enviar e-mail"));
-        itens.add(new ContextMenuItem(R.drawable.car_1,"Ver no mapa"));
+        itens.add(new ContextMenuItem(R.drawable.glasses,"Ver contato"));
+        itens.add(new ContextMenuItem(R.drawable.pencil,"Alterar"));
+        itens.add(new ContextMenuItem(R.drawable.ic_action_delete,"Deletar"));
+        itens.add(new ContextMenuItem(R.drawable.message_text,"Enviar SMS"));
+        itens.add(new ContextMenuItem(R.drawable.email,"Enviar e-mail"));
+        itens.add(new ContextMenuItem(R.drawable.contact_map,"Ver no mapa"));
 
         ContextMenuAdapter adapter= new ContextMenuAdapter(context,itens);
 
@@ -150,23 +160,42 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.MyViewHo
                 switch (position){
                     case 0:
                         Toast.makeText(context, "Formulario Ver contato", Toast.LENGTH_SHORT).show();
+                        indoParaFormulario("contatoMostrar", contato);
                         break;
                     case 1:
                         Toast.makeText(context, "Formulario Alterar contato", Toast.LENGTH_SHORT).show();
+                        indoParaFormulario("contatoAlterar", contato);
                         break;
                     case 2:
                         Toast.makeText(context, "Deletar contato", Toast.LENGTH_SHORT).show();
+                        /*MaterialDialog mMaterialDialog = new MaterialDialog(this)
+                                .setTitle("MaterialDialog")
+                                .setMessage("Hello world!")
+                                .setPositiveButton("OK", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        mMaterialDialog.dismiss();
+                                        ...
+                                    }
+                                })
+                                .setNegativeButton("CANCEL", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        mMaterialDialog.dismiss();
+                                        ...
+                                    }
+                                });
+
+                        mMaterialDialog.show();*/
                         break;
                     case 3:
-                        Toast.makeText(context, "Enviar SMS", Toast.LENGTH_SHORT).show();
+                        Intent irParaSMS = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:"+contato.getTelefone()));
+                        context.startActivity(irParaSMS);
                         break;
                     case 4:
-                        Toast.makeText(context, "Enviar e-Mail", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(Intent.ACTION_SEND);
                         i.setType("message/rfc822");
                         i.putExtra(Intent.EXTRA_EMAIL  , new String[]{contato.getEmail()});
-				/*i.putExtra(Intent.EXTRA_SUBJECT, "");
-				i.putExtra(Intent.EXTRA_TEXT   , "body of email");*/
                         try {
                             context.startActivity(Intent.createChooser(i, "Enviar email com: "));
                         } catch (Exception e) {

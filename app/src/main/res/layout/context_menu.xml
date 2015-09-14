@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/iv_icon"
             android:layout_toRightOf="@+id/iv_icon"
-            android:textColor="@color/primary"
+            android:textColor="@color/colorPrimarytext"
             android:textSize="13sp" />
 
     </RelativeLayout>
