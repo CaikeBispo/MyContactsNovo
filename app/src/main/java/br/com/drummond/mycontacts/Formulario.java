@@ -6,14 +6,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -37,6 +40,7 @@ public class Formulario extends ActionBarActivity {
     private Contato contato;
     private ContatoDAO dao;
     private ImageButton botao;
+    private Button btnOp;
     private boolean i;
     private MainActivity MainActtivity;
 
@@ -79,6 +83,48 @@ public class Formulario extends ActionBarActivity {
                 finish(); //Botão voltar automatico
             }
         });
+
+
+        btnOp = (Button) findViewById(R.id.btnOp);
+        btnOp.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                final Handler handler = new Handler();
+                new Thread(){
+                    @Override
+                    public void run() {
+                        try {
+                            Class_Operadora classe_op = new Class_Operadora();
+                            final String NomeOperadora;
+                            String response;
+
+                            //String URL = "http://consultaoperadora1.telein.com.br/sistema/consulta_resumida.php?numero=11962301830&chave=74b451b7a6ef79a57085";
+                            //SynchronousHttpConnection httpConnection = new SynchronousHttpConnection();
+                            //response = httpConnection.post(URL);
+                            response = "41#962301830";
+
+                            NomeOperadora = classe_op.NomearOperadora(response);
+
+                            Log.i("RESPONSE ", ": " + NomeOperadora);
+                            handler.post(new Runnable() {
+                                public void run() {
+                                    // Aqui dentro do Handler atualiza a view com o retorno, dentro da Thread Main
+                                    //TextView textViewSituacao  = (TextView) findViewById(R.id.textViewSituacao);
+                                    btnOp.setText(NomeOperadora);
+                                }
+                            });
+                        } catch (final Exception e) {
+                            e.getMessage();
+                        }
+                    }
+                }.start();
+            }
+        });
+
+
+
+
 
         ImageView foto = helper.getFoto();
         foto.setOnClickListener(new View.OnClickListener() {

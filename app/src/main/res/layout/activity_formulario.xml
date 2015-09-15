@@ -72,7 +72,7 @@
                     android:textColor="@android:color/black"
                     android:color="#00000000"
                     android:inputType="phone" />
-
+<!--
                 <Spinner
                     android:id="@+id/operadora"
                     android:layout_width="wrap_content"
@@ -81,7 +81,13 @@
                     android:textSize="40sp"
                     android:padding="10dp"
                     android:layout_weight="1"
-                 />
+                    -->
+                <Button
+                    android:id="@+id/btnOp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Button" />
+                />
             </LinearLayout>
 
             <TextView

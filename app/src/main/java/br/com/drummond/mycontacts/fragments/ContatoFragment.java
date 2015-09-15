@@ -170,7 +170,6 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
     public void onClickListener(View view, int position) {
         //Ao clicar em um dos itens da lista de contato
         ContatoAdapter adapter = (ContatoAdapter) mRecyclerView.getAdapter();
-
         getActivity().startActivity(adapter.dial(position));
 
     }
@@ -178,16 +177,9 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
     @Override
     public void onLongPressClickListener(View view, int position) {
         ContatoAdapter adapter = (ContatoAdapter) mRecyclerView.getAdapter();
-
-
-        //Toast.makeText(getActivity(), "Long Toast", Toast.LENGTH_SHORT).show();
-        //Ao clicar longo em um dos itens da lista de contato
-        /*ContatoAdapter adapter = (ContatoAdapter) mRecyclerView.getAdapter();
-
-        getActivity().startActivity(adapter.dial(position));*/
+        adapter.createContextMenu(view, position);
 
     }
-
     public List<Contato> carregaLista() {
         ContatoDAO dao = new ContatoDAO(getActivity());
         List<Contato> listAux = dao.getLista();
