@@ -44,7 +44,7 @@ private RecyclerView mRecyclerView;
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(llm);
 
-        //Carregando a lista, e chamando o adapter para trabalhar com os eventos e inserção de dados nos componentes
+        //Carregando a lista, e chamando o adapter para trabalhar com os eventos e insero de dados nos componentes
         carregaLista();
 
         return view;
