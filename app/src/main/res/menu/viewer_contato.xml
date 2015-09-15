@@ -3,20 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <item
-        android:title="overflow"
-        android:showAsAction="always"
-        android:icon="@drawable/ic_action_overflow">
-        <menu>
-            <item
-                android:id="@+id/editar"
-                android:title="Editar"
-                android:icon="@drawable/ic_action_edit"
-                android:showAsAction="always"/>
-            <item
-                android:id="@+id/deletar"
-                android:title="Deletar"
-                android:icon="@drawable/ic_action_discard"
-                android:showAsAction="always"/>
-        </menu>
-    </item>
+        android:id="@+id/editar"
+        android:title="Editar"
+        app:icon="@drawable/ic_action_edit"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/deletar"
+        android:title="Deletar"
+        app:icon="@drawable/ic_action_discard"
+        app:showAsAction="never"/>
 </menu>

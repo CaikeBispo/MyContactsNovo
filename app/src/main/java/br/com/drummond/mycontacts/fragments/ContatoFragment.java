@@ -149,8 +149,6 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
                 abrirTecladoLigar.setData(Uri.parse("tel:"));
                 startActivity(abrirTecladoLigar);
                 break;
-            default:
-                Toast.makeText(getActivity(),"HUMM",Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -88,8 +88,8 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.MyViewHo
         }
         else{
             //Ainda não estou conseguindo colocar foto padrão para contatos, caso ainda não tenha foto do proprio contato
-            //Drawable draw=fragmentActivity.getResources().getDrawable(R.drawable.ic_person);
-            //myViewHolder.foto.setImageDrawable(draw);
+            Drawable draw=context.getResources().getDrawable(R.drawable.ic_action_person);
+            myViewHolder.foto.setImageDrawable(draw);
         }
         myViewHolder.tvModel.setText(mList.get(position).getNome() );
         myViewHolder.tvBrand.setText( mList.get(position).getTelefone() );

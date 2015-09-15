@@ -174,7 +174,7 @@
                 android:layout_gravity="center"
                 android:maxWidth="306dp"
                 android:adjustViewBounds="true"
-                android:background="#fff"
+                android:background="@android:color/transparent"
                 android:src="@drawable/ic_action_confirm"
                 android:text="Concluir" />
 

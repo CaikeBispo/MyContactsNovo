@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,8 +62,8 @@ public class ListaContatosAdapter extends BaseAdapter {
         name.setText(contato.getNome());
 
         ImageView foto = (ImageView) linha.findViewById(R.id.foto);
-
         if(contato.getFoto() != null){
+
             Bitmap fotocontato=BitmapFactory.decodeFile(contato.getFoto());
             Bitmap fotoreduzida = Bitmap.createScaledBitmap(fotocontato, 150, 150, true);
 

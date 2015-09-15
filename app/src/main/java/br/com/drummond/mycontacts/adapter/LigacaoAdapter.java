@@ -3,6 +3,7 @@ package br.com.drummond.mycontacts.adapter;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -27,10 +28,12 @@ public class LigacaoAdapter extends RecyclerView.Adapter<LigacaoAdapter.MyViewHo
     private LayoutInflater mLayoutInflater;
     private FragmentActivity fragmentActivity;
     private RecyclerViewOnClickListenerHack mRecyclerViewOnClickListenerHack;
+    private Context context;
 
     public LigacaoAdapter(Context c, List<Ligacao> l){
         mList = l;
         mLayoutInflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        context=c;
         this.fragmentActivity = fragmentActivity;
     }
 
@@ -52,9 +55,8 @@ public class LigacaoAdapter extends RecyclerView.Adapter<LigacaoAdapter.MyViewHo
             myViewHolder.foto.setImageBitmap(fotoreduzida);
         }
         else{
-            //Ainda nao estou conseguindo colocar foto padrao para contatos, caso ainda nao tenha foto do proprio contato
-            //Drawable draw=fragmentActivity.getResources().getDrawable(R.drawable.ic_person);
-            //myViewHolder.foto.setImageDrawable(draw);
+            Drawable draw=context.getResources().getDrawable(R.drawable.ic_action_person);
+            myViewHolder.foto.setImageDrawable(draw);
         }
         myViewHolder.tvModel.setText(mList.get(position).getNome());
         myViewHolder.tvBrand.setText( mList.get(position).getTelefone() );

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Contato implements Serializable{
     private Long id;
-    private String nome, telefone, email, endereco, foto, horaLigacao, opTelein;
+    private String nome, telefone, email, endereco, foto,  opTelein;
     int operadora;
     private int tipoendereco;
     private int tipoemail;
@@ -57,15 +57,6 @@ public class Contato implements Serializable{
     public void setFavorito(Double favorito) {
         this.favorito = favorito;
     }
-
-    public String getHoraLigacao() {
-        return horaLigacao;
-    }
-
-    public void setHoraLigacao(String horaLigacao) {
-        this.horaLigacao = horaLigacao;
-    }
-
     public int getOperadora() {
         return operadora;
     }
