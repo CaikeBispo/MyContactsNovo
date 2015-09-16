@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Ligacao implements Serializable{
     private Long id,idContato;
     private String nome,telefone,foto;
+    //horaligacao
 
     @Override
     public String toString() {

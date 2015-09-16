@@ -29,9 +29,9 @@ public class LigacaoDAO extends SQLiteOpenHelper {
         values.put("nome", registroChamada.getNome());
         values.put("telefone", registroChamada.getTelefone());
         values.put("foto", registroChamada.getFoto());
-        Log.i("SCRIPT", "SALVOU ESSSA BIROSCA 1"+registroChamada.getId());
-        //values.put("hora", dados.getHoraLigacao());
-        //values.put("operadora", dados.getOperadora());
+        Log.i("SCRIPT", "SALVOU ESSSA BIROSCA 1" + registroChamada.getId());
+        //values.put("horaligacao", registroChamada.getId());
+        //values.put("operadora", registroChamada.getOperadora());
 
         getWritableDatabase().insert("Ligacoes", null, values);
 
@@ -40,7 +40,7 @@ public class LigacaoDAO extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String ddl = "CREATE TABLE Ligacoes (id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + "idContato INT, nome TEXT NOT NULL, telefone TEXT,foto TEXT);";
+                + "idContato INT, nome TEXT NOT NULL, telefone TEXT,foto TEXT,horaligacao TEXT);";
         db.execSQL(ddl);
 
     }
@@ -67,10 +67,10 @@ public class LigacaoDAO extends SQLiteOpenHelper {
             ligacao.setTelefone(cursor.getString(2));
             ligacao.setIdContato(cursor.getLong(3));
             ligacao.setFoto(cursor.getString(4));
+            //ligacao.setOperadora(cursor.getString(5));
+            //ligacao.setHoraligacao(cursor.getString(6);
             Log.i("CURSOR", ligacao.getId().toString());
             Log.i("TESTE", ligacao.getIdContato().toString());
-            //ligacao.setHoraLigacao(cursor.getString(3));
-            //ligacao.setOperadora(cursor.getString(4));
             ligacoes.add(ligacao);
 
         }

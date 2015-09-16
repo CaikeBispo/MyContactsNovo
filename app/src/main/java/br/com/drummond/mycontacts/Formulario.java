@@ -51,7 +51,6 @@ public class Formulario extends ActionBarActivity {
 
         mToolbar= (Toolbar) findViewById(R.id.tb_main);
         setSupportActionBar(mToolbar);
-        mToolbar.setTitle("Formulário");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
@@ -154,10 +153,15 @@ public class Formulario extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
         if(contatoMostrar != null){
+            mToolbar.setTitle("Visualizar contato");
             botao.setVisibility(View.INVISIBLE);
             helper.colocaContatoNoFormulario(contatoMostrar, "contatoMostrar");
         } else if (contatoAlterar != null) {
+            mToolbar.setTitle("Alterar contato");
             helper.colocaContatoNoFormulario(contatoAlterar, "contatoAlterar");
+        }
+        else{
+            mToolbar.setTitle("Adicionar contato");
         }
     }
 

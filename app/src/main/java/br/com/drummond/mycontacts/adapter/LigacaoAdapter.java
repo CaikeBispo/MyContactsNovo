@@ -59,6 +59,7 @@ public class LigacaoAdapter extends RecyclerView.Adapter<LigacaoAdapter.MyViewHo
             myViewHolder.foto.setImageDrawable(draw);
         }
         myViewHolder.tvModel.setText(mList.get(position).getNome());
+        //myViewHolder.tvBrand.setText( mList.get(position).getTelefone() );
         myViewHolder.tvBrand.setText( mList.get(position).getTelefone() );
     }
 
