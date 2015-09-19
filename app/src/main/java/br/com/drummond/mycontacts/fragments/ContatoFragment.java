@@ -167,6 +167,13 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
     @Override
     public void onClickListener(View view, int position) {
         //Ao clicar em um dos itens da lista de contato
+
+        //PEGANDO O CONTATO PARA GANBRIEL
+        List<Contato> listAux = carregaLista();;
+        Contato contato=listAux.get(position);
+        Log.i("CONTATO",contato.getNome());
+
+        //Realizando a chamada para dial de ligação
         ContatoAdapter adapter = (ContatoAdapter) mRecyclerView.getAdapter();
         getActivity().startActivity(adapter.dial(position));
 
