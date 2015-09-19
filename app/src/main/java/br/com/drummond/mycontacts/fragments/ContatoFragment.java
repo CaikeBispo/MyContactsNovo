@@ -37,6 +37,7 @@ import br.com.drummond.mycontacts.R;
 import br.com.drummond.mycontacts.adapter.ContatoAdapter;
 import br.com.drummond.mycontacts.interfaces.RecyclerViewOnClickListenerHack;
 import br.com.drummond.mycontacts.lista.dao.ContatoDAO;
+import br.com.drummond.mycontacts.lista.dao.LigacaoDAO;
 import br.com.drummond.mycontacts.lista.modelo.Contato;
 
 
@@ -173,9 +174,20 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
         Contato contato=listAux.get(position);
         Log.i("CONTATO",contato.getNome());
 
+        Intent irParaTelaDeDiscagem = new Intent(Intent.ACTION_CALL);
+        Uri discarPara = Uri.parse("tel: " + contato.getTelefone());
+
+        irParaTelaDeDiscagem.setData(discarPara);
+
         //Realizando a chamada para dial de ligação
-        ContatoAdapter adapter = (ContatoAdapter) mRecyclerView.getAdapter();
-        getActivity().startActivity(adapter.dial(position));
+        //ContatoAdapter adapter = (ContatoAdapter) mRecyclerView.getAdapter();
+        //getActivity().startActivity(adapter.dial(position));
+
+        startActivity(irParaTelaDeDiscagem);
+
+        LigacaoDAO daoLigacao = new LigacaoDAO(getActivity());
+        daoLigacao.salva(contato); //Salvando conteúdo
+
 
     }
 
