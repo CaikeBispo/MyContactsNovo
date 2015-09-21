@@ -43,8 +43,8 @@ public class ContatoDAO extends SQLiteOpenHelper{
         values.put("tipoEndereco", contato.getTipoendereco());
         values.put("foto", contato.getFoto());
         values.put("favorito", contato.getFavorito());
-        values.put("operadora", contato.getOperadora());
-
+        //values.put("operadora", contato.getOperadora());
+        values.put("operadora", contato.getOpTelein());
 
         getWritableDatabase().insert("Contatos", null, values);
     }
@@ -94,7 +94,8 @@ public class ContatoDAO extends SQLiteOpenHelper{
             contato.setTipoendereco(cursor.getInt(6));
             contato.setFoto(cursor.getString(7));
             contato.setFavorito(cursor.getDouble(8));
-            contato.setOperadora(cursor.getInt(9));
+            //contato.setOperadora(cursor.getInt(9));
+            contato.setOpTelein(cursor.getString(9));
 
             arrContato.add(contato);
         }
@@ -127,7 +128,8 @@ public class ContatoDAO extends SQLiteOpenHelper{
             contato.setTipoendereco(cursor.getInt(6));
             contato.setFoto(cursor.getString(7));
             contato.setFavorito(cursor.getDouble(8));
-            contato.setOperadora(cursor.getInt(9));
+            //contato.setOperadora(cursor.getInt(9));
+            contato.setOpTelein(cursor.getString(9));
 
             arrContato.add(contato);
         }
@@ -157,7 +159,8 @@ public class ContatoDAO extends SQLiteOpenHelper{
         values.put("tipoEndereco", contato.getTipoendereco());
         values.put("foto", contato.getFoto());
         values.put("favorito", contato.getFavorito());
-        values.put("operadora", contato.getOperadora());
+        //values.put("operadora", contato.getOperadora());
+        values.put("operadora", contato.getOpTelein());
 
         String[] args = {contato.getId().toString()};
         getWritableDatabase().update("Contatos", values, "id=?", args);

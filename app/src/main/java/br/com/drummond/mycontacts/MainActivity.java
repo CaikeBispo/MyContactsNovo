@@ -13,6 +13,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.telephony.TelephonyManager;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -55,6 +56,7 @@ public class MainActivity extends ActionBarActivity {
 
     private SlidingTabLayout mSlidingTabLayout;
     private ViewPager mViewPager;
+    public static String operator;
 
 
     private OnCheckedChangeListener OnCheckedChangeListener=new OnCheckedChangeListener(){
@@ -65,10 +67,13 @@ public class MainActivity extends ActionBarActivity {
         }
     };
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        DescobriMinhaOperadora();
 
         /*if(savedInstanceState != null){
             mItemDrawerSelected = savedInstanceState.getInt("mItemDrawerSelected", 0);
@@ -170,6 +175,12 @@ public class MainActivity extends ActionBarActivity {
         navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Avalie").withIcon(getResources().getDrawable(R.drawable.car_1)));
         navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Backup").withIcon(getResources().getDrawable(R.drawable.car_1)));
         navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Contato").withIcon(getResources().getDrawable(R.drawable.car_1)));
+    }
+
+    public void DescobriMinhaOperadora() {
+        //LIGAÇÃO EFETUADA NO FRAGMENT1
+        TelephonyManager tm = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        operator = tm.getSimOperatorName();
     }
 
 
