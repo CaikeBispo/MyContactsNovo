@@ -1,9 +1,11 @@
 package br.com.drummond.mycontacts.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,6 +19,7 @@ import java.util.List;
 
 import br.com.drummond.mycontacts.R;
 import br.com.drummond.mycontacts.interfaces.RecyclerViewOnClickListenerHack;
+import br.com.drummond.mycontacts.lista.dao.LigacaoDAO;
 import br.com.drummond.mycontacts.lista.modelo.Contato;
 import br.com.drummond.mycontacts.lista.modelo.Ligacao;
 
@@ -35,6 +38,22 @@ public class LigacaoAdapter extends RecyclerView.Adapter<LigacaoAdapter.MyViewHo
         mLayoutInflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         context=c;
         this.fragmentActivity = fragmentActivity;
+    }
+
+    public Intent dial(String telefone){
+        //Metodo para chamada do teclado para realizar ligações
+
+        Intent irParaTelaDeDiscagem = new Intent(Intent.ACTION_CALL);
+        Uri discarPara = Uri.parse("tel: " + telefone);
+
+        irParaTelaDeDiscagem.setData(discarPara);
+
+        return irParaTelaDeDiscagem;
+    }
+
+    public void removeListItem(int position){
+        mList.remove(position);
+        notifyItemRemoved(position);
     }
 
     @Override

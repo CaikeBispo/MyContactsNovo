@@ -1,14 +1,17 @@
 package br.com.drummond.mycontacts.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -39,6 +42,9 @@ private RecyclerView mRecyclerView;
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_list_historico);
         mRecyclerView.setHasFixedSize(true);
 
+        //chamada do mGestured
+        mRecyclerView.addOnItemTouchListener(new RecyclerViewTouchListener(getActivity(), mRecyclerView, this));
+
         //Criando um linear Layout no modo default para listagem de contatos e setando-o no nosso RecyclerView
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -59,7 +65,7 @@ private RecyclerView mRecyclerView;
 
         //Log.i("Lista","Teste: "+listAux.size());
         LigacaoAdapter adapter = new LigacaoAdapter(getActivity(), listAux);
-        adapter.setRecyclerViewOnClickListenerHack(this);
+        //adapter.setRecyclerViewOnClickListenerHack(this);
         mRecyclerView.setAdapter( adapter );
     }
 
@@ -69,7 +75,7 @@ private RecyclerView mRecyclerView;
         dao.close();
 
         LigacaoAdapter adapter = new LigacaoAdapter(getActivity(), listAux);
-        adapter.setRecyclerViewOnClickListenerHack(this);
+        //adapter.setRecyclerViewOnClickListenerHack(this);
         mRecyclerView.setAdapter(adapter);
     }
 
@@ -80,12 +86,41 @@ private RecyclerView mRecyclerView;
 
     @Override
     public void onClickListener(View view, int position) {
+        //Pegando a lista de ligações
+        LigacaoDAO dao = new LigacaoDAO(getActivity());
+        List<Ligacao> listAux = dao.getListaLigacao();
+        dao.close();
 
+        //Pegando a ligação clicada e populando um contato para ser salvo novamente nas ligações
+        Ligacao ligacao= listAux.get(position);
+        Contato contato=new Contato();
+        contato.setId(ligacao.getIdContato());
+        contato.setNome(ligacao.getNome());
+        contato.setTelefone(ligacao.getTelefone());
+        contato.setFoto(ligacao.getFoto());
+
+        //Chaando o metodo para call do intent e salvando a ligação
+        LigacaoAdapter adapter = (LigacaoAdapter) mRecyclerView.getAdapter();
+        getActivity().startActivity(adapter.dial(contato.getTelefone()));
+        dao.salva(contato); //Salvando conteúdo
     }
 
     @Override
     public void onLongPressClickListener(View view, int position) {
+        //Pegando a lista de ligações
+        LigacaoDAO dao = new LigacaoDAO(getActivity()); //Chamada o SQLITE
+        List<Ligacao> listAux = dao.getListaLigacao();
+        dao.close();
 
+        //Pegando a ligação clicada e populando um contato para ser salvo novamente nas ligações
+        Ligacao ligacao= listAux.get(position);
+
+        Toast.makeText(getActivity(),"Long: "+ligacao.getTelefone(),Toast.LENGTH_SHORT).show();
+        dao.deletar(ligacao);
+        dao.close();
+        //Chaando o metodo para call do intent e salvando a ligação
+        LigacaoAdapter adapter = (LigacaoAdapter) mRecyclerView.getAdapter();
+        adapter.removeListItem(position);
     }
 
     @Override
@@ -114,5 +149,53 @@ private RecyclerView mRecyclerView;
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    //Iniciando o contato com longPress
+    private static class RecyclerViewTouchListener implements RecyclerView.OnItemTouchListener {
+        private Context mContext;
+        private GestureDetector mGestureDetector;
+        private RecyclerViewOnClickListenerHack mRecyclerViewOnClickListenerHack;
+
+
+        public RecyclerViewTouchListener(Context c, final RecyclerView rv, RecyclerViewOnClickListenerHack rvoclh){
+            mContext = c;
+            mRecyclerViewOnClickListenerHack = rvoclh;
+
+            mGestureDetector = new GestureDetector(mContext, new GestureDetector.SimpleOnGestureListener(){
+                @Override
+                public void onLongPress(MotionEvent e) {
+                    super.onLongPress(e);
+
+                    View cv = rv.findChildViewUnder(e.getX(), e.getY()); //Coordenadas da tela
+
+                    if(cv != null && mRecyclerViewOnClickListenerHack != null){
+                        mRecyclerViewOnClickListenerHack.onLongPressClickListener(cv,
+                                rv.getChildPosition(cv) );
+                    }
+                }
+
+                @Override
+                public boolean onSingleTapUp(MotionEvent e) {
+                    View cv = rv.findChildViewUnder(e.getX(), e.getY());
+
+                    if(cv != null && mRecyclerViewOnClickListenerHack != null){
+                        mRecyclerViewOnClickListenerHack.onClickListener(cv,
+                                rv.getChildPosition(cv) );
+                    }
+
+                    return(true);
+                }
+            });
+        }
+
+        @Override
+        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+            mGestureDetector.onTouchEvent(e);
+            return false;
+        }
+
+        @Override
+        public void onTouchEvent(RecyclerView rv, MotionEvent e) {}
     }
 }

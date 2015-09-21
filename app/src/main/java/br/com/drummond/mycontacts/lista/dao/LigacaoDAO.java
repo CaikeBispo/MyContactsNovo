@@ -29,7 +29,7 @@ public class LigacaoDAO extends SQLiteOpenHelper {
         values.put("nome", registroChamada.getNome());
         values.put("telefone", registroChamada.getTelefone());
         values.put("foto", registroChamada.getFoto());
-        Log.i("SCRIPT", "SALVOU ESSSA BIROSCA 1" + registroChamada.getId());
+        //Log.i("SCRIPT", "SALVOU ESSSA BIROSCA 1" + registroChamada.getId());
         //values.put("horaligacao", registroChamada.getId());
         //values.put("operadora", registroChamada.getOperadora());
 
@@ -75,6 +75,40 @@ public class LigacaoDAO extends SQLiteOpenHelper {
 
         }
         return ligacoes;
+    }
+    public List<Ligacao> getLigacaoById() {
+        String[] colunas = { "id", "nome","telefone","idContato","foto"};
+        Cursor cursor = getWritableDatabase().query("Ligacoes", colunas, null,
+                null, null, null, null);
+
+        ArrayList<Ligacao> ligacoes = new ArrayList<Ligacao>();
+
+        while (cursor.moveToNext()) {
+            Ligacao ligacao = new Ligacao();
+
+            ligacao.setId(cursor.getLong(0));
+            ligacao.setNome(cursor.getString(1));
+            ligacao.setTelefone(cursor.getString(2));
+            ligacao.setIdContato(cursor.getLong(3));
+            ligacao.setFoto(cursor.getString(4));
+            //ligacao.setOperadora(cursor.getString(5));
+            //ligacao.setHoraligacao(cursor.getString(6);
+            Log.i("CURSOR", ligacao.getId().toString());
+            Log.i("TESTE", ligacao.getIdContato().toString());
+            ligacoes.add(ligacao);
+
+        }
+        return ligacoes;
+    }
+    public void deletar(Ligacao ligacao) {
+
+        String[] args = {ligacao.getId().toString()};
+        Log.i("TAG", "Clicou no deletar "+args);
+        getWritableDatabase().delete("Ligacoes", "id=?", args);
+
+		/*Log.i("TAG", "Clicou no deletar "+contato.getNome());
+		getWritableDatabase().execSQL("Delete from Contatos where nome = '"+contato.getNome()+"'");
+		*/
     }
     public void removeAll() {
         SQLiteDatabase db = getWritableDatabase(); // helper is object extends SQLiteOpenHelper7
