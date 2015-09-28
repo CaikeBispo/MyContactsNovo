@@ -138,16 +138,23 @@ public class MainActivity extends ActionBarActivity {
 
                         for (int count = 0, tam = navigationDrawerLeft.getDrawerItems().size(); count < tam; count++) {
                             //Para trocar a cor do icone do item de menu do NavigationDrawer ao ser clicado
-                            if (count == mPositionClicked && mPositionClicked <= 2) {
+                            /*if (count == mPositionClicked && mPositionClicked <= 2) {
+                                PrimaryDrawerItem aux = (PrimaryDrawerItem) navigationDrawerLeft.getDrawerItems().get(count);
+                                aux.setIcon(getResources().getDrawable( getCorretcDrawerIcon( count, false ) ));
+                                break;
+                            }*/
+                            if (count == mPositionClicked) {
                                 PrimaryDrawerItem aux = (PrimaryDrawerItem) navigationDrawerLeft.getDrawerItems().get(count);
                                 aux.setIcon(getResources().getDrawable( getCorretcDrawerIcon( count, false ) ));
                                 break;
                             }
                         }
 
-                        if(i <= 3){
+                        /*if(i <= 3){
                             ((PrimaryDrawerItem) iDrawerItem).setIcon(getResources().getDrawable( getCorretcDrawerIcon( i, true ) ));
-                        }
+                        }*/
+
+                        ((PrimaryDrawerItem) iDrawerItem).setIcon(getResources().getDrawable( getCorretcDrawerIcon( i, true ) ));
 
                         mPositionClicked = i;
                         navigationDrawerLeft.getAdapter().notifyDataSetChanged();
@@ -164,17 +171,19 @@ public class MainActivity extends ActionBarActivity {
                 .build();
 
         //Abaixo criando os itens do menu do NAVIGATION DRAWER
-        navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Sobre").withIcon(getResources().getDrawable(R.drawable.car_1)));
+        navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Sobre").withIcon(getResources().getDrawable(R.drawable.ic_nav_about)));
         navigationDrawerLeft.addItem(new SectionDrawerItem().withName("Grupos"));
-        navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Grupo1").withIcon(getResources().getDrawable(R.drawable.car_1)));
-        navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Grupo2").withIcon(getResources().getDrawable(R.drawable.car_1)));
-        navigationDrawerLeft.addItem(new SectionDrawerItem().withName("Configurações"));
+        navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Grupo1").withIcon(getResources().getDrawable(R.drawable.ic_nav_group)));
+        navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Grupo2").withIcon(getResources().getDrawable(R.drawable.ic_nav_group)));
+
+        /*navigationDrawerLeft.addItem(new SectionDrawerItem().withName("Configurações"));
         navigationDrawerLeft.addItem(new SwitchDrawerItem().withName("Notificação").withChecked(true).withOnCheckedChangeListener(OnCheckedChangeListener));
         navigationDrawerLeft.addItem(new ToggleDrawerItem().withName("News").withChecked(true).withOnCheckedChangeListener(OnCheckedChangeListener));
+        */
         navigationDrawerLeft.addItem(new DividerDrawerItem());
-        navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Avalie").withIcon(getResources().getDrawable(R.drawable.car_1)));
-        navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Backup").withIcon(getResources().getDrawable(R.drawable.car_1)));
-        navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Contato").withIcon(getResources().getDrawable(R.drawable.car_1)));
+        navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Avalie").withIcon(getResources().getDrawable(R.drawable.ic_nav_avalie)));
+        navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Backup").withIcon(getResources().getDrawable(R.drawable.ic_nav_cloud_upload)));
+        navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Contato").withIcon(getResources().getDrawable(R.drawable.email)));
     }
 
     public void DescobriMinhaOperadora() {
@@ -187,13 +196,19 @@ public class MainActivity extends ActionBarActivity {
     private int getCorretcDrawerIcon(int position, boolean isSelecetd){
         switch(position){
             case 0:
-                return( isSelecetd ? R.drawable.car_selected_1 : R.drawable.car_1 );
-            case 1:
-                return( isSelecetd ? R.drawable.car_selected_2 : R.drawable.car_2 );
+                return( isSelecetd ? R.drawable.ic_nav_about_selected : R.drawable.ic_nav_about );
             case 2:
-                return( isSelecetd ? R.drawable.car_selected_3 : R.drawable.car_3 );
+              return( isSelecetd ? R.drawable.ic_nav_group_selected : R.drawable.ic_nav_group );
             case 3:
-                return( isSelecetd ? R.drawable.car_selected_4 : R.drawable.car_4 );
+                return( isSelecetd ? R.drawable.ic_nav_group_selected : R.drawable.ic_nav_group );
+            case 5:
+                return( isSelecetd ? R.drawable.ic_nav_avalie_disabled : R.drawable.ic_nav_avalie );
+            case 6:
+                return( isSelecetd ? R.drawable.ic_nav_cloud_upload_selected : R.drawable.ic_nav_cloud_upload );
+            case 7:
+                return( isSelecetd ? R.drawable.email_selected : R.drawable.email );
+            case 8:
+                return( isSelecetd ? R.drawable.email_selected : R.drawable.email );
         }
         return(0);
     }
