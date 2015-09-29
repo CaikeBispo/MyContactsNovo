@@ -6,4 +6,5 @@
     <string name="title_activity_formulario">Formulario</string>
     <string name="title_activity_about">about</string>
     <string name="title_activity_searchable">SearchableActivity</string>
+    <string name="title_activity_mapa">MapaActivity</string>
 </resources>

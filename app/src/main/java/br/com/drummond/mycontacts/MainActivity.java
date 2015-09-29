@@ -53,8 +53,7 @@ import br.com.drummond.mycontacts.lista.dao.ContatoDAO;
 import br.com.drummond.mycontacts.lista.modelo.Contato;
 
 
-public class MainActivity extends ActionBarActivity implements GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener,LocationListener{
+public class MainActivity extends ActionBarActivity{
     private static String TAG = "LOG";
     private Toolbar mToolbar;
     private Drawer.Result navigationDrawerLeft;
@@ -86,8 +85,7 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
         setContentView(R.layout.activity_main);
 
         DescobriMinhaOperadora();
-        Log.i("LOG","Connection ativo");
-        //callConnection();
+
         /*if(savedInstanceState != null){
             mItemDrawerSelected = savedInstanceState.getInt("mItemDrawerSelected", 0);
         }*/
@@ -224,82 +222,5 @@ public class MainActivity extends ActionBarActivity implements GoogleApiClient.C
                 return( isSelecetd ? R.drawable.email_selected : R.drawable.email );
         }
         return(0);
-    }
-
-    private synchronized void callConnection(){
-        mGoogleApiClient= new GoogleApiClient.Builder(this)
-                .addOnConnectionFailedListener(this)
-                .addConnectionCallbacks(this)
-                .addApi(LocationServices.API)
-                .build();
-
-        mGoogleApiClient.connect();
-
-    }
-
-    public void initlocationRequest(){
-        mLocationRequest= new LocationRequest();
-        //a cada 5 segundos
-        mLocationRequest.setInterval(5000);
-        mLocationRequest.setFastestInterval(2000); // No minimo a cada 2 segundos
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-    }
-
-    private void startLocationUpdate(){
-        startLocationUpdate();
-        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, MainActivity.this);
-    }
-
-    private void stopLocationUpdate(){
-        LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, MainActivity.this);
-    }
-
-    //Daqui pra baixo são metodos de mapas LISTENER
-    @Override
-    public void onConnected(Bundle bundle) {
-        Log.i("LOG", "ONcONNECT");
-        //Aqui pegamos a localização
-
-        Location l=LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        if(l != null){
-            Log.i("LOG", "LATITUDE: "+l.getLatitude());
-            Log.i("LOG", "LONGITUDE: "+l.getLongitude());
-
-        }
-        startLocationUpdate();
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-        Log.i("LOG", "onConnectionSuspended");
-
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-        Log.i("LOG", "onConnectionSuspended");
-    }
-
-    //LISTENER DE ATUALIZAR LOCATION
-    @Override
-    public void onLocationChanged(Location location) {
-        Toast.makeText(this,"LATITUDE"+location.getLatitude()+" / LONGITUDE: "+location.getLongitude(),Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if(mGoogleApiClient != null && mGoogleApiClient.isConnected()){
-            startLocationUpdate();
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        //Para liberar recursos
-        super.onPause();
-        if(mGoogleApiClient != null){
-            stopLocationUpdate();
-        }
     }
 }
