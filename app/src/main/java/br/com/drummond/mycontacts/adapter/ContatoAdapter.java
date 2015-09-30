@@ -37,6 +37,7 @@ import br.com.drummond.mycontacts.interfaces.RecyclerViewOnClickListenerHack;
 import br.com.drummond.mycontacts.lista.dao.ContatoDAO;
 import br.com.drummond.mycontacts.lista.dao.LigacaoDAO;
 import br.com.drummond.mycontacts.lista.modelo.Contato;
+import br.com.drummond.mycontacts.mapa.MapaActivity;
 import me.drakeet.materialdialog.MaterialDialog;
 
 /**
@@ -214,7 +215,12 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.MyViewHo
                         break;
                     case 5:
                         listPopupWindow.dismiss();
-                        Toast.makeText(context, "Ver no mapa", Toast.LENGTH_SHORT).show();
+                        Intent irParaMapa = new Intent(context, MapaActivity.class);
+
+                        //contatoSelecionado é um apelido que sera usado para saber quem é o contato na próxima pagina, qndo usarmos o intent.getSerializableExtra
+                        irParaMapa.putExtra("contatoMostrar", contato);
+                        context.startActivity(irParaMapa);
+                        //Toast.makeText(context, "Ver no mapa", Toast.LENGTH_SHORT).show();
                         break;
                 }
             }

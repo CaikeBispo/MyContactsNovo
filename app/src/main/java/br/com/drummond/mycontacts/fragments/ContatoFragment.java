@@ -262,7 +262,8 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
             startActivity(new Intent(getActivity(), Formulario.class));
         }
         if(id == R.id.map){
-            startActivity(new Intent(getActivity(), MapaActivity.class));
+            Intent irParaMapa = new Intent(getActivity(), MapaActivity.class);
+            startActivity(irParaMapa);
         }
 
         return super.onOptionsItemSelected(item);
