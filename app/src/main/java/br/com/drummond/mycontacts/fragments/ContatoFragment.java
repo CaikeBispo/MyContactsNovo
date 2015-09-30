@@ -41,6 +41,7 @@ import br.com.drummond.mycontacts.interfaces.RecyclerViewOnClickListenerHack;
 import br.com.drummond.mycontacts.lista.dao.ContatoDAO;
 import br.com.drummond.mycontacts.lista.dao.LigacaoDAO;
 import br.com.drummond.mycontacts.lista.modelo.Contato;
+import br.com.drummond.mycontacts.mapa.MapaActivity;
 
 
 //FRAGMENT DA CLASSE DE LISTAGEM DE CONTATOS
@@ -259,6 +260,10 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
 
         if(id == R.id.novo){
             startActivity(new Intent(getActivity(), Formulario.class));
+        }
+        if(id == R.id.map){
+            Intent irParaMapa = new Intent(getActivity(), MapaActivity.class);
+            startActivity(irParaMapa);
         }
 
         return super.onOptionsItemSelected(item);

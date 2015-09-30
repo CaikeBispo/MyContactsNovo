@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,6 +25,11 @@ import android.widget.AdapterView;
 import android.widget.CompoundButton;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.accountswitcher.AccountHeader;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
@@ -46,7 +53,7 @@ import br.com.drummond.mycontacts.lista.dao.ContatoDAO;
 import br.com.drummond.mycontacts.lista.modelo.Contato;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity{
     private static String TAG = "LOG";
     private Toolbar mToolbar;
     private Drawer.Result navigationDrawerLeft;
@@ -57,6 +64,10 @@ public class MainActivity extends ActionBarActivity {
     private SlidingTabLayout mSlidingTabLayout;
     private ViewPager mViewPager;
     public static String operator;
+
+    //trabalhando com mapas
+    private GoogleApiClient mGoogleApiClient;
+    private LocationRequest mLocationRequest;
 
 
     private OnCheckedChangeListener OnCheckedChangeListener=new OnCheckedChangeListener(){
