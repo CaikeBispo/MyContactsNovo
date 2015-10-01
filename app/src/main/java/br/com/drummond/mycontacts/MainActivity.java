@@ -134,17 +134,23 @@ public class MainActivity extends ActionBarActivity{
                         Fragment frag = null;
                         mItemDrawerSelected = i;
 
-                        if (i == 0) {
-                            //frag = new CarFragment();
-                            Intent irSobre = new Intent(MainActivity.this, About.class);
-                            startActivity(irSobre);
-                        } else if (i == 1) {
-                            /*frag = new Historico();
-
-                            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                            ft.replace(R.id.rl_fragment_container, frag, "mainFrag");
-                            ft.commit();
-                            mToolbar.setTitle( ((PrimaryDrawerItem) iDrawerItem).getName() );*/
+                        switch (i){
+                            case 0:
+                                Intent irSobre = new Intent(MainActivity.this, About.class);
+                                startActivity(irSobre);
+                                break;
+                            case 7:
+                                Intent intent = new Intent(Intent.ACTION_SEND);
+                                intent.setType("message/rfc822");
+                                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"support@mycontacts.com.br"});
+                                try {
+                                    MainActivity.this.startActivity(Intent.createChooser(intent, "Enviar email com: "));
+                                } catch (Exception e) {
+                                    Toast.makeText(MainActivity.this, "O contato não possui email cadastrado!",Toast.LENGTH_SHORT).show();
+                                }
+                                break;
+                            default:
+                                Toast.makeText(MainActivity.this,"Algum erro ocorreu!!! "+i,Toast.LENGTH_SHORT).show();
                         }
 
                         for (int count = 0, tam = navigationDrawerLeft.getDrawerItems().size(); count < tam; count++) {
