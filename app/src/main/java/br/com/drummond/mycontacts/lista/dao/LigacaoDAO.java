@@ -29,6 +29,7 @@ public class LigacaoDAO extends SQLiteOpenHelper {
         values.put("nome", registroChamada.getNome());
         values.put("telefone", registroChamada.getTelefone());
         values.put("foto", registroChamada.getFoto());
+        values.put("operadora", registroChamada.getOpTelein());
         //Log.i("SCRIPT", "SALVOU ESSSA BIROSCA 1" + registroChamada.getId());
         //values.put("horaligacao", registroChamada.getId());
         //values.put("operadora", registroChamada.getOperadora());
@@ -40,7 +41,7 @@ public class LigacaoDAO extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String ddl = "CREATE TABLE Ligacoes (id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + "idContato INT, nome TEXT NOT NULL, telefone TEXT,foto TEXT,horaligacao TEXT);";
+                + "idContato INT, nome TEXT NOT NULL, telefone TEXT,foto TEXT,operadora TEXT);";
         db.execSQL(ddl);
 
     }
@@ -53,7 +54,7 @@ public class LigacaoDAO extends SQLiteOpenHelper {
     }
 
     public List<Ligacao> getListaLigacao() {
-        String[] colunas = { "id", "nome","telefone","idContato","foto"};
+        String[] colunas = { "id", "nome","telefone","idContato","foto", "operadora"};
         Cursor cursor = getWritableDatabase().query("Ligacoes", colunas, null,
                 null, null, null, null);
 
@@ -67,6 +68,7 @@ public class LigacaoDAO extends SQLiteOpenHelper {
             ligacao.setTelefone(cursor.getString(2));
             ligacao.setIdContato(cursor.getLong(3));
             ligacao.setFoto(cursor.getString(4));
+            ligacao.setOpTelein(cursor.getString(5));
             //ligacao.setOperadora(cursor.getString(5));
             //ligacao.setHoraligacao(cursor.getString(6);
             Log.i("CURSOR", ligacao.getId().toString());
@@ -77,7 +79,7 @@ public class LigacaoDAO extends SQLiteOpenHelper {
         return ligacoes;
     }
     public List<Ligacao> getLigacaoById() {
-        String[] colunas = { "id", "nome","telefone","idContato","foto"};
+        String[] colunas = { "id", "nome","telefone","idContato","foto", "operadora"};
         Cursor cursor = getWritableDatabase().query("Ligacoes", colunas, null,
                 null, null, null, null);
 
@@ -91,6 +93,7 @@ public class LigacaoDAO extends SQLiteOpenHelper {
             ligacao.setTelefone(cursor.getString(2));
             ligacao.setIdContato(cursor.getLong(3));
             ligacao.setFoto(cursor.getString(4));
+            ligacao.setOpTelein(cursor.getString(9));
             //ligacao.setOperadora(cursor.getString(5));
             //ligacao.setHoraligacao(cursor.getString(6);
             Log.i("CURSOR", ligacao.getId().toString());

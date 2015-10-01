@@ -1,6 +1,10 @@
 package br.com.drummond.mycontacts.fragments;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -66,7 +70,7 @@ private RecyclerView mRecyclerView;
         //Log.i("Lista","Teste: "+listAux.size());
         LigacaoAdapter adapter = new LigacaoAdapter(getActivity(), listAux);
         //adapter.setRecyclerViewOnClickListenerHack(this);
-        mRecyclerView.setAdapter( adapter );
+        mRecyclerView.setAdapter(adapter);
     }
 
     public void carregaLista(){
@@ -87,12 +91,42 @@ private RecyclerView mRecyclerView;
     @Override
     public void onClickListener(View view, int position) {
         //Pegando a lista de ligações
-        LigacaoDAO dao = new LigacaoDAO(getActivity());
+        final LigacaoDAO dao = new LigacaoDAO(getActivity());
         List<Ligacao> listAux = dao.getListaLigacao();
         dao.close();
 
+        final Ligacao ligacao= listAux.get(position);
+
+        String op_outro = ligacao.getOpTelein();
+        if (MainActivity.operator.equals(op_outro)) {
+            efetuarLigacao(ligacao,dao);
+        } else {
+            AlertDialog.Builder caixaDialogo = new AlertDialog.Builder(getActivity());
+            caixaDialogo.setTitle("Operadora diferente!");
+            caixaDialogo.setMessage("Sua Operadora e "+MainActivity.operator +" e voce esta ligando para um "+op_outro+".\n\nDeseja continuar a ligacao?");
+
+            caixaDialogo.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    efetuarLigacao(ligacao,dao);
+                }
+            });
+
+            caixaDialogo.setNegativeButton("Nao", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+
+            caixaDialogo.create();
+            caixaDialogo.show();
+        }
+
+
+    }
+
+    private void efetuarLigacao(Ligacao ligacao,LigacaoDAO dao){
         //Pegando a ligação clicada e populando um contato para ser salvo novamente nas ligações
-        Ligacao ligacao= listAux.get(position);
         Contato contato=new Contato();
         contato.setId(ligacao.getIdContato());
         contato.setNome(ligacao.getNome());
@@ -105,6 +139,7 @@ private RecyclerView mRecyclerView;
         dao.salva(contato); //Salvando conteúdo
     }
 
+
     @Override
     public void onLongPressClickListener(View view, int position) {
         //Pegando a lista de ligações
@@ -115,7 +150,6 @@ private RecyclerView mRecyclerView;
         //Pegando a ligação clicada e populando um contato para ser salvo novamente nas ligações
         Ligacao ligacao= listAux.get(position);
 
-        Toast.makeText(getActivity(),"Long: "+ligacao.getTelefone(),Toast.LENGTH_SHORT).show();
         dao.deletar(ligacao);
         dao.close();
         //Chaando o metodo para call do intent e salvando a ligação

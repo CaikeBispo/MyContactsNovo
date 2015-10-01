@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Ligacao implements Serializable{
     private Long id,idContato;
-    private String nome,telefone,foto;
+    private String nome,telefone,foto,opTelein;
     //horaligacao
 
     @Override
@@ -47,5 +47,13 @@ public class Ligacao implements Serializable{
 
     public void setFoto(String foto) {
         this.foto = foto;
+    }
+
+    public String getOpTelein() {
+        return opTelein;
+    }
+
+    public void setOpTelein(String opTelein) {
+        this.opTelein = opTelein;
     }
 }
