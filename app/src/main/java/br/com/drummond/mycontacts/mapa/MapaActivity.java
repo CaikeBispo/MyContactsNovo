@@ -41,7 +41,7 @@ public class MapaActivity extends FragmentActivity{
         else{
             ft.replace(R.id.mapa, mapa);
             ft.commit();
-            atualizador = new AtualizadorDePosicao(this,mapa); //Pegando nossa localização atual
+            atualizador = new AtualizadorDePosicao(this,mapa); //Pegando nossa localizacao atual
         }
     }
 

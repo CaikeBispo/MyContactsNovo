@@ -20,11 +20,11 @@ public class Localizador {
         this.context=c;
     }
     public LatLng gettCoordenada(String endereco){
-        //Especialista em pegar uma coordenada apartir de um endereço
+        //Especialista em pegar uma coordenada apartir de um endereco
         Geocoder geocoder=new Geocoder(context);
 
         try {
-            List<Address> enderecos = geocoder.getFromLocationName(endereco,1); //endereço e quantidade de resultados
+            List<Address> enderecos = geocoder.getFromLocationName(endereco,1); //endereco e quantidade de resultados
             if(!enderecos.isEmpty()){
                Address enderecolocalizado = enderecos.get(0);
                 double latitude= enderecolocalizado.getLatitude();

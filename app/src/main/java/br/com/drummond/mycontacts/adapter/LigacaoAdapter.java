@@ -41,7 +41,7 @@ public class LigacaoAdapter extends RecyclerView.Adapter<LigacaoAdapter.MyViewHo
     }
 
     public Intent dial(String telefone){
-        //Metodo para chamada do teclado para realizar ligações
+        //Metodo para chamada do teclado para realizar ligacoes
 
         Intent irParaTelaDeDiscagem = new Intent(Intent.ACTION_CALL);
         Uri discarPara = Uri.parse("tel: " + telefone);

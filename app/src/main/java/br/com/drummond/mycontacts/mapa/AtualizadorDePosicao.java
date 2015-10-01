@@ -16,7 +16,7 @@ import br.com.drummond.mycontacts.fragments.MapaFragment;
  * Created by Fabiano de Lima Abre on 29/09/2015.
  */
 public class AtualizadorDePosicao implements LocationListener {
-    //Especialista em atualizar a nossa posição
+    //Especialista em atualizar a nossa posicao
     private LocationManager locationManager;
     private MapaFragment mapa;
 
@@ -45,7 +45,7 @@ public class AtualizadorDePosicao implements LocationListener {
 
     public void cancelar() {
         //Destruir o listener do atualizador
-        locationManager.removeUpdates(this); // Passa o listener que é a propria classe como parametro
+        locationManager.removeUpdates(this); // Passa o listener que  a propria classe como parametro
     }
 
     @Override

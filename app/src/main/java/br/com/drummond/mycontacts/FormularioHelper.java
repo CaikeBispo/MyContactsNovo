@@ -22,7 +22,7 @@ public class FormularioHelper {
     private RatingBar ratingFavorito;
     private ImageView foto;
     private Button editOperadora;
-    private Spinner emailtipo;
+    //private Spinner emailtipo;
     private Spinner enderecotipo;
     private Contato contato;
     ArrayAdapter<String> adapterSpinner;
@@ -38,7 +38,7 @@ public class FormularioHelper {
         foto = (ImageView) formulario.findViewById(R.id.foto);
         //editOperadora = (Spinner) formulario.findViewById(R.id.operadora);
         editOperadora = (Button) formulario.findViewById(R.id.btnOp);
-        emailtipo= (Spinner) formulario.findViewById(R.id.emailtipo);
+        //emailtipo= (Spinner) formulario.findViewById(R.id.emailtipo);
         enderecotipo= (Spinner) formulario.findViewById(R.id.enderecotipo);
 
         //String[] nomesOperadoras ={"Claro", "Nextel", "Oi", "Vivo", "Tim", "Outro"};
@@ -50,7 +50,7 @@ public class FormularioHelper {
         adapterSpinnerTipo = new ArrayAdapter<String>(formulario, layoutSpinner, tipos);
 
         //editOperadora.setAdapter(adapterSpinner);
-        emailtipo.setAdapter(adapterSpinnerTipo);
+        //emailtipo.setAdapter(adapterSpinnerTipo);
         enderecotipo.setAdapter(adapterSpinnerTipo);
 
         contato = new Contato();
@@ -60,7 +60,7 @@ public class FormularioHelper {
         contato.setNome(editNome.getText().toString());
         contato.setTelefone(editTelefone.getText().toString());
         contato.setEmail(editEmail.getText().toString());
-        contato.setTipoemail((int) emailtipo.getSelectedItemId());
+        //contato.setTipoemail((int) emailtipo.getSelectedItemId());
         contato.setEndereco(editEndereco.getText().toString());
         contato.setTipoendereco((int) enderecotipo.getSelectedItemId());
         contato.setFavorito(Double.valueOf(ratingFavorito.getRating()));
@@ -75,7 +75,7 @@ public class FormularioHelper {
         editNome.setText(contatoMostrar.getNome());
         editTelefone.setText(contatoMostrar.getTelefone());
         editEmail.setText(contatoMostrar.getEmail());
-        emailtipo.setSelection(contatoMostrar.getTipoemail());
+        //emailtipo.setSelection(contatoMostrar.getTipoemail());
         editEndereco.setText(contatoMostrar.getEndereco());
         enderecotipo.setSelection(contatoMostrar.getTipoendereco());
         ratingFavorito.setRating(contatoMostrar.getFavorito().floatValue());
@@ -90,7 +90,7 @@ public class FormularioHelper {
             editNome.setEnabled(false);
             editTelefone.setEnabled(false);
             editEmail.setEnabled(false);
-            emailtipo.setEnabled(false);
+            //emailtipo.setEnabled(false);
             editEndereco.setEnabled(false);
             enderecotipo.setEnabled(false);
             ratingFavorito.setEnabled(false);

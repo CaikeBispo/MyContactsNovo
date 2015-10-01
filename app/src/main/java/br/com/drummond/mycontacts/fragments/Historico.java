@@ -90,7 +90,7 @@ private RecyclerView mRecyclerView;
 
     @Override
     public void onClickListener(View view, int position) {
-        //Pegando a lista de ligações
+        //Pegando a lista de ligaes
         final LigacaoDAO dao = new LigacaoDAO(getActivity());
         List<Ligacao> listAux = dao.getListaLigacao();
         dao.close();
@@ -126,33 +126,33 @@ private RecyclerView mRecyclerView;
     }
 
     private void efetuarLigacao(Ligacao ligacao,LigacaoDAO dao){
-        //Pegando a ligação clicada e populando um contato para ser salvo novamente nas ligações
+        //Pegando a ligacoes clicada e populando um contato para ser salvo novamente nas ligacoes
         Contato contato=new Contato();
         contato.setId(ligacao.getIdContato());
         contato.setNome(ligacao.getNome());
         contato.setTelefone(ligacao.getTelefone());
         contato.setFoto(ligacao.getFoto());
 
-        //Chaando o metodo para call do intent e salvando a ligação
+        //Chaando o metodo para call do intent e salvando a ligaï¿½ï¿½o
         LigacaoAdapter adapter = (LigacaoAdapter) mRecyclerView.getAdapter();
         getActivity().startActivity(adapter.dial(contato.getTelefone()));
-        dao.salva(contato); //Salvando conteúdo
+        dao.salva(contato); //Salvando conteï¿½do
     }
 
 
     @Override
     public void onLongPressClickListener(View view, int position) {
-        //Pegando a lista de ligações
+        //Pegando a lista de ligacoes
         LigacaoDAO dao = new LigacaoDAO(getActivity()); //Chamada o SQLITE
         List<Ligacao> listAux = dao.getListaLigacao();
         dao.close();
 
-        //Pegando a ligação clicada e populando um contato para ser salvo novamente nas ligações
+        //Pegando a ligacao clicada e populando um contato para ser salvo novamente nas ligacoes
         Ligacao ligacao= listAux.get(position);
 
         dao.deletar(ligacao);
         dao.close();
-        //Chaando o metodo para call do intent e salvando a ligação
+        //Chaando o metodo para call do intent e salvando a ligacao
         LigacaoAdapter adapter = (LigacaoAdapter) mRecyclerView.getAdapter();
         adapter.removeListItem(position);
     }

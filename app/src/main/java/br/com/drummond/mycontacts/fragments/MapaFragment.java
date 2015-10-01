@@ -27,10 +27,10 @@ public class MapaFragment extends SupportMapFragment{
 
 
         //LatLng local = new LatLng(-23.588275,-46.632303); Passando a latitude e longitude direto
-        //LatLng local = new Localizador(getActivity()).gettCoordenada("Rua Vergueiro,3185 Vila Mariana"); // Passando o endereço para um especialista em transformar em LatLong
+        //LatLng local = new Localizador(getActivity()).gettCoordenada("Rua Vergueiro,3185 Vila Mariana"); // Passando o endereco para um especialista em transformar em LatLong
         //centralizaNoLocal(local); O AtualizarDePosicao pegou esta tarefa de atualizar posicao no mapa
 
-        //Começando a pegar contatos proximos ao endereço
+        //Comecando a pegar contatos proximos ao endereco
 
         Log.i("Ver", String.valueOf(contatoMostrar == null));
         if(Boolean.valueOf(String.valueOf(contatoMostrar == null))){
@@ -50,8 +50,8 @@ public class MapaFragment extends SupportMapFragment{
             //Caso exista um contato na memoria, exibe apenas aquele contato no mapa
             Contato contato=getContatoMostrar();
 
-            //Centraliza o mapa no endereço do contato
-            LatLng local = new Localizador(getActivity()).gettCoordenada(contato.getEndereco()); // Passando o endereço para um especialista em transformar em LatLong
+            //Centraliza o mapa no endereco do contato
+            LatLng local = new Localizador(getActivity()).gettCoordenada(contato.getEndereco()); // Passando o endereco para um especialista em transformar em LatLong
             centralizaNoLocal(local);
 
             GoogleMap map = getMap();
