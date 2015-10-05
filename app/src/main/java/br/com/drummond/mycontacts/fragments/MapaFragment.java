@@ -2,6 +2,7 @@ package br.com.drummond.mycontacts.fragments;
 
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -42,7 +43,12 @@ public class MapaFragment extends SupportMapFragment{
                 GoogleMap map = getMap();
                 LatLng localContato = new Localizador(getActivity()).gettCoordenada(contato.getEndereco()); // transforma string em latlong
                 MarkerOptions options= new MarkerOptions().title(contato.getNome()+" / "+contato.getTelefone()).position(localContato); //Opcoes de como o marker sera criado
-                map.addMarker(options);
+                try {
+                    map.addMarker(options);
+                }catch (Exception e){
+                    Toast.makeText(getActivity(),"Para identificar a localizacao e necessario conexao com a internet! Verifique sua conexao.", Toast.LENGTH_LONG).show();
+                }
+
             }
             dao.close();
         }
@@ -51,13 +57,17 @@ public class MapaFragment extends SupportMapFragment{
             Contato contato=getContatoMostrar();
 
             //Centraliza o mapa no endereco do contato
-            LatLng local = new Localizador(getActivity()).gettCoordenada(contato.getEndereco()); // Passando o endereco para um especialista em transformar em LatLong
-            centralizaNoLocal(local);
 
-            GoogleMap map = getMap();
-            LatLng localContato = new Localizador(getActivity()).gettCoordenada(contato.getEndereco()); // transforma string em latlong
-            MarkerOptions options= new MarkerOptions().title(contato.getNome()+" / "+contato.getTelefone()).position(localContato); //Opcoes de como o marker sera criado
-            map.addMarker(options);
+
+            try {
+                GoogleMap map = getMap();
+                LatLng local = new Localizador(getActivity()).gettCoordenada(contato.getEndereco()); // Passando o endereco para um especialista em transformar em LatLong
+                centralizaNoLocal(local);
+                MarkerOptions options= new MarkerOptions().title(contato.getNome()+" / "+contato.getTelefone()).position(local); //Opcoes de como o marker sera criado
+                map.addMarker(options);
+            }catch (Exception e){
+                Toast.makeText(getActivity(),"Para identificar a localizacao e necessario conexao com a internet! Verifique sua conexao.", Toast.LENGTH_LONG).show();
+            }
         }
 
     }
