@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -100,6 +101,11 @@ public class Formulario extends ActionBarActivity {
                             Class_Operadora classe_op = new Class_Operadora();
                             final String NomeOperadora;
                             String response;
+
+                            EditText telDigitado = (EditText) findViewById(R.id.telefone);
+
+                            //COLOCAR PARA O USUARIO DIGITAR O DDDD
+                            Log.i("Telefon Digitado: ", ""+telDigitado.getText());
 
                             //String URL = "http://consultaoperadora1.telein.com.br/sistema/consulta_resumida.php?numero=11962301830&chave=74b451b7a6ef79a57085";
                             //SynchronousHttpConnection httpConnection = new SynchronousHttpConnection();
