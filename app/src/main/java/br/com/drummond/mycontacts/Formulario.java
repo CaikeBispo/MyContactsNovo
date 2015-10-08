@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -85,7 +86,6 @@ public class Formulario extends ActionBarActivity {
             }
         });
 
-
         btnOp = (Button) findViewById(R.id.btnOp);
         spnOp = (Spinner) findViewById(R.id.operadora);
         btnOp.setOnClickListener(new View.OnClickListener() {
@@ -113,7 +113,15 @@ public class Formulario extends ActionBarActivity {
                                 public void run() {
                                     // Aqui dentro do Handler atualiza a view com o retorno, dentro da Thread Main
                                     //TextView textViewSituacao  = (TextView) findViewById(R.id.textViewSituacao);
-                                    btnOp.setText(NomeOperadora);
+                                    //btnOp.setText(NomeOperadora);
+                                    ArrayAdapter<String> adapterSpinner;
+                                    int layoutSpinner = android.R.layout.simple_spinner_item;
+                                    String[] arrayOperadoras ={"Claro BR", "Nextel", "Oi", "Vivo", "Tim", "Fixo", "Outro"};
+
+                                    adapterSpinner = new ArrayAdapter<String>(getApplication(), layoutSpinner, arrayOperadoras);
+
+                                    int spnPosition = adapterSpinner.getPosition(NomeOperadora);
+                                    spnOp.setSelection(spnPosition);
 
                                 }
                             });
