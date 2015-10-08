@@ -104,11 +104,13 @@ public class Formulario extends ActionBarActivity {
                             //String URL = "http://consultaoperadora1.telein.com.br/sistema/consulta_resumida.php?numero=11962301830&chave=74b451b7a6ef79a57085";
                             //SynchronousHttpConnection httpConnection = new SynchronousHttpConnection();
                             //response = httpConnection.post(URL);
-                            response = "99#962301830";
+                            response = "41#962301830";
 
 
                             //******* ESTA GRAVANDO O TEXTO DESCOBRIR DO BOTAO
                             //******* TEM QUE GRAVAR O TEXTO DO SPINNER
+                            //***************^Testar os dois itens acima.
+
                             //******* PASSAR VARIAVEL PARA A URL
                             //******* TESTAR SE NUMERO INVALIDO RETORNA 99
                             NomeOperadora = classe_op.NomearOperadora(response);
@@ -137,7 +139,6 @@ public class Formulario extends ActionBarActivity {
                                         caixaDialogo.setNeutralButton("OK",new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
-
                                             }
                                           });
 

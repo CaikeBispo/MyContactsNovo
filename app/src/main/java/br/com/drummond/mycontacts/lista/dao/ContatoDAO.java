@@ -9,7 +9,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import br.com.drummond.mycontacts.Formulario;
+
 import br.com.drummond.mycontacts.lista.modelo.Contato;
 
 
@@ -44,7 +44,7 @@ public class ContatoDAO extends SQLiteOpenHelper{
         values.put("foto", contato.getFoto());
         values.put("favorito", contato.getFavorito());
         //values.put("operadora", contato.getOperadora());
-        values.put("operadora", contato.getOpTelein());
+        values.put("operadora", contato.getStrOp());
 
         getWritableDatabase().insert("Contatos", null, values);
     }
@@ -95,7 +95,7 @@ public class ContatoDAO extends SQLiteOpenHelper{
             contato.setFoto(cursor.getString(7));
             contato.setFavorito(cursor.getDouble(8));
             //contato.setOperadora(cursor.getInt(9));
-            contato.setOpTelein(cursor.getString(9));
+            contato.setStrOp(cursor.getString(9));
 
             arrContato.add(contato);
         }
@@ -129,7 +129,7 @@ public class ContatoDAO extends SQLiteOpenHelper{
             contato.setFoto(cursor.getString(7));
             contato.setFavorito(cursor.getDouble(8));
             //contato.setOperadora(cursor.getInt(9));
-            contato.setOpTelein(cursor.getString(9));
+            contato.setStrOp(cursor.getString(9));
 
             arrContato.add(contato);
         }
@@ -160,7 +160,7 @@ public class ContatoDAO extends SQLiteOpenHelper{
         values.put("foto", contato.getFoto());
         values.put("favorito", contato.getFavorito());
         //values.put("operadora", contato.getOperadora());
-        values.put("operadora", contato.getOpTelein());
+        values.put("operadora", contato.getStrOp());
 
         String[] args = {contato.getId().toString()};
         getWritableDatabase().update("Contatos", values, "id=?", args);

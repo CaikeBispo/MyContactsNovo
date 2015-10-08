@@ -18,11 +18,11 @@ public class writeDateExtenso {
     }
 
     public static String DataPorExtenso(java.util.Date dt) {
-            // retorna os valores ano, mês e dia da variável "dt"
+            // retorna os valores ano, mes e dia da variavel "dt"
         int d = dt.getDate();
         int m = dt.getMonth()+1;
         int a = dt.getYear()+1900;
-         // retorna o dia da semana: 1=domingo, 2=segunda-feira, ..., 7=sábado
+         // retorna o dia da semana: 1=domingo, 2=segunda-feira, ..., 7=sabado
         Calendar data = new GregorianCalendar(a, m-1, d);
         int ds = data.get(Calendar.DAY_OF_WEEK);
         //return(d + " de " + NomeDoMes(m) + " de " + a + " (" + DiaDaSemana(ds) + ").");

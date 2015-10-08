@@ -1,6 +1,5 @@
 package br.com.drummond.mycontacts;
 
-import java.beans.IndexedPropertyChangeEvent;
 import java.util.ArrayList;
 
 import android.content.Context;
@@ -12,7 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Spinner;
-import android.widget.Toast;
+
 import br.com.drummond.mycontacts.lista.modelo.Contato;
 
 public class FormularioHelper {
@@ -65,7 +64,8 @@ public class FormularioHelper {
         contato.setTipoendereco((int) enderecotipo.getSelectedItemId());
         contato.setFavorito(Double.valueOf(ratingFavorito.getRating()));
         contato.setOperadora((int) spnOp.getSelectedItemId());
-        contato.setOpTelein(editOperadora.getText().toString());
+        //contato.setStrOp(editOperadora.getText().toString());
+        contato.setStrOp(spnOp.getSelectedItem().toString());
 
         return contato;
     }
@@ -79,8 +79,10 @@ public class FormularioHelper {
         editEndereco.setText(contatoMostrar.getEndereco());
         enderecotipo.setSelection(contatoMostrar.getTipoendereco());
         ratingFavorito.setRating(contatoMostrar.getFavorito().floatValue());
-        spnOp.setSelection(contatoMostrar.getOperadora());
-        editOperadora.setText(contatoMostrar.getOpTelein());
+
+        int spnPosition = adapterSpinner.getPosition(contatoMostrar.getStrOp());
+        spnOp.setSelection(spnPosition);
+        //editOperadora.setText(contatoMostrar.getStrOp());
 
         if (contato.getFoto() != null) {
             carregaImagem(contatoMostrar.getFoto());

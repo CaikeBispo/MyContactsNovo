@@ -11,7 +11,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Toast;
+
 import br.com.drummond.mycontacts.lista.modelo.Contato;
 import br.com.drummond.mycontacts.lista.modelo.Ligacao;
 
@@ -34,7 +34,7 @@ public class LigacaoDAO extends SQLiteOpenHelper {
         values.put("nome", registroChamada.getNome());
         values.put("telefone", registroChamada.getTelefone());
         values.put("foto", registroChamada.getFoto());
-        values.put("operadora", registroChamada.getOpTelein());
+        values.put("operadora", registroChamada.getStrOp());
         //values.put("horaligacao", registroChamada.getNome());
         values.put("horaligacao", date);
         getWritableDatabase().insert("Ligacoes", null, values);
