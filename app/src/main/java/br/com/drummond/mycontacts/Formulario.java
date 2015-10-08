@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.io.File;
@@ -41,6 +42,7 @@ public class Formulario extends ActionBarActivity {
     private ContatoDAO dao;
     private ImageButton botao;
     private Button btnOp;
+    private Spinner spnOp;
     private boolean i;
     private MainActivity MainActtivity;
 
@@ -85,6 +87,7 @@ public class Formulario extends ActionBarActivity {
 
 
         btnOp = (Button) findViewById(R.id.btnOp);
+        spnOp = (Spinner) findViewById(R.id.operadora);
         btnOp.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -111,6 +114,7 @@ public class Formulario extends ActionBarActivity {
                                     // Aqui dentro do Handler atualiza a view com o retorno, dentro da Thread Main
                                     //TextView textViewSituacao  = (TextView) findViewById(R.id.textViewSituacao);
                                     btnOp.setText(NomeOperadora);
+
                                 }
                             });
                         } catch (final Exception e) {
@@ -120,10 +124,6 @@ public class Formulario extends ActionBarActivity {
                 }.start();
             }
         });
-
-
-
-
 
         ImageView foto = helper.getFoto();
         foto.setOnClickListener(new View.OnClickListener() {
