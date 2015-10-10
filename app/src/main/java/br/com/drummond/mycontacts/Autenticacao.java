@@ -1,5 +1,6 @@
 package br.com.drummond.mycontacts;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -18,44 +20,35 @@ import static android.widget.Toast.LENGTH_SHORT;
 import static android.widget.Toast.makeText;
 
 
-public class Autenticacao extends ActionBarActivity {
+public class Autenticacao extends Activity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_autenticacao);
         final UserDAO db = new UserDAO(this);
 
-
         Button loginPressed;
-        loginPressed = (Button)findViewById(R.id.entrar);
-        final EditText usuario = (EditText) findViewById(R.id.user);
-        final EditText pass = (EditText)findViewById(R.id.pass);
-
+        //loginPressed = (Button)findViewById(R.id.entrar);
+        loginPressed = (Button) findViewById(R.id.entrar);
+        final EditText user = (EditText) findViewById(R.id.user);
+        final EditText pass = (EditText) findViewById(R.id.pass);
 
         loginPressed.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                String inputName = usuario.getText().toString();
+                String inputName = user.getText().toString();
                 String inputPassword = pass.getText().toString();
-                //Log.d("nome -> ", x);
                 List<User> list = db.getAllUsers(inputName, inputPassword);
                 if (list.size() >= 1) {
-                    makeText(getApplicationContext(), "Foi", LENGTH_SHORT).show();
+                    Intent startCadastro = new Intent(Autenticacao.this, MainActivity.class);
+                    startActivity(startCadastro);
                 }
                 else
-                    makeText(getApplicationContext(), "Nao foi", LENGTH_SHORT).show();
-
-            /*    View view = (findViewById(R.id.entrar));
-                if(user.getText().toString().equals("caike") && pass.getText().toString().equals("1234")) {
-
-
-                    makeText(getApplicationContext(), "Foi", LENGTH_SHORT).show();
-
-                }
-                else
-                    makeText(getApplicationContext(), "Nao foi", LENGTH_SHORT).show();
-            */     }
+                    makeText(getApplicationContext(), "Usuario ou senha invalidos", Toast.LENGTH_LONG).show();
+            }
         });
 
         Button  registerPressed;
@@ -68,9 +61,6 @@ public class Autenticacao extends ActionBarActivity {
                 startActivity(startCadastro);
             }
         });
-
-        //EditText password = (EditText)findViewById(R.id.pass);
-        //Toast.makeText(this, (CharSequence) password, LENGTH_SHORT).show();
     }
 
     @Override

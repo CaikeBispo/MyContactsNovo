@@ -32,17 +32,19 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="355dp"
+            android:layout_width="215dp"
             android:layout_height="match_parent">
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Entrar"
+                android:textStyle="bold"
                 android:id="@+id/entrar" />
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cadastrar"
+                android:textStyle="bold"
                 android:id="@+id/register" />
         </LinearLayout>
     </LinearLayout>

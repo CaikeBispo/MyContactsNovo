@@ -61,6 +61,8 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.listagem_agenda, container, false);
 
+
+
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_list);
         mRecyclerView.setHasFixedSize(true);
 
