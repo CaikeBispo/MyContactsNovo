@@ -7,4 +7,6 @@
     <string name="title_activity_about">about</string>
     <string name="title_activity_searchable">SearchableActivity</string>
     <string name="title_activity_mapa">MapaActivity</string>
+    <string name="title_activity_autenticacao">Autenticacao</string>
+    <string name="title_activity_cadastro">Cadastro</string>
 </resources>
