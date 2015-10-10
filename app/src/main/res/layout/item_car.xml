@@ -30,8 +30,19 @@
         android:id="@+id/tv_brand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:paddingRight="16dp"
         android:textSize="12sp" />
+
+    <TextView
+        android:textColor="@color/colorPrimarytext"
+        android:layout_below="@+id/tv_brand"
+        android:layout_alignLeft="@id/tv_brand"
+        android:id="@+id/tv_hour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="16dp"
+        android:textSize="10sp" />
 
     <View
         android:id="@+id/vw_divider"

@@ -15,6 +15,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import br.com.drummond.mycontacts.R;
@@ -22,6 +25,7 @@ import br.com.drummond.mycontacts.interfaces.RecyclerViewOnClickListenerHack;
 import br.com.drummond.mycontacts.lista.dao.LigacaoDAO;
 import br.com.drummond.mycontacts.lista.modelo.Contato;
 import br.com.drummond.mycontacts.lista.modelo.Ligacao;
+import br.com.drummond.mycontacts.writeDate.writeDateExtenso;
 
 /**
  * Created by Fabiano de Lima Abre on 09/08/2015.
@@ -78,8 +82,16 @@ public class LigacaoAdapter extends RecyclerView.Adapter<LigacaoAdapter.MyViewHo
             myViewHolder.foto.setImageDrawable(draw);
         }
         myViewHolder.tvModel.setText(mList.get(position).getNome());
-        //myViewHolder.tvBrand.setText( mList.get(position).getTelefone() );
-        myViewHolder.tvBrand.setText( mList.get(position).getTelefone() );
+        myViewHolder.tvBrand.setText(mList.get(position).getTelefone());
+        //myViewHolder.tvHour.setText( mList.get(position).getHoraligacao());
+
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        try {
+            java.util.Date date=format.parse(mList.get(position).getHoraligacao());
+            myViewHolder.tvHour.setText(writeDateExtenso.DataPorExtenso(date));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -95,6 +107,7 @@ public class LigacaoAdapter extends RecyclerView.Adapter<LigacaoAdapter.MyViewHo
         public ImageView foto;
         public TextView tvModel;
         public TextView tvBrand;
+        public TextView tvHour;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -102,6 +115,7 @@ public class LigacaoAdapter extends RecyclerView.Adapter<LigacaoAdapter.MyViewHo
             foto = (ImageView) itemView.findViewById(R.id.iv_car);
             tvModel = (TextView) itemView.findViewById(R.id.tv_model);
             tvBrand = (TextView) itemView.findViewById(R.id.tv_brand);
+            tvHour= (TextView) itemView.findViewById(R.id.tv_hour);
 
             itemView.setOnClickListener(this);
         }

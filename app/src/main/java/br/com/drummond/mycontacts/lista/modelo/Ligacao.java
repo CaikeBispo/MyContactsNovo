@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Ligacao implements Serializable{
     private Long id,idContato;
     private String nome,telefone,foto,opTelein;
-    //horaligacao
+    private String horaligacao;
 
     @Override
     public String toString() {
@@ -55,5 +55,13 @@ public class Ligacao implements Serializable{
 
     public void setOpTelein(String opTelein) {
         this.opTelein = opTelein;
+    }
+
+    public String getHoraligacao() {
+        return horaligacao;
+    }
+
+    public void setHoraligacao(String horaligacao) {
+        this.horaligacao = horaligacao;
     }
 }

@@ -1,6 +1,8 @@
 package br.com.drummond.mycontacts.lista.dao;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -23,6 +25,9 @@ public class LigacaoDAO extends SQLiteOpenHelper {
     }
 
     public void salva(Contato registroChamada)  { //pegar os parametros do contato e não da ligacação
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String date = sdf.format(new Date());
+
         ContentValues values = new ContentValues();
         //Contato dados = new Contato();
         values.put("idContato", registroChamada.getId());
@@ -30,10 +35,8 @@ public class LigacaoDAO extends SQLiteOpenHelper {
         values.put("telefone", registroChamada.getTelefone());
         values.put("foto", registroChamada.getFoto());
         values.put("operadora", registroChamada.getOpTelein());
-        //Log.i("SCRIPT", "SALVOU ESSSA BIROSCA 1" + registroChamada.getId());
-        //values.put("horaligacao", registroChamada.getId());
-        //values.put("operadora", registroChamada.getOperadora());
-
+        //values.put("horaligacao", registroChamada.getNome());
+        values.put("horaligacao", date);
         getWritableDatabase().insert("Ligacoes", null, values);
 
     }
@@ -41,7 +44,7 @@ public class LigacaoDAO extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String ddl = "CREATE TABLE Ligacoes (id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + "idContato INT, nome TEXT NOT NULL, telefone TEXT,foto TEXT,operadora TEXT);";
+                + "idContato INT, nome TEXT NOT NULL, telefone TEXT,foto TEXT,operadora TEXT, horaligacao TEXT);";
         db.execSQL(ddl);
 
     }
@@ -54,7 +57,29 @@ public class LigacaoDAO extends SQLiteOpenHelper {
     }
 
     public List<Ligacao> getListaLigacao() {
-        String[] colunas = { "id", "nome","telefone","idContato","foto", "operadora"};
+        String[] colunas = { "id", "nome","telefone","idContato","foto", "operadora","horaligacao"};
+        Cursor cursor = getWritableDatabase().query("Ligacoes", colunas, null,
+                null, null, null, null);
+
+        ArrayList<Ligacao> ligacoes = new ArrayList<Ligacao>();
+
+        while (cursor.moveToNext()) {
+            Ligacao ligacao = new Ligacao();
+
+            ligacao.setId(cursor.getLong(0));
+            ligacao.setNome(cursor.getString(1));
+            ligacao.setTelefone(cursor.getString(2));
+            ligacao.setIdContato(cursor.getLong(3));
+            ligacao.setFoto(cursor.getString(4));
+            ligacao.setOpTelein(cursor.getString(5));
+            ligacao.setHoraligacao(cursor.getString(6));
+            ligacoes.add(ligacao);
+
+        }
+        return ligacoes;
+    }
+    public List<Ligacao> getLigacaoById() {
+        String[] colunas = { "id", "nome","telefone","idContato","foto", "operadora","horaligacao"};
         Cursor cursor = getWritableDatabase().query("Ligacoes", colunas, null,
                 null, null, null, null);
 
@@ -70,34 +95,7 @@ public class LigacaoDAO extends SQLiteOpenHelper {
             ligacao.setFoto(cursor.getString(4));
             ligacao.setOpTelein(cursor.getString(5));
             //ligacao.setOperadora(cursor.getString(5));
-            //ligacao.setHoraligacao(cursor.getString(6);
-            Log.i("CURSOR", ligacao.getId().toString());
-            Log.i("TESTE", ligacao.getIdContato().toString());
-            ligacoes.add(ligacao);
-
-        }
-        return ligacoes;
-    }
-    public List<Ligacao> getLigacaoById() {
-        String[] colunas = { "id", "nome","telefone","idContato","foto", "operadora"};
-        Cursor cursor = getWritableDatabase().query("Ligacoes", colunas, null,
-                null, null, null, null);
-
-        ArrayList<Ligacao> ligacoes = new ArrayList<Ligacao>();
-
-        while (cursor.moveToNext()) {
-            Ligacao ligacao = new Ligacao();
-
-            ligacao.setId(cursor.getLong(0));
-            ligacao.setNome(cursor.getString(1));
-            ligacao.setTelefone(cursor.getString(2));
-            ligacao.setIdContato(cursor.getLong(3));
-            ligacao.setFoto(cursor.getString(4));
-            ligacao.setOpTelein(cursor.getString(9));
-            //ligacao.setOperadora(cursor.getString(5));
-            //ligacao.setHoraligacao(cursor.getString(6);
-            Log.i("CURSOR", ligacao.getId().toString());
-            Log.i("TESTE", ligacao.getIdContato().toString());
+            ligacao.setHoraligacao(cursor.getString(6));
             ligacoes.add(ligacao);
 
         }
