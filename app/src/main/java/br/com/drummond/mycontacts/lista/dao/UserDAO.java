@@ -16,7 +16,7 @@ import br.com.drummond.mycontacts.lista.modelo.User;
  * Created by Bispo Caike on 10/10/2015.
  */
 public class UserDAO extends SQLiteOpenHelper{
-    private static final String DATABASE = "Lista de Contatos";
+    private static final String DATABASE = "Lista de Contatos 3";
     private static final int VERSAO = 1;
     private static final Context Register = null;
 

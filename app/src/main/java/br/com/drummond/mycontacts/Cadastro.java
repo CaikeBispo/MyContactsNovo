@@ -66,6 +66,7 @@ public class Cadastro extends Activity {
                     db.addUser(new User(editName.getText().toString(), editSurname.getText().toString(), editMail.getText().toString(), editPass.getText().toString(), reset, isLogado));
                     String x = "ck";
                     String name = "ck";
+                    db.close();
                     // get all books
                     /*List<User> list = db.getAllUsers(x);
                     if (list.size() == 1)
