@@ -46,7 +46,12 @@ public class MapaFragment extends SupportMapFragment{
                 try {
                     map.addMarker(options);
                 }catch (Exception e){
-                    Toast.makeText(getActivity(),"Para identificar a localizacao e necessario conexao com a internet! Verifique sua conexao.", Toast.LENGTH_LONG).show();
+                    if(contato.getEndereco().isEmpty()){
+                        Toast.makeText(getActivity(),"O contato "+contato.getNome()+" nao possue endereco cadastrado!", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(getActivity(),"Para identificar a localizacao e necessario conexao com a internet! Verifique sua conexao.", Toast.LENGTH_LONG).show();
+                    }
                 }
 
             }
@@ -66,7 +71,12 @@ public class MapaFragment extends SupportMapFragment{
                 MarkerOptions options= new MarkerOptions().title(contato.getNome()+" / "+contato.getTelefone()).position(local); //Opcoes de como o marker sera criado
                 map.addMarker(options);
             }catch (Exception e){
-                Toast.makeText(getActivity(),"Para identificar a localizacao e necessario conexao com a internet! Verifique sua conexao.", Toast.LENGTH_LONG).show();
+                if(contato.getEndereco().isEmpty()){
+                    Toast.makeText(getActivity(),"O contato "+contato.getNome()+" nao possue endereco cadastrado!", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getActivity(),"Para identificar a localizacao e necessario conexao com a internet! Verifique sua conexao.", Toast.LENGTH_LONG).show();
+                }
             }
         }
 

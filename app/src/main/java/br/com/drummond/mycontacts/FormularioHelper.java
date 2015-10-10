@@ -109,7 +109,7 @@ public class FormularioHelper {
         //Fazer imagem que foi tirada
         Bitmap imagem = BitmapFactory.decodeFile(caminhoArquivo);
 		/*Reduzir imagem*/
-        Bitmap imagemReduzida = Bitmap.createScaledBitmap(imagem, 100, 100, true);
+        Bitmap imagemReduzida = Bitmap.createScaledBitmap(imagem, 150, 200, true);
         //Carregar imagem que foi tirada
         foto.setImageBitmap(imagemReduzida);
     }

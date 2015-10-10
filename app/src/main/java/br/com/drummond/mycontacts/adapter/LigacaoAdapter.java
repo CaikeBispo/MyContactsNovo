@@ -69,12 +69,12 @@ public class LigacaoAdapter extends RecyclerView.Adapter<LigacaoAdapter.MyViewHo
         //myViewHolder.ivCar.setImageResource(mList.get(position).getFoto());
         if(mList.get(position).getFoto() != null){
             Bitmap fotocontato= BitmapFactory.decodeFile(mList.get(position).getFoto());
-            Bitmap fotoreduzida = Bitmap.createScaledBitmap(fotocontato, 150, 150, true);
+            Bitmap fotoreduzida = Bitmap.createScaledBitmap(fotocontato, 250, 250, true);
 
-            myViewHolder.foto.setImageBitmap(fotoreduzida);
+            myViewHolder.foto.setImageBitmap(RoundImage.getRoundedCornerBitmap(fotoreduzida));
         }
         else{
-            Drawable draw=context.getResources().getDrawable(R.drawable.ic_action_person);
+            Drawable draw=context.getResources().getDrawable(R.drawable.ic_action_person_round);
             myViewHolder.foto.setImageDrawable(draw);
         }
         myViewHolder.tvModel.setText(mList.get(position).getNome());
