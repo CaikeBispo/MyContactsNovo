@@ -63,6 +63,7 @@ public class MapaActivity extends ActionBarActivity{
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             ft.replace(R.id.mapa, mapa);
             ft.commit();
+            atualizador.cancelar();
             atualizador = new AtualizadorDePosicao(this,mapa); //Pegando nossa localizacao atual
         }
     }

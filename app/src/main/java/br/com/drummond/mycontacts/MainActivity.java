@@ -51,6 +51,7 @@ import br.com.drummond.mycontacts.fragments.ContatoFragment;
 import br.com.drummond.mycontacts.fragments.Historico;
 import br.com.drummond.mycontacts.lista.dao.ContatoDAO;
 import br.com.drummond.mycontacts.lista.modelo.Contato;
+import br.com.drummond.mycontacts.mapa.AtualizadorDePosicao;
 
 
 public class MainActivity extends ActionBarActivity{
@@ -69,6 +70,8 @@ public class MainActivity extends ActionBarActivity{
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
 
+    private AtualizadorDePosicao atualizador;
+
 
     private OnCheckedChangeListener OnCheckedChangeListener=new OnCheckedChangeListener(){
 
@@ -85,6 +88,8 @@ public class MainActivity extends ActionBarActivity{
         setContentView(R.layout.activity_main);
 
         DescobriMinhaOperadora();
+        atualizador = new AtualizadorDePosicao(this); //Pegando nossa localizacao atual
+
 
         /*if(savedInstanceState != null){
             mItemDrawerSelected = savedInstanceState.getInt("mItemDrawerSelected", 0);
@@ -228,5 +233,10 @@ public class MainActivity extends ActionBarActivity{
                 return( isSelecetd ? R.drawable.email_selected : R.drawable.email );
         }
         return(0);
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        atualizador.cancelar();
     }
 }

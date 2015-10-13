@@ -2,249 +2,249 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\8.1.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="3178362320bcf51228835b60ff978efadfd1f783">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-1bf41394d28b3ef3f53e3ac34de54665ff5c980e.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\8.1.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="3c729e6d76a36c5dc27e6a4c4009296f49eaa88a">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-f174090f284458a1de4e98408baf19f9d496a10c.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\8.1.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="b92002cb2f0e11a226ac5bac6dff1dc2a9d0b774">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-e9450047fd193ed0e521d36c0a356119475c0d10.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\8.1.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="82054090e487d78e163a988557db62d809fa9b95">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-d2cda2eab92f567709bac6780171c8ba44df554e.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\8.1.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="041d93cf0533591c29d1d7263b2fa114dbfb20bd">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-73c5360baa36f805fed6fd7d23803658d775f7aa.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\library-2.4.0-8efef5b7abe4123304ee9f1396ad640667953467.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\21.0.3\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4b8945fc23a7461c6fdde15753456d64b0a9358b">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-e7723edf22662d3a7bc16da99893dff5f4a9987d.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.1.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="82825756edeeb3b56b15e73b2edd56e93da5a444">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-001ceba33806082e5d7f444adf3743f837f3d154.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\8.1.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="95758a2905669affbffc5ddd262921d375674fad">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-180689b2f1362deddbf7ac1ef697241cdaa50223.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\8.1.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="3b05c18f60969ecc2ba49c0409c4b96be2d9cb0c">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-df2ce36893e997e8ee4dce221a6ca0fce52710c6.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-measurement\8.1.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="482de223655d06253cc6a4955d653f8994169500">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-022bd8105b257507e89c90767cc7c744ca928a5c.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\8.1.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="17449c47df35c754b257532052f1270c444f7993">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-8eb8664d8778aa461c0f016218ba6c92c2c041ab.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\libs\internal_impl-22.2.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-a970b89d283c02685c9e130dd1d4836a891635d4.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-9dc0e69d652ce8af3e36ed56a029948795ccb3be.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-cef2b3356fb5383b8496ce8d4a0f081389114c67.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.mikepenz.materialdrawer\library\2.8.2\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="6320445a7438321cdf32f75545581821f5759cf3">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-7341ec26f90c24ae1d3cd64bc6ea56ef1a7f35ff.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\8.1.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="dcb5b75baf05d92e61d5706737200ee55949f97b">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-cf8e720fe33b3f70b5e2121b1506fe0e1793c4d9.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\8.1.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="3aed37c38c56679602255dd72ef356da5d327cda">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-22e62dd8e67bb4191136167b7ad121cfacd130e9.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\8.1.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="d93480da1d303122ee67dc3bc23e6297bdef9951">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-46ad5357bfa93d235e853199d3cb1de9d23cfd32.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-4923ea8638c9fca9c78dec5b9e2a96b0f1e2dd1e.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\8.1.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="97f3b099801a9ad9d70e835b9125273e986eb68d">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-6b5b2677605795f2f5bcbe7facff2d0464de7afa.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.melnykov\floatingactionbutton\1.3.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="8c6ebb7d087d1a30bf84356bd2aecf85309fc024">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-1a11ee1e1b4ba8e4fd3837611afb628b879458fb.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\8.1.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="9cf8c0ef60847621c7ad00b4f78dbfc9daba4af2">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-49f8628cf860b36397d67de4028eaab155b35e94.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\8.1.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="993834cb17d07d51b92db89d2c330243592ebf77">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-32116bfa1634d499f97ccea9c5c7d12d2bff0d8d.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\me.drakeet.materialdialog\library\1.2.2\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="8646b1e69dd5d923d8866dc4311859f0fbca456c">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-3a0cd624c86a0e4ca0e42ebfefa7346ff4e588bf.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\8.1.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="d294caf562c4c678b2ef351662a0ca6f1a4d06c0">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-eac5ba692cb2d48a9f9397a24981a335d0fed1c3.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.mikepenz.iconics\library\0.9.1\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="4054f18e4e7d1c148fa71ded4b17348428273e21">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-3ec7a16ad45f2c03d3829e7efd4eb4b07714e101.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\8.1.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2a7e47da654546f9457deb6132364f1bf33a1857">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-5a1c9914dc5bc22432820fb2c272989aa04e5e1f.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\8.1.0\classes.jar"
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\8.1.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="d61920aba361832a9545a43fa8c9453eb02f18f7">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-8164c0e82fc2459ed1f2fc7eefdfe201e9cc518c.jar" />
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-1ef3debf06bd4e8e4f05f6b5ba2de660ef827b31.jar" />
     </item>
     <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\libs\internal_impl-22.2.0.jar"
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.mikepenz.materialdrawer\library\2.8.2\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-02f58e542772caf5851a984a809e089754ff052c.jar" />
+        sha1="6320445a7438321cdf32f75545581821f5759cf3">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-94e2d878a756f421afabdf951d00a05b0285d0bd.jar" />
     </item>
     <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-75c8954a9833b489f1193816f627196d904a20ce.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\8.1.0\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="997773777cf3904c11d6764fe3b7668538220e49">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-f352afb653cb29f5d6290d0c07e969da77c1db9a.jar" />
-    </item>
-    <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.1.0\classes.jar"
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.1.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="4477ea44f5ec5ad064022a22691732d7638ff197">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-865cb1e425fd1d119a5c6a5a5e90c20702df92dc.jar" />
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-a02293598287e0690ed54eb5be4535896315f7fe.jar" />
     </item>
     <item
-        jar="C:\Users\Gabriel\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\8.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="17449c47df35c754b257532052f1270c444f7993">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-2f71bdb49a0cad430494ec72e95e1b80aa6042dc.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.mikepenz.iconics\library\0.9.1\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4054f18e4e7d1c148fa71ded4b17348428273e21">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-135b848a8eb9b74c6d16e7a09d8492d4098dab0c.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\8.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2a7e47da654546f9457deb6132364f1bf33a1857">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-85e77acc536531f0981632f6817196711034908d.jar" />
+    </item>
+    <item
+        jar="E:\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\library-2.4.0-f92e878544294957fb3c36728590f9893e3dcaca.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\8.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="997773777cf3904c11d6764fe3b7668538220e49">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-426654599003968e0a8565d1445d99bf969afb70.jar" />
+    </item>
+    <item
+        jar="E:\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.0-d4af7eacb41903ffbd7278a220746db61869b5d6.jar" />
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\support-annotations-22.2.0-64192ae4ff40e657fe50823c2fa3121ee56876bb.jar" />
     </item>
     <item
-        jar="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\8.1.0\classes.jar"
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\8.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="82054090e487d78e163a988557db62d809fa9b95">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-7dfda9565dcdf27e76b662a3c23c800ac61ec94b.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\8.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="dcb5b75baf05d92e61d5706737200ee55949f97b">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-cd250578d5cea8b428936329fe33942e8967bd27.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-3b5153d9d83af313063922cc58cf0ffbbd6e45cb.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.melnykov\floatingactionbutton\1.3.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="8c6ebb7d087d1a30bf84356bd2aecf85309fc024">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-528c3016b06b36b97ab6a502d8d8b8aa2cd1e25b.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-5af2e0b4533a17ed13beb3a4fb4b2a8074c02a56.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\8.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="97f3b099801a9ad9d70e835b9125273e986eb68d">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-3d09f6b9461f0f18fd0d61ec42a263884cecd8ca.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-1544c5713c35413cc32296251c38adf5039b99cf.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\21.0.3\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="4b8945fc23a7461c6fdde15753456d64b0a9358b">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-3cfb9ccd9f994e539e3de5c274e799023d28ad10.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\8.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3b05c18f60969ecc2ba49c0409c4b96be2d9cb0c">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-fb3afad1569cf94f205931115bc4fe44be0305a1.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-30e0a769c0034fcb4c37811581c133bfbd6a33ab.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\8.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3aed37c38c56679602255dd72ef356da5d327cda">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-7546970197fa00d65506c32bd7929c655c56eb0d.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\8.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d294caf562c4c678b2ef351662a0ca6f1a4d06c0">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-e7ae96710359705d5091fcc9fd060129c1517290.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\8.1.0\classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="325788a04b436a0bccbc5b4c54cf0f12ebdcbd2d">
-        <dex dex="C:\Users\Gabriel\Documents\GitHub\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-81eb6a36dc1cad8e094ec1cb53a326b411e6812d.jar" />
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-0abe2c04e117e4054b25545d772a44550e9f07c8.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\8.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="993834cb17d07d51b92db89d2c330243592ebf77">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-ae1dd194d857d6b4576a92363c2cdfdc9fdf07a6.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-measurement\8.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="482de223655d06253cc6a4955d653f8994169500">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-027b3d957b685aa4ffac4fb3873cde05052c3c89.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\me.drakeet.materialdialog\library\1.2.2\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="8646b1e69dd5d923d8866dc4311859f0fbca456c">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-4b0c71f50a4d6fb7938db752bdb582e556c9ed97.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-791285bb1686d861cd911f01540359de5f890e7a.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\8.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="041d93cf0533591c29d1d7263b2fa114dbfb20bd">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-9a2255f02e4c9a33f7da5a1da549870d527c0924.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\8.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3c729e6d76a36c5dc27e6a4c4009296f49eaa88a">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-f06e7115d79c509fd82bfb9cdf684ccb005992ff.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\8.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d93480da1d303122ee67dc3bc23e6297bdef9951">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-4650e9eb04eadde6535f79327c163a9ef30efa5d.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-134931e4c0d8556491a77ceb01f45811d0b74ea9.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\8.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="3178362320bcf51228835b60ff978efadfd1f783">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-20f2996178b68980ec3a61e46a367723ffad2a51.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\8.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="b92002cb2f0e11a226ac5bac6dff1dc2a9d0b774">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-6b907b65bfc6d3b3f8e739e0b1ab523caae95260.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\8.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="95758a2905669affbffc5ddd262921d375674fad">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-5c3f4fbd33a425b5500f27e204ad153b971385a7.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="82825756edeeb3b56b15e73b2edd56e93da5a444">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-0ca22505cb77bf061423efeb41bba02773e14691.jar" />
+    </item>
+    <item
+        jar="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\8.1.0\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="9cf8c0ef60847621c7ad00b4f78dbfc9daba4af2">
+        <dex dex="E:\AndroidStudioProjects\MyContactsNovo\app\build\intermediates\pre-dexed\debug\classes-adc256dc5da366bd2e3f3b6deb5dac44249a70c5.jar" />
     </item>
 
 </items>
