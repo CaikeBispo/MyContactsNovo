@@ -47,6 +47,10 @@ public class AtualizadorDePosicao implements LocationListener {
         this.mapa=null;
         locationManager = (LocationManager) activity.getSystemService(Context.LOCATION_SERVICE);
 
+        ContatoDAO dao = new ContatoDAO(activity);
+        mList = dao.getLista();
+        dao.close();
+
         //Pedindo update da nossa location
         String provider="gps";
         long tempoMin=20000; //20 sg
@@ -57,16 +61,37 @@ public class AtualizadorDePosicao implements LocationListener {
     @Override
     public void onLocationChanged(Location novaLocalizacao) {
         //Quando posicao mudou podemos centralizar o mapa no local do gps
-        double latitude=novaLocalizacao.getLatitude();
-        double longitude=novaLocalizacao.getLongitude();
+        final double latitude=novaLocalizacao.getLatitude();
+        final double longitude=novaLocalizacao.getLongitude();
 
-        LatLng local = new LatLng(latitude,longitude);
+        final LatLng local = new LatLng(latitude,longitude);
 
         if(this.mapa != null) {
             mapa.centralizaNoLocal(local);
         }
         else{
-            Log.i("MAPA", "" + latitude);
+            //Log.i("tag", "CHEGOU");
+
+            new android.os.Handler().postDelayed(
+            new Runnable() {
+                public void run() {
+                    Log.i("tag", "CHEGOU");
+                    for(int i=0;i<mList.size();i++){
+                        if(!mList.get(i).getEndereco().isEmpty()){
+                            double distance=0;
+                            LatLng localContato = null;
+                            localContato = new Localizador(activity).gettCoordenada(mList.get(i).getEndereco()); // transforma string em latlong
+                            distance = distance(local,localContato);
+                            if(distance < 3000){
+                                Toast.makeText(activity,""+distance+" mts "+mList.get(i).getNome(),Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                }
+            },
+            3000);
+
+            /*Log.i("tag","CHEGOU");
             ContatoDAO dao = new ContatoDAO(activity);
             mList = dao.getLista();
             dao.close();
@@ -74,15 +99,12 @@ public class AtualizadorDePosicao implements LocationListener {
                 if(!mList.get(i).getEndereco().isEmpty()){
                     double distance=0;
                     LatLng localContato = new Localizador(activity).gettCoordenada(mList.get(i).getEndereco()); // transforma string em latlong
-                    Log.i("MAPA","EITA: "+localContato.latitude);
                     distance = distance(local,localContato);
-                    if(distance > 1){
-                        Log.i("MAPA","DISTANCIA: "+distance+" mts");
+                    if(distance < 3000){
+                        Toast.makeText(activity,""+distance+" mts "+mList.get(i).getNome(),Toast.LENGTH_SHORT).show();
                     }
                 }
-            }
-            //LatLng localContato = new Localizador(activity).gettCoordenada("Rua Vergueiro, 1185 Vila Mariana"); // transforma string em latlong
-            //Log.i("MAPA","EITA: "+localContato.latitude);
+            }*/
         }
     }
 

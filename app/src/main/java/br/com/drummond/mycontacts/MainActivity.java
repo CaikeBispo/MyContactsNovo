@@ -88,8 +88,7 @@ public class MainActivity extends ActionBarActivity{
         setContentView(R.layout.activity_main);
 
         DescobriMinhaOperadora();
-        atualizador = new AtualizadorDePosicao(this); //Pegando nossa localizacao atual
-
+        atualizador = new AtualizadorDePosicao(MainActivity.this); //Pegando nossa localizacao atual
 
         /*if(savedInstanceState != null){
             mItemDrawerSelected = savedInstanceState.getInt("mItemDrawerSelected", 0);
@@ -234,9 +233,11 @@ public class MainActivity extends ActionBarActivity{
         }
         return(0);
     }
-    @Override
+
+    /*@Override
     protected void onDestroy() {
         super.onDestroy();
+        Toast.makeText(this,"FECHA",Toast.LENGTH_SHORT).show();
         atualizador.cancelar();
-    }
+    }*/
 }
