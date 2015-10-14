@@ -42,10 +42,11 @@ public class About extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        makeText(this, "Caike", LENGTH_SHORT).show();
+        Intent startHome = new Intent(About.this, MainActivity.class);
+        startActivity(startHome);
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            makeText(this, "Caike", LENGTH_SHORT).show();
+            //makeText(this, "Caike", LENGTH_SHORT).show();
             return true;
         }
 
