@@ -79,7 +79,8 @@
         </activity>
         <activity
             android:name=".Autenticacao"
-            android:label="@string/title_activity_autenticacao" >
+            android:label="@string/title_activity_autenticacao"
+            android:windowSoftInputMode="adjustResize|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
