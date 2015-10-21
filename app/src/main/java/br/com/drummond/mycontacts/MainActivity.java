@@ -1,6 +1,8 @@
 package br.com.drummond.mycontacts;
 
 import android.annotation.TargetApi;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +11,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
@@ -52,6 +55,9 @@ import br.com.drummond.mycontacts.fragments.Historico;
 import br.com.drummond.mycontacts.lista.dao.ContatoDAO;
 import br.com.drummond.mycontacts.lista.modelo.Contato;
 import br.com.drummond.mycontacts.mapa.AtualizadorDePosicao;
+import br.com.drummond.mycontacts.notification.NotificationUtils;
+
+import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 
 
 public class MainActivity extends ActionBarActivity{
@@ -108,7 +114,6 @@ public class MainActivity extends ActionBarActivity{
         mSlidingTabLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         mSlidingTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.white));
         mSlidingTabLayout.setViewPager(mViewPager);
-
 
         //HEADER NAVIGATION DRAWER
         headerNavigationLeft= new AccountHeader()

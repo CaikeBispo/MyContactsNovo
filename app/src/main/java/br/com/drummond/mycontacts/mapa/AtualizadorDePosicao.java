@@ -16,6 +16,7 @@ import java.util.List;
 import br.com.drummond.mycontacts.fragments.MapaFragment;
 import br.com.drummond.mycontacts.lista.dao.ContatoDAO;
 import br.com.drummond.mycontacts.lista.modelo.Contato;
+import br.com.drummond.mycontacts.notification.NotificationUtils;
 
 /**
  * Created by Fabiano de Lima Abre on 29/09/2015.
@@ -55,6 +56,7 @@ public class AtualizadorDePosicao implements LocationListener {
         String provider="gps";
         long tempoMin=20000; //20 sg
         float distanciaMin=20; //20m
+
         locationManager.requestLocationUpdates(provider, tempoMin, distanciaMin, this);
     }
 
@@ -83,28 +85,15 @@ public class AtualizadorDePosicao implements LocationListener {
                             localContato = new Localizador(activity).gettCoordenada(mList.get(i).getEndereco()); // transforma string em latlong
                             distance = distance(local,localContato);
                             if(distance < 3000){
-                                Toast.makeText(activity,""+distance+" mts "+mList.get(i).getNome(),Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(activity,""+distance+" mts "+mList.get(i).getNome(),Toast.LENGTH_SHORT).show();
+                                int id=6565;
+                                NotificationUtils.criarNotificacaoSimples(activity, "A "+distance+" mts do "+mList.get(i).getNome()+"!!!","Que tal tomar um café? =D", id);
                             }
                         }
                     }
                 }
             },
             3000);
-
-            /*Log.i("tag","CHEGOU");
-            ContatoDAO dao = new ContatoDAO(activity);
-            mList = dao.getLista();
-            dao.close();
-            for(int i=0;i<mList.size();i++){
-                if(!mList.get(i).getEndereco().isEmpty()){
-                    double distance=0;
-                    LatLng localContato = new Localizador(activity).gettCoordenada(mList.get(i).getEndereco()); // transforma string em latlong
-                    distance = distance(local,localContato);
-                    if(distance < 3000){
-                        Toast.makeText(activity,""+distance+" mts "+mList.get(i).getNome(),Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }*/
         }
     }
 
