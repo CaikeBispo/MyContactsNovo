@@ -69,7 +69,6 @@ public class Formulario extends ActionBarActivity {
         helper = new FormularioHelper(this);
 
         telDigitado = (EditText) findViewById(R.id.telefone);
-        MaskEditTextChangedListener maskTEL = new MaskEditTextChangedListener("(##)####-####", telDigitado);
 
         botao = (ImageButton) findViewById(R.id.botao);
 
