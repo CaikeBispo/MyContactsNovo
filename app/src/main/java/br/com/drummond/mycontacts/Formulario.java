@@ -107,23 +107,20 @@ public class Formulario extends ActionBarActivity {
                             final String NomeOperadora;
                             String response;
 
+                            String telAjustado =  telDigitado.getText().toString();
+                            telAjustado = telAjustado.replace("(", "");
+                            telAjustado = telAjustado.replace(")", "");
+                            telAjustado = telAjustado.replace("-", "");
+                            telAjustado = telAjustado.replace(" ", "");
+
+                            Log.i("Telefon Digitado: ", ""+telAjustado);
 
 
-                            //COLOCAR PARA O USUARIO DIGITAR O DDDD
-                            Log.i("Telefon Digitado: ", ""+telDigitado.getText());
-
-                            //String URL = "http://consultaoperadora1.telein.com.br/sistema/consulta_resumida.php?numero=11962301830&chave=74b451b7a6ef79a57085";
+                            //String URL = "http://consultaoperadora1.telein.com.br/sistema/consulta_resumida.php?numero="+telAjustado+"&chave=74b451b7a6ef79a57085";
                             //SynchronousHttpConnection httpConnection = new SynchronousHttpConnection();
                             //response = httpConnection.post(URL);
                             response = "41#962301830";
 
-
-                            //******* ESTA GRAVANDO O TEXTO DESCOBRIR DO BOTAO
-                            //******* TEM QUE GRAVAR O TEXTO DO SPINNER
-                            //***************^Testar os dois itens acima.
-
-                            //******* PASSAR VARIAVEL PARA A URL
-                            //******* TESTAR SE NUMERO INVALIDO RETORNA 99
                             NomeOperadora = classe_op.NomearOperadora(response);
 
                             Log.i("RESPONSE ", ": " + NomeOperadora);
@@ -145,13 +142,15 @@ public class Formulario extends ActionBarActivity {
                                     } else {
                                         AlertDialog.Builder caixaDialogo = new AlertDialog.Builder(Formulario.this);
                                         caixaDialogo.setTitle("Operadora não localizada.");
-                                        caixaDialogo.setMessage("Verifique se você digitou o número corretamente. \n Caso esteja certo, por favor preencha a operadora através do combo");
+                                        caixaDialogo.setMessage("Verifique se você digitou o número corretamente. \nCaso esteja certo, por favor preencha a operadora através do combo");
 
                                         caixaDialogo.setNeutralButton("OK",new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
                                             }
                                           });
+
+                                        spnOp.setSelection(0);
 
                                         caixaDialogo.create();
                                         caixaDialogo.show();
