@@ -24,6 +24,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+
+
 import java.io.File;
 
 import br.com.drummond.mycontacts.lista.dao.ContatoDAO;
@@ -47,6 +49,7 @@ public class Formulario extends ActionBarActivity {
     private Spinner spnOp;
     private boolean i;
     private MainActivity MainActtivity;
+    private EditText telDigitado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,9 @@ public class Formulario extends ActionBarActivity {
 
         //Extrair o codigo em uma classe separada, para evitar que a Activity cresça demais.
         helper = new FormularioHelper(this);
+
+        telDigitado = (EditText) findViewById(R.id.telefone);
+        MaskEditTextChangedListener maskTEL = new MaskEditTextChangedListener("(##)####-####", telDigitado);
 
         botao = (ImageButton) findViewById(R.id.botao);
 
@@ -102,7 +108,7 @@ public class Formulario extends ActionBarActivity {
                             final String NomeOperadora;
                             String response;
 
-                            EditText telDigitado = (EditText) findViewById(R.id.telefone);
+
 
                             //COLOCAR PARA O USUARIO DIGITAR O DDDD
                             Log.i("Telefon Digitado: ", ""+telDigitado.getText());

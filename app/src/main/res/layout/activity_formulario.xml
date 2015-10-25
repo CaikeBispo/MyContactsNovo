@@ -70,7 +70,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:ems="11"
-                    android:inputType="phone" />
+                    android:inputType="phone"
+
+                    />
 
                 <Spinner
                     android:id="@+id/operadora"
