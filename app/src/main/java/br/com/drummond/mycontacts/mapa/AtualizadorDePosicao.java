@@ -6,6 +6,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -72,9 +73,38 @@ public class AtualizadorDePosicao implements LocationListener {
             mapa.centralizaNoLocal(local);
         }
         else{
-            //Log.i("tag", "CHEGOU");
+            Toast.makeText(activity,"Chegou!!!",Toast.LENGTH_SHORT).show();
+            final Handler handler = new Handler();
+            new Thread(){
+                @Override
+                public void run() {
+                    try {
+                        handler.post(new Runnable() {
+                            public void run() {
+                                //Toast.makeText(activity,"Chegou 2!!!",Toast.LENGTH_SHORT).show();
+                                for(int i=0;i<mList.size();i++){
+                                    if(!mList.get(i).getEndereco().isEmpty()){
+                                        double distance=0;
+                                        LatLng localContato = null;
+                                        localContato = new Localizador(activity).gettCoordenada(mList.get(i).getEndereco()); // transforma string em latlong
+                                        distance = distance(local,localContato);
+                                        if(distance < 3000){
+                                            //Toast.makeText(activity,""+distance+" mts "+mList.get(i).getNome(),Toast.LENGTH_SHORT).show();
+                                            int id=6565;
+                                            Toast.makeText(activity,"A "+distance+" mts do "+mList.get(i).getNome()+"!!!",Toast.LENGTH_SHORT).show();
+                                            //NotificationUtils.criarNotificacaoSimples(activity, "A "+distance+" mts do "+mList.get(i).getNome()+"!!!","Que tal tomar um café? =D", id);
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    } catch (final Exception e) {
+                        e.getMessage();
+                    }
+                }
+            }.start();
 
-            new android.os.Handler().postDelayed(
+            /*new android.os.Handler().postDelayed(
             new Runnable() {
                 public void run() {
                     Log.i("tag", "CHEGOU");
@@ -93,7 +123,7 @@ public class AtualizadorDePosicao implements LocationListener {
                     }
                 }
             },
-            3000);
+            3000);*/
         }
     }
 
