@@ -41,7 +41,10 @@ public class MapaFragment extends SupportMapFragment{
             for (Contato contato: contatos){
                 //Criar um marker no mapa pra cada contato
                 GoogleMap map = getMap();
-                LatLng localContato = new Localizador(getActivity()).gettCoordenada(contato.getEndereco()); // transforma string em latlong
+
+                LatLng localContato=new LatLng(contato.getLatitude(),contato.getLongitude());
+                //LatLng localContato = new Localizador(getActivity()).gettCoordenada(contato.getEndereco()); // transforma string em latlong
+
                 MarkerOptions options= new MarkerOptions().title(contato.getNome()+" / "+contato.getTelefone()).position(localContato); //Opcoes de como o marker sera criado
                 try {
                     map.addMarker(options);
@@ -66,7 +69,9 @@ public class MapaFragment extends SupportMapFragment{
 
             try {
                 GoogleMap map = getMap();
-                LatLng local = new Localizador(getActivity()).gettCoordenada(contato.getEndereco()); // Passando o endereco para um especialista em transformar em LatLong
+                LatLng local= new LatLng(contato.getLatitude(),contato.getLongitude());
+                //LatLng local = new Localizador(getActivity()).gettCoordenada(contato.getEndereco()); // Passando o endereco para um especialista em transformar em LatLong
+
                 centralizaNoLocal(local);
                 MarkerOptions options= new MarkerOptions().title(contato.getNome()+" / "+contato.getTelefone()).position(local); //Opcoes de como o marker sera criado
                 map.addMarker(options);

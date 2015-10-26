@@ -73,7 +73,6 @@ public class AtualizadorDePosicao implements LocationListener {
             mapa.centralizaNoLocal(local);
         }
         else{
-            Toast.makeText(activity,"Chegou!!!",Toast.LENGTH_SHORT).show();
             final Handler handler = new Handler();
             new Thread(){
                 @Override
@@ -81,18 +80,15 @@ public class AtualizadorDePosicao implements LocationListener {
                     try {
                         handler.post(new Runnable() {
                             public void run() {
-                                //Toast.makeText(activity,"Chegou 2!!!",Toast.LENGTH_SHORT).show();
                                 for(int i=0;i<mList.size();i++){
                                     if(!mList.get(i).getEndereco().isEmpty()){
                                         double distance=0;
-                                        LatLng localContato = null;
-                                        localContato = new Localizador(activity).gettCoordenada(mList.get(i).getEndereco()); // transforma string em latlong
+                                        LatLng localContato = new LatLng(mList.get(i).getLatitude(),mList.get(i).getLongitude());
                                         distance = distance(local,localContato);
                                         if(distance < 3000){
-                                            //Toast.makeText(activity,""+distance+" mts "+mList.get(i).getNome(),Toast.LENGTH_SHORT).show();
                                             int id=6565;
-                                            Toast.makeText(activity,"A "+distance+" mts do "+mList.get(i).getNome()+"!!!",Toast.LENGTH_SHORT).show();
-                                            //NotificationUtils.criarNotificacaoSimples(activity, "A "+distance+" mts do "+mList.get(i).getNome()+"!!!","Que tal tomar um café? =D", id);
+                                            //Toast.makeText(activity,"A "+distance+" mts do "+mList.get(i).getNome()+"!!!",Toast.LENGTH_SHORT).show();
+                                            NotificationUtils.criarNotificacaoSimples(activity, "A "+distance+" mts do "+mList.get(i).getNome()+"!!!","Que tal tomar um café? =D", id);
                                         }
                                     }
                                 }

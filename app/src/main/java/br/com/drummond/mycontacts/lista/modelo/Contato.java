@@ -8,7 +8,7 @@ public class Contato implements Serializable{
     int operadora;
     private int tipoendereco;
     private int tipoemail;
-    private Double favorito;
+    private Double favorito,latitude,longitude;
 
     @Override
     public String toString() {
@@ -92,4 +92,19 @@ public class Contato implements Serializable{
         this.opTelein = opTelein;
     }
 
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
 }

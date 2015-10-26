@@ -46,6 +46,9 @@ public class ContatoDAO extends SQLiteOpenHelper{
         //values.put("operadora", contato.getOperadora());
         values.put("operadora", contato.getStrOp());
 
+        values.put("latitude", contato.getLatitude());
+        values.put("longitude", contato.getLongitude());
+
         getWritableDatabase().insert("Contatos", null, values);
     }
 
@@ -53,7 +56,7 @@ public class ContatoDAO extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         String ddl = "CREATE TABLE Contatos (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "nome TEXT UNIQUE NOT NULL, telefone TEXT, email TEXT, tipoEmail TEXT," +
-                "endereco TEXT, tipoEndereco TEXT, foto TEXT, favorito REAL, operadora TEXT);";
+                "endereco TEXT, tipoEndereco TEXT, foto TEXT, favorito REAL, operadora TEXT,latitude REAL,longitude REAL);";
         db.execSQL(ddl);
     }
 
@@ -69,7 +72,7 @@ public class ContatoDAO extends SQLiteOpenHelper{
     }
 
     public List<Contato> getLista() {
-        String[] colunas = {"id", "nome", "telefone", "email", "tipoEmail","endereco","tipoEndereco" ,"foto", "favorito", "operadora"};
+        String[] colunas = {"id", "nome", "telefone", "email", "tipoEmail","endereco","tipoEndereco" ,"foto", "favorito", "operadora","latitude","longitude"};
 
         Cursor cursor = getWritableDatabase().query("Contatos", colunas, null, null, null, null, null);
         //Retorna um Cursor, atraves dele que vamos buscar os dados.
@@ -96,6 +99,8 @@ public class ContatoDAO extends SQLiteOpenHelper{
             contato.setFavorito(cursor.getDouble(8));
             //contato.setOperadora(cursor.getInt(9));
             contato.setStrOp(cursor.getString(9));
+            contato.setLatitude(cursor.getDouble(10));
+            contato.setLongitude(cursor.getDouble(11));
 
             arrContato.add(contato);
         }
@@ -103,7 +108,7 @@ public class ContatoDAO extends SQLiteOpenHelper{
     }
 
     public List<Contato> listaSearch() {
-        String[] colunas = {"id", "nome", "telefone", "email", "tipoEmail","endereco","tipoEndereco" ,"foto", "favorito", "operadora"};
+        String[] colunas = {"id", "nome", "telefone", "email", "tipoEmail","endereco","tipoEndereco" ,"foto", "favorito", "operadora","latitude","longitude"};
 
         Cursor cursor = getWritableDatabase().query("Contatos", colunas, null, null, null, null, null);
         //Retorna um Cursor, atraves dele que vamos buscar os dados.
@@ -120,7 +125,7 @@ public class ContatoDAO extends SQLiteOpenHelper{
 
             contato.setId(cursor.getLong(0)); //Forma simplificada
             String nome = cursor.getString(1); //Forma maior
-            contato.setNome(nome);				//^^^^^^
+            contato.setNome(nome);                //^^^^^^
             contato.setTelefone(cursor.getString(2));
             contato.setEmail(cursor.getString(3));
             contato.setTipoemail(cursor.getInt(4));
@@ -130,6 +135,8 @@ public class ContatoDAO extends SQLiteOpenHelper{
             contato.setFavorito(cursor.getDouble(8));
             //contato.setOperadora(cursor.getInt(9));
             contato.setStrOp(cursor.getString(9));
+            contato.setLatitude(cursor.getDouble(10));
+            contato.setLongitude(cursor.getDouble(11));
 
             arrContato.add(contato);
         }
@@ -161,6 +168,9 @@ public class ContatoDAO extends SQLiteOpenHelper{
         values.put("favorito", contato.getFavorito());
         //values.put("operadora", contato.getOperadora());
         values.put("operadora", contato.getStrOp());
+
+        values.put("latitude", contato.getLatitude());
+        values.put("longitude", contato.getLongitude());
 
         String[] args = {contato.getId().toString()};
         getWritableDatabase().update("Contatos", values, "id=?", args);

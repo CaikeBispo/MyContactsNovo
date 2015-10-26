@@ -25,12 +25,14 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 
+import com.google.android.gms.maps.model.LatLng;
 
 import java.io.File;
 
 import br.com.drummond.mycontacts.lista.dao.ContatoDAO;
 
 import br.com.drummond.mycontacts.lista.modelo.Contato;
+import br.com.drummond.mycontacts.mapa.Localizador;
 
 
 public class Formulario extends ActionBarActivity {
@@ -79,6 +81,11 @@ public class Formulario extends ActionBarActivity {
                 Contato contato = helper.pegaContatoDoFormulario();
                 //especialista para salvar no Sqlite
                 ContatoDAO dao = new ContatoDAO(Formulario.this);
+
+                //Pega a coordenada para atualizar ou salvar o contato
+                LatLng local = new Localizador(Formulario.this).gettCoordenada(contato.getEndereco());
+                contato.setLatitude(local.latitude);
+                contato.setLongitude(local.longitude);
 
                 if (contatoAlterar == null && contatoMostrar == null){
                     dao.salva(contato);
