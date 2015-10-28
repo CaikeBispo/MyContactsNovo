@@ -30,7 +30,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            >
 
             <ImageView
                 android:id="@+id/foto"
@@ -50,7 +51,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:color="#00000000"
-                android:ems="5" >
+                android:ems="5"
+                >
 
                 <requestFocus />
             </EditText>
@@ -63,23 +65,11 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent" >
 
-
-                <!--<EditText
-                    android:id="@+id/telefone"
-                    android:layout_width="140dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:ems="11"
-                    android:inputType="phone"
-                    -->
-
                     <br.com.drummond.mycontacts.PhoneEditText
-                    android:id="@+id/telefone"
+                        android:id="@+id/telefone"
                         android:layout_width="140dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="left"
-
-
                     />
 
                 <Spinner
@@ -116,7 +106,8 @@
                     android:layout_gravity="left"
                     android:ems="11"
                     android:color="#00000000"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    />
 
               <!--  <Spinner
                     android:id="@+id/emailtipo"
@@ -148,7 +139,9 @@
                     android:layout_gravity="left"
                     android:textColor="@android:color/black"
                     android:color="#00000000"
-                    android:ems="11" />
+                    android:ems="11"
+                    />
+
                 <Spinner
                     android:id="@+id/enderecotipo"
                     android:layout_width="wrap_content"
