@@ -40,23 +40,24 @@ public class MapaFragment extends SupportMapFragment{
             List<Contato> contatos=dao.getLista();
             for (Contato contato: contatos){
                 //Criar um marker no mapa pra cada contato
-                GoogleMap map = getMap();
+                if(!contato.getEndereco().isEmpty()) {
+                    GoogleMap map = getMap();
 
-                LatLng localContato=new LatLng(contato.getLatitude(),contato.getLongitude());
-                //LatLng localContato = new Localizador(getActivity()).gettCoordenada(contato.getEndereco()); // transforma string em latlong
+                    LatLng localContato = new LatLng(contato.getLatitude(), contato.getLongitude());
+                    //LatLng localContato = new Localizador(getActivity()).gettCoordenada(contato.getEndereco()); // transforma string em latlong
 
-                MarkerOptions options= new MarkerOptions().title(contato.getNome()+" / "+contato.getTelefone()).position(localContato); //Opcoes de como o marker sera criado
-                try {
-                    map.addMarker(options);
-                }catch (Exception e){
-                    if(contato.getEndereco().isEmpty()){
-                        Toast.makeText(getActivity(),"O contato "+contato.getNome()+" nao possue endereco cadastrado!", Toast.LENGTH_SHORT).show();
-                    }
-                    else{
-                        Toast.makeText(getActivity(),"Para identificar a localizacao e necessario conexao com a internet! Verifique sua conexao.", Toast.LENGTH_LONG).show();
+                    MarkerOptions options = new MarkerOptions().title(contato.getNome() + " / " + contato.getTelefone()).position(localContato); //Opcoes de como o marker sera criado
+                    try {
+                        map.addMarker(options);
+                    }catch (Exception e){
+                        if(contato.getEndereco().isEmpty()){
+                            Toast.makeText(getActivity(),"O contato "+contato.getNome()+" nao possue endereco cadastrado!", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(getActivity(),"Para identificar a localizacao e necessario conexao com a internet! Verifique sua conexao.", Toast.LENGTH_LONG).show();
+                        }
                     }
                 }
-
             }
             dao.close();
         }
@@ -65,8 +66,6 @@ public class MapaFragment extends SupportMapFragment{
             Contato contato=getContatoMostrar();
 
             //Centraliza o mapa no endereco do contato
-
-
             try {
                 GoogleMap map = getMap();
                 LatLng local= new LatLng(contato.getLatitude(),contato.getLongitude());

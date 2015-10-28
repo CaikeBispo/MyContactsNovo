@@ -150,7 +150,10 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.MyViewHo
         itens.add(new ContextMenuItem(R.drawable.ic_action_delete,"Deletar"));
         itens.add(new ContextMenuItem(R.drawable.message_text,"Enviar SMS"));
         itens.add(new ContextMenuItem(R.drawable.email,"Enviar e-mail"));
-        itens.add(new ContextMenuItem(R.drawable.contact_map,"Ver no mapa"));
+        if(!contato.getEndereco().isEmpty()){
+            itens.add(new ContextMenuItem(R.drawable.contact_map,"Ver no mapa"));
+        }
+
 
         ContextMenuAdapter adapter= new ContextMenuAdapter(context,itens);
 

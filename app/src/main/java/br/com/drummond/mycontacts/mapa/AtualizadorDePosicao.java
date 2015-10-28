@@ -88,7 +88,7 @@ public class AtualizadorDePosicao implements LocationListener {
                                         if(distance < 3000){
                                             int id=6565;
                                             //Toast.makeText(activity,"A "+distance+" mts do "+mList.get(i).getNome()+"!!!",Toast.LENGTH_SHORT).show();
-                                            NotificationUtils.criarNotificacaoSimples(activity, "A "+distance+" mts do "+mList.get(i).getNome()+"!!!","Que tal tomar um café? =D", id);
+                                            NotificationUtils.criarNotificacaoSimples(activity, "A "+String.format("%.3f",distance)+" mts do "+mList.get(i).getNome()+"!!!","Que tal tomar um café? =D", id);
                                         }
                                     }
                                 }

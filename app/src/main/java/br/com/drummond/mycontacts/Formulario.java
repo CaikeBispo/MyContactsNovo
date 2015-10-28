@@ -83,9 +83,11 @@ public class Formulario extends ActionBarActivity {
                 ContatoDAO dao = new ContatoDAO(Formulario.this);
 
                 //Pega a coordenada para atualizar ou salvar o contato
-                LatLng local = new Localizador(Formulario.this).gettCoordenada(contato.getEndereco());
-                contato.setLatitude(local.latitude);
-                contato.setLongitude(local.longitude);
+                if(!contato.getEndereco().isEmpty()){
+                    LatLng local = new Localizador(Formulario.this).gettCoordenada(contato.getEndereco());
+                    contato.setLatitude(local.latitude);
+                    contato.setLongitude(local.longitude);
+                }
 
                 if (contatoAlterar == null && contatoMostrar == null){
                     dao.salva(contato);
