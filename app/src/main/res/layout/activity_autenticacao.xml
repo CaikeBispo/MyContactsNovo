@@ -11,6 +11,14 @@
     <LinearLayout android:id="@+id/email_login_form" android:layout_width="match_parent"
         android:layout_height="wrap_content" android:orientation="vertical">
 
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="Person pic"
+            android:src="@drawable/logoprovisorio" />
+
         <AutoCompleteTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,7 +46,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:width="150dp"
+            android:width="175dp"
             android:singleLine="true"
             android:text="Entrar"
             android:textStyle="bold"
@@ -49,10 +57,20 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:width="150dp"
+        android:width="175dp"
         android:singleLine="true"
         android:text="Cadastrar"
         android:textStyle="bold"
         android:id="@+id/register" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="175dp"
+        android:drawableBottom="@color/colorPrimaryDark"
+        android:singleLine="true"
+        android:text="Recuperar senha"
+        android:textStyle="bold"
+        android:id="@+id/recoverPass"/>
 
 </LinearLayout>

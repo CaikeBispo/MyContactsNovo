@@ -3,12 +3,14 @@ package br.com.drummond.mycontacts;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 
@@ -28,6 +30,16 @@ public class Cadastro extends Activity {
         setContentView(R.layout.activity_cadastro);
 
         final UserDAO db = new UserDAO(this);
+        ImageView imageClick = (ImageView) findViewById(R.id.startCamera);
+        imageClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Click na imagem inicia captura de camera", Toast.LENGTH_SHORT).show();
+                Intent cam = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivity(cam);
+
+            }
+        });
 
         Button registerUser;
         final EditText editName;

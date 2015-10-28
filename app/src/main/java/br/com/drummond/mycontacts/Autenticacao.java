@@ -30,6 +30,16 @@ public class Autenticacao extends Activity {
         setContentView(R.layout.activity_autenticacao);
         final UserDAO db = new UserDAO(this);
 
+        Button recoverPassPressed;
+        recoverPassPressed = (Button) findViewById(R.id.recoverPass);
+        recoverPassPressed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(getApplicationContext(), "Recover pressed", LENGTH_SHORT).show();
+
+            }
+        });
+
         Button loginPressed;
         //loginPressed = (Button)findViewById(R.id.entrar);
         loginPressed = (Button) findViewById(R.id.entrar);
