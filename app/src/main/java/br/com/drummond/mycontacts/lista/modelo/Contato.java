@@ -57,13 +57,6 @@ public class Contato implements Serializable{
         this.foto = foto;
     }
 
-    public Double getFavorito() {
-        return favorito;
-    }
-    public void setFavorito(Double favorito) {
-        this.favorito = favorito;
-    }
-
     public int getOperadora() {
         return operadora;
     }

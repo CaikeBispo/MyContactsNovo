@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.Spinner;
 
 import br.com.drummond.mycontacts.lista.modelo.Contato;
@@ -18,7 +18,6 @@ public class FormularioHelper {
 
     private static final Context Formulario = null;
     private EditText editNome, editTelefone, editEmail, editEndereco;
-    private RatingBar ratingFavorito;
     private ImageView foto;
     private Button editOperadora;
     //private Spinner emailtipo;
@@ -33,7 +32,6 @@ public class FormularioHelper {
         editTelefone = (EditText) formulario.findViewById(R.id.telefone);
         editEmail = (EditText) formulario.findViewById(R.id.email);
         editEndereco = (EditText) formulario.findViewById(R.id.endereco);
-        ratingFavorito = (RatingBar) formulario.findViewById(R.id.favorito);
         foto = (ImageView) formulario.findViewById(R.id.foto);
         spnOp = (Spinner) formulario.findViewById(R.id.operadora);
         editOperadora = (Button) formulario.findViewById(R.id.btnOp);
@@ -62,7 +60,6 @@ public class FormularioHelper {
         //contato.setTipoemail((int) emailtipo.getSelectedItemId());
         contato.setEndereco(editEndereco.getText().toString());
         contato.setTipoendereco((int) enderecotipo.getSelectedItemId());
-        contato.setFavorito(Double.valueOf(ratingFavorito.getRating()));
         contato.setOperadora((int) spnOp.getSelectedItemId());
         //contato.setStrOp(editOperadora.getText().toString());
         contato.setStrOp(spnOp.getSelectedItem().toString());
@@ -78,7 +75,6 @@ public class FormularioHelper {
         //emailtipo.setSelection(contatoMostrar.getTipoemail());
         editEndereco.setText(contatoMostrar.getEndereco());
         enderecotipo.setSelection(contatoMostrar.getTipoendereco());
-        ratingFavorito.setRating(contatoMostrar.getFavorito().floatValue());
 
         int spnPosition = adapterSpinner.getPosition(contatoMostrar.getStrOp());
         spnOp.setSelection(spnPosition);
@@ -95,10 +91,9 @@ public class FormularioHelper {
             //emailtipo.setEnabled(false);
             editEndereco.setEnabled(false);
             enderecotipo.setEnabled(false);
-            ratingFavorito.setEnabled(false);
             foto.setEnabled(false);
-            editOperadora.setEnabled(false);
             spnOp.setEnabled(false);
+            editOperadora.setVisibility(View.INVISIBLE);
         }
     }
 

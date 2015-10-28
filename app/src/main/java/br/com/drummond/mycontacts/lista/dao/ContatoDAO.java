@@ -42,8 +42,6 @@ public class ContatoDAO extends SQLiteOpenHelper{
         values.put("endereco", contato.getEndereco());
         values.put("tipoEndereco", contato.getTipoendereco());
         values.put("foto", contato.getFoto());
-        values.put("favorito", contato.getFavorito());
-        //values.put("operadora", contato.getOperadora());
         values.put("operadora", contato.getStrOp());
 
         values.put("latitude", contato.getLatitude());
@@ -56,7 +54,7 @@ public class ContatoDAO extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         String ddl = "CREATE TABLE Contatos (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "nome TEXT UNIQUE NOT NULL, telefone TEXT, email TEXT, tipoEmail TEXT," +
-                "endereco TEXT, tipoEndereco TEXT, foto TEXT, favorito REAL, operadora TEXT,latitude REAL,longitude REAL);";
+                "endereco TEXT, tipoEndereco TEXT, foto TEXT, operadora TEXT,latitude REAL,longitude REAL);";
         db.execSQL(ddl);
     }
 
@@ -72,7 +70,7 @@ public class ContatoDAO extends SQLiteOpenHelper{
     }
 
     public List<Contato> getLista() {
-        String[] colunas = {"id", "nome", "telefone", "email", "tipoEmail","endereco","tipoEndereco" ,"foto", "favorito", "operadora","latitude","longitude"};
+        String[] colunas = {"id", "nome", "telefone", "email", "tipoEmail","endereco","tipoEndereco" ,"foto", "operadora","latitude","longitude"};
 
         Cursor cursor = getWritableDatabase().query("Contatos", colunas, null, null, null, null, null);
         //Retorna um Cursor, atraves dele que vamos buscar os dados.
@@ -96,11 +94,10 @@ public class ContatoDAO extends SQLiteOpenHelper{
             contato.setEndereco(cursor.getString(5));
             contato.setTipoendereco(cursor.getInt(6));
             contato.setFoto(cursor.getString(7));
-            contato.setFavorito(cursor.getDouble(8));
             //contato.setOperadora(cursor.getInt(9));
-            contato.setStrOp(cursor.getString(9));
-            contato.setLatitude(cursor.getDouble(10));
-            contato.setLongitude(cursor.getDouble(11));
+            contato.setStrOp(cursor.getString(8));
+            contato.setLatitude(cursor.getDouble(9));
+            contato.setLongitude(cursor.getDouble(10));
 
             arrContato.add(contato);
         }
@@ -108,7 +105,7 @@ public class ContatoDAO extends SQLiteOpenHelper{
     }
 
     public List<Contato> listaSearch() {
-        String[] colunas = {"id", "nome", "telefone", "email", "tipoEmail","endereco","tipoEndereco" ,"foto", "favorito", "operadora","latitude","longitude"};
+        String[] colunas = {"id", "nome", "telefone", "email", "tipoEmail","endereco","tipoEndereco" ,"foto", "operadora","latitude","longitude"};
 
         Cursor cursor = getWritableDatabase().query("Contatos", colunas, null, null, null, null, null);
         //Retorna um Cursor, atraves dele que vamos buscar os dados.
@@ -132,11 +129,9 @@ public class ContatoDAO extends SQLiteOpenHelper{
             contato.setEndereco(cursor.getString(5));
             contato.setTipoendereco(cursor.getInt(6));
             contato.setFoto(cursor.getString(7));
-            contato.setFavorito(cursor.getDouble(8));
-            //contato.setOperadora(cursor.getInt(9));
-            contato.setStrOp(cursor.getString(9));
-            contato.setLatitude(cursor.getDouble(10));
-            contato.setLongitude(cursor.getDouble(11));
+            contato.setStrOp(cursor.getString(8));
+            contato.setLatitude(cursor.getDouble(9));
+            contato.setLongitude(cursor.getDouble(10));
 
             arrContato.add(contato);
         }
@@ -165,8 +160,6 @@ public class ContatoDAO extends SQLiteOpenHelper{
         values.put("endereco", contato.getEndereco());
         values.put("tipoEndereco", contato.getTipoendereco());
         values.put("foto", contato.getFoto());
-        values.put("favorito", contato.getFavorito());
-        //values.put("operadora", contato.getOperadora());
         values.put("operadora", contato.getStrOp());
 
         values.put("latitude", contato.getLatitude());

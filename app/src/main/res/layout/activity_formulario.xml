@@ -161,21 +161,6 @@
                     />
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:text="Favorito " />
-
-            <RatingBar
-                android:id="@+id/favorito"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:minHeight="57dp"
-                android:color="#00000000"
-                android:numStars="1" />
-
             <ImageButton
                 android:id="@+id/botao"
                 android:layout_width="wrap_content"
