@@ -16,6 +16,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -185,7 +186,21 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
             caixaDialogo.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    efetuarLigacao(contato.getTelefone(), contato);
+                    String telLigacao;
+
+                    telLigacao = contato.getTelefone();
+
+                    Log.i("Tel Antes ", ":"+telLigacao);
+
+                    telLigacao = telLigacao.replace("(", "");
+                    telLigacao = telLigacao.replace(")", "");
+                    telLigacao = telLigacao.replace("-", "");
+                    telLigacao = telLigacao.replace(" ", "");
+
+                    Log.i("Tel Depois ", ":"+telLigacao);
+                    telLigacao = 0+telLigacao;
+
+                    efetuarLigacao(telLigacao, contato);
                 }
             });
 
