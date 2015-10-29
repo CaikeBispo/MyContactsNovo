@@ -90,6 +90,13 @@ public class Formulario extends ActionBarActivity {
                 }
 
                 if (contatoAlterar == null && contatoMostrar == null){
+
+                    Log.i("Antes do if ", ":"+contato.getTelefone());
+                    if (contato.getTelefone().equals("(  )     -     ")){
+                        contato.setTelefone("");
+                    }
+                    Log.i("Depois do if ", ":"+contato.getTelefone());
+
                     dao.salva(contato);
                 } else if (contatoAlterar != null) {
                     //contato.setId(contato.getId());
