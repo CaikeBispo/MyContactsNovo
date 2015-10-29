@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -90,6 +91,7 @@ public class FormularioHelper {
             editEmail.setEnabled(false);
             //emailtipo.setEnabled(false);
             editEndereco.setEnabled(false);
+            editEndereco.setTextColor(Color.rgb(190, 190, 190));
             enderecotipo.setEnabled(false);
             foto.setEnabled(false);
             spnOp.setEnabled(false);
