@@ -33,7 +33,6 @@ public class MapaActivity extends ActionBarActivity{
 
         mToolbar = (Toolbar) findViewById(R.id.tb_map);
 
-
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         MapaFragment mapa=new MapaFragment();
 

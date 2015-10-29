@@ -1,6 +1,7 @@
 package br.com.drummond.mycontacts.mapa;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
@@ -14,6 +15,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.List;
 
+import br.com.drummond.mycontacts.MainActivity;
 import br.com.drummond.mycontacts.fragments.MapaFragment;
 import br.com.drummond.mycontacts.lista.dao.ContatoDAO;
 import br.com.drummond.mycontacts.lista.modelo.Contato;
@@ -36,6 +38,7 @@ public class AtualizadorDePosicao implements LocationListener {
         this.mapa=mapa;
         locationManager = (LocationManager) activity.getSystemService(Context.LOCATION_SERVICE);
 
+
         //Pedindo update da nossa location
         String provider="gps";
         long tempoMin=20000; //20 sg
@@ -48,7 +51,6 @@ public class AtualizadorDePosicao implements LocationListener {
         //trabalhando com o GPS
         this.mapa=null;
         locationManager = (LocationManager) activity.getSystemService(Context.LOCATION_SERVICE);
-
         ContatoDAO dao = new ContatoDAO(activity);
         mList = dao.getLista();
         dao.close();
@@ -88,7 +90,8 @@ public class AtualizadorDePosicao implements LocationListener {
                                         if(distance < 3000){
                                             int id=6565;
                                             //Toast.makeText(activity,"A "+distance+" mts do "+mList.get(i).getNome()+"!!!",Toast.LENGTH_SHORT).show();
-                                            NotificationUtils.criarNotificacaoSimples(activity, "A "+String.format("%.3f",distance)+" mts do "+mList.get(i).getNome()+"!!!","Que tal tomar um café? =D", id);
+                                            //NotificationUtils.criarNotificacaoSimples(activity, "A "+String.format("%.3f",distance)+" mts do "+mList.get(i).getNome()+"!!!","Que tal tomar um café? =D", id);
+                                            NotificationUtils.criarNotificacaoSimples(activity, "Você está próximo do "+mList.get(i).getNome(),"Você está a apenas "+String.format("%.3f",distance)+" mts. Que tal passar para tomar uma xícara de café?!", id);
                                         }
                                     }
                                 }
@@ -99,27 +102,6 @@ public class AtualizadorDePosicao implements LocationListener {
                     }
                 }
             }.start();
-
-            /*new android.os.Handler().postDelayed(
-            new Runnable() {
-                public void run() {
-                    Log.i("tag", "CHEGOU");
-                    for(int i=0;i<mList.size();i++){
-                        if(!mList.get(i).getEndereco().isEmpty()){
-                            double distance=0;
-                            LatLng localContato = null;
-                            localContato = new Localizador(activity).gettCoordenada(mList.get(i).getEndereco()); // transforma string em latlong
-                            distance = distance(local,localContato);
-                            if(distance < 3000){
-                                //Toast.makeText(activity,""+distance+" mts "+mList.get(i).getNome(),Toast.LENGTH_SHORT).show();
-                                int id=6565;
-                                NotificationUtils.criarNotificacaoSimples(activity, "A "+distance+" mts do "+mList.get(i).getNome()+"!!!","Que tal tomar um café? =D", id);
-                            }
-                        }
-                    }
-                }
-            },
-            3000);*/
         }
     }
 
@@ -145,7 +127,6 @@ public class AtualizadorDePosicao implements LocationListener {
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) {
         //Mudou o tipo de provedor de location
-
     }
 
     @Override
@@ -155,6 +136,11 @@ public class AtualizadorDePosicao implements LocationListener {
 
     @Override
     public void onProviderDisabled(String provider) {
+        AlertDialog.Builder caixaDialogo = new AlertDialog.Builder(activity);
+        caixaDialogo.setTitle("Ative seu gps!");
+        caixaDialogo.setMessage("Para maior proveito do que o MyContacts pode lhe proporcionar, ative o gps do seu aparelho.");
 
+        caixaDialogo.create();
+        caixaDialogo.show();
     }
 }

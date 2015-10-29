@@ -4,11 +4,16 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.app.TaskStackBuilder;
+
+import java.io.IOException;
 
 import br.com.drummond.mycontacts.Formulario;
 import br.com.drummond.mycontacts.MainActivity;
@@ -36,16 +41,15 @@ public class NotificationUtils {
                 0,PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
-    public static void criarNotificacaoSimples(Context ctx,String title,String texto, int id){
+    public static void criarNotificacaoSimples(final Context ctx,String title,String texto, int id){
         PendingIntent resultPendingIntent = criarPendingIntent(ctx,title,texto,id);
 
 
         NotificationCompat.Builder mBuilder=
                 new NotificationCompat.Builder(ctx)
-                        .setSmallIcon(R.drawable.ic_nav_cloud_upload)
+                        .setSmallIcon(R.drawable.ic_launcher_mini)
                         .setAutoCancel(true)
                         .setContentTitle(title)
-                        .setContentText(texto)
                         .setContentIntent(resultPendingIntent)
                         .setWhen(System.currentTimeMillis())
                         .setLights(Color.BLUE,1000,5000);
@@ -53,6 +57,13 @@ public class NotificationUtils {
         mBuilder.setVibrate(new long[]{1, 1000, 500, 500});
         mBuilder.setPriority(NotificationCompat.PRIORITY_LOW);
         mBuilder.setVisibility(NotificationCompat.VISIBILITY_PRIVATE);
+
+        NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
+        bigText.bigText(texto);
+        mBuilder.setStyle(bigText);
+
+        Bitmap icon= BitmapFactory.decodeResource(ctx.getResources(),R.drawable.ic_launcher);
+        mBuilder.setLargeIcon(icon);
 
         //Disparando a notificação
         NotificationManagerCompat nm = NotificationManagerCompat.from(ctx);

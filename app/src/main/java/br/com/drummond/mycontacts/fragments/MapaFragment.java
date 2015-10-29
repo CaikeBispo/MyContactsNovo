@@ -33,7 +33,6 @@ public class MapaFragment extends SupportMapFragment{
 
         //Comecando a pegar contatos proximos ao endereco
 
-        Log.i("Ver", String.valueOf(contatoMostrar == null));
         if(Boolean.valueOf(String.valueOf(contatoMostrar == null))){
             //Exibe toda a lista de contatos no mapa
             ContatoDAO dao=new ContatoDAO(getActivity());
