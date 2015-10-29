@@ -2,7 +2,10 @@ package br.com.drummond.mycontacts;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
@@ -14,6 +17,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import br.com.drummond.mycontacts.lista.dao.UserDAO;
@@ -23,6 +30,9 @@ import static android.widget.Toast.makeText;
 
 
 public class Cadastro extends Activity {
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int REQUEST_IMAGE_OPEN = 1;
+    String mCurrentPhotoPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +44,14 @@ public class Cadastro extends Activity {
         imageClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Click na imagem inicia captura de camera", Toast.LENGTH_SHORT).show();
-                Intent cam = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivity(cam);
+                //Toast.makeText(getApplicationContext(), "Click na imagem inicia captura de camera", Toast.LENGTH_SHORT).show();
+                takeAPicture(view);
+                //selectImage();
 
             }
         });
+
+
 
         Button registerUser;
         final EditText editName;
@@ -105,6 +117,40 @@ public class Cadastro extends Activity {
                 */
 
     }
+
+    public void selectImage() {
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        intent.setType("image/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        // Only the system receives the ACTION_OPEN_DOCUMENT, so no need to test.
+        startActivityForResult(intent, REQUEST_IMAGE_OPEN);
+    }
+
+    public void takeAPicture(View view){
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(takePictureIntent, 0);
+    }
+
+    /*@Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_OPEN && resultCode == RESULT_OK) {
+            Uri fullPhotoUri = data.getData();
+            // Do work with full size photo saved at fullPhotoUri
+            ...
+        }
+    }*/
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(data != null){
+            Bundle bundle = data.getExtras();
+            if(bundle != null){
+                Bitmap img = (Bitmap) bundle.get("data");
+                ImageView iv = (ImageView) findViewById(R.id.startCamera);
+                iv.setImageBitmap(img);
+            }
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
