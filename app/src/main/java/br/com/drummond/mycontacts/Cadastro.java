@@ -2,11 +2,14 @@ package br.com.drummond.mycontacts;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +21,7 @@ import android.widget.Toast;
 
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,6 +37,8 @@ public class Cadastro extends Activity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_IMAGE_OPEN = 1;
     String mCurrentPhotoPath;
+    static File caminhoFoto = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +93,7 @@ public class Cadastro extends Activity {
                 //if(pass.equals(passConfirm)) {
                 if(pass == pass) {
                     Log.d("teste edit name",(editName.getText().toString()));
-                    db.addUser(new User(editName.getText().toString(), editSurname.getText().toString(), editMail.getText().toString(), editPass.getText().toString(), reset, isLogado));
+                    db.addUser(new User(editName.getText().toString(), editSurname.getText().toString(), editMail.getText().toString(), editPass.getText().toString(), reset, isLogado, "foto"));
                     String x = "ck";
                     String name = "ck";
                     db.close();
@@ -127,8 +133,17 @@ public class Cadastro extends Activity {
     }
 
     public void takeAPicture(View view){
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(takePictureIntent, 0);
+        String nomeFoto = DateFormat.format(
+                "yyyy-MM-dd_hhmmss", new Date()).toString();
+
+                caminhoFoto = new File(
+                Environment.getExternalStoragePublicDirectory(
+                        Environment.DIRECTORY_PICTURES), nomeFoto);
+        Intent it = new Intent(
+                MediaStore.ACTION_IMAGE_CAPTURE);
+        it.putExtra(MediaStore.EXTRA_OUTPUT,
+                Uri.fromFile(caminhoFoto));
+        startActivityForResult(it, 0);
     }
 
     /*@Override
@@ -141,16 +156,92 @@ public class Cadastro extends Activity {
     }*/
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        if(data != null){
-            Bundle bundle = data.getExtras();
-            if(bundle != null){
-                Bitmap img = (Bitmap) bundle.get("data");
-                ImageView iv = (ImageView) findViewById(R.id.startCamera);
-                iv.setImageBitmap(img);
+        super.onActivityResult(
+                requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK && requestCode == 0) {
+            ImageView img = (ImageView)
+                    findViewById(R.id.startCamera);
+
+            // Obtém o tamanho da ImageView
+            int targetW = img.getWidth();
+            int targetH = img.getHeight();
+
+            // Obtém a largura e altura da foto
+            BitmapFactory.Options bmOptions =
+                    new BitmapFactory.Options();
+            bmOptions.inJustDecodeBounds = true;
+            BitmapFactory.decodeFile(
+                    caminhoFoto.getAbsolutePath(), bmOptions);
+
+            int photoW = bmOptions.outWidth;
+            int photoH = bmOptions.outHeight;
+
+            // Determina o fator de redimensionamento
+            int scaleFactor = Math.min(
+                    photoW/targetW, photoH/targetH);
+
+            // Decodifica o arquivo de imagem em
+            // um Bitmap que preencherá a ImageView
+            bmOptions.inJustDecodeBounds = false;
+            bmOptions.inSampleSize = scaleFactor;
+            bmOptions.inPurgeable = true;
+
+            Bitmap bitmap = BitmapFactory.decodeFile(
+                    caminhoFoto.getAbsolutePath(), bmOptions);
+            img.setImageBitmap(bitmap);
+            //img.setImageDrawable(getDrawable(1), bitmap);
+        }
+
+        if (resultCode == RESULT_OK && requestCode == 2) {
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = {
+                    MediaStore.Images.Media.DATA };
+
+            Cursor cursor = getContentResolver().query(
+                    selectedImage, filePathColumn, null, null, null);
+            cursor.moveToFirst();
+
+            int columnIndex = cursor.getColumnIndex(
+                    filePathColumn[0]);
+            String filePath = cursor.getString(columnIndex);
+            cursor.close();
+
+            Bitmap yourSelectedImage =
+                    BitmapFactory.decodeFile(filePath);
+
+            ImageView imgView = (ImageView)findViewById(R.id.startCamera);
+            imgView.setImageBitmap(yourSelectedImage);
+
+            /*try {
+                salvarFotoClick(imgView);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
+            galleryButtonClick(imgView);*/
         }
     }
 
+    public void salvarFotoClick(View v) throws FileNotFoundException {
+        if (caminhoFoto != null && caminhoFoto.exists()) {
+            MediaStore.Images.Media.insertImage(
+                    getContentResolver(),
+                    caminhoFoto.getAbsolutePath(),
+                    caminhoFoto.getName(), "");
+
+            Toast.makeText(this,
+                    "Imagem adicionada a galeria.",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void galleryButtonClick(View v) {
+
+        Intent intent = new Intent(
+                Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(intent, 2);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

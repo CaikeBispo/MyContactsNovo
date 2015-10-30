@@ -7,9 +7,9 @@ import android.widget.EditText;
  */
 public class User {
 
-    private String name, lastName, email, password, reset, isLogado;
+    private String name, lastName, email, password, reset, isLogado, foto;
 
-    public User(String name, String lastName, String email, String password, String reset, String isLogado) {
+    public User(String name, String lastName, String email, String password, String reset, String isLogado, String foto) {
 
         super();
 
@@ -19,6 +19,7 @@ public class User {
         this.password = password;
         this.reset = reset;
         this.isLogado = isLogado;
+        this.foto = foto;
 
     }
 
@@ -72,4 +73,13 @@ public class User {
     public void setIsLogado(String isLogado) {
         this.isLogado = isLogado;
     }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
 }

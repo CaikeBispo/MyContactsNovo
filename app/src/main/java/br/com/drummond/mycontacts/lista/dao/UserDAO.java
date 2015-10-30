@@ -35,12 +35,13 @@ public class UserDAO extends SQLiteOpenHelper{
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_RESET = "reset";
     private static final String KEY_IS_LOGADO = "isLogado";
+    private static final String KEY_FOTO = "foto";
 
     private static final String [] COLUMNS = {KEY_ID, KEY_NAME,
-            KEY_LAST_NAME, KEY_EMAIL, KEY_PASSWORD, KEY_RESET};
+            KEY_LAST_NAME, KEY_EMAIL, KEY_PASSWORD, KEY_RESET, KEY_FOTO};
 
     public void addUser(User user){
-        Log.d("addUser", user.getName().toString() + user.getLastName().toString() + user.getEmail().toString() + user.getPassword().toString());
+        Log.d("addUser", user.getName().toString() + user.getLastName().toString() + user.getEmail().toString() + user.getPassword().toString() + user.getFoto().toString());
 
 
         //Get reference to writable DB
@@ -54,7 +55,7 @@ public class UserDAO extends SQLiteOpenHelper{
         values.put(KEY_PASSWORD, user.getPassword());
         values.put(KEY_RESET, user.getReset());
         //values.put(KEY_IS_LOGADO, user.getisLogado());
-
+        values.put(KEY_FOTO, user.getFoto());
         //Inserting datas
         db.insert(TableUser, //table
                 null, //NullColumnHack
@@ -81,10 +82,11 @@ public class UserDAO extends SQLiteOpenHelper{
         if (cursor != null)
             cursor.moveToFirst();
 
-        User user = new User(KEY_NAME, KEY_LAST_NAME, KEY_EMAIL, KEY_PASSWORD, KEY_RESET, KEY_IS_LOGADO);
+        User user = new User(KEY_NAME, KEY_LAST_NAME, KEY_EMAIL, KEY_PASSWORD, KEY_RESET, KEY_IS_LOGADO, KEY_FOTO);
         user.setName(cursor.getString(1));
         user.setLastName(cursor.getString(2));
         user.setEmail(cursor.getString(3));
+        user.setFoto(cursor.getString(4));
 
         //Registering log
         Log.d("getUser("+id+")", user.toString());
@@ -102,7 +104,7 @@ public class UserDAO extends SQLiteOpenHelper{
         User user = null;
         if(cursor.moveToFirst()){
             do {
-                user = new User(KEY_NAME, KEY_LAST_NAME, KEY_EMAIL, KEY_PASSWORD, KEY_RESET, KEY_IS_LOGADO);
+                user = new User(KEY_NAME, KEY_LAST_NAME, KEY_EMAIL, KEY_PASSWORD, KEY_RESET, KEY_IS_LOGADO, KEY_FOTO);
                 //user.setName(cursor.getString(1));
                 user.setName(cursor.getString(1));
                 //user.setLastName(cursor.getString(2));
@@ -119,8 +121,8 @@ public class UserDAO extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         String DDL = "CREATE TABLE user (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "name TEXT , lastName TEXT, email TEXT, " +
-                "password TEXT, reset TEXT" +
+                "name TEXT UNIQUE, lastName TEXT, email TEXT, " +
+                "password TEXT, reset TEXT, foto TEXT" +
                 ");";
         db.execSQL(DDL);
     }
