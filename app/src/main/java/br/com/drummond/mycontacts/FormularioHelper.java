@@ -6,10 +6,12 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.media.Image;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
@@ -20,7 +22,7 @@ public class FormularioHelper {
     private static final Context Formulario = null;
     private EditText editNome, editTelefone, editEmail, editEndereco;
     private ImageView foto;
-    private Button editOperadora;
+    private ImageButton editOperadora;
     //private Spinner emailtipo;
     private Spinner spnOp, enderecotipo;
     private Contato contato;
@@ -35,7 +37,7 @@ public class FormularioHelper {
         editEndereco = (EditText) formulario.findViewById(R.id.endereco);
         foto = (ImageView) formulario.findViewById(R.id.foto);
         spnOp = (Spinner) formulario.findViewById(R.id.operadora);
-        editOperadora = (Button) formulario.findViewById(R.id.btnOp);
+        editOperadora = (ImageButton) formulario.findViewById(R.id.btnOp);
         //emailtipo= (Spinner) formulario.findViewById(R.id.emailtipo);
         enderecotipo= (Spinner) formulario.findViewById(R.id.enderecotipo);
 

@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
@@ -83,7 +84,7 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.MyViewHo
         //myViewHolder.ivCar.setImageResource(mList.get(position).getFoto());
         if(mList.get(position).getFoto() != null){
             Bitmap fotocontato= BitmapFactory.decodeFile(mList.get(position).getFoto());
-            Bitmap fotoreduzida = Bitmap.createScaledBitmap(fotocontato, 250, 250, true);
+            Bitmap fotoreduzida = Bitmap.createScaledBitmap(fotocontato, 120, 120, true);
 
             myViewHolder.foto.setImageBitmap(RoundImage.getRoundedCornerBitmap(fotoreduzida));
         }
@@ -93,6 +94,27 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.MyViewHo
         }
         myViewHolder.tvModel.setText(mList.get(position).getNome() );
         myViewHolder.tvBrand.setText( mList.get(position).getTelefone() );
+        if(mList.get(position).getStrOp().isEmpty()){
+            myViewHolder.operadora.setText("Vazio");
+        }
+        else {
+            myViewHolder.operadora.setText(mList.get(position).getStrOp());
+
+            switch (mList.get(position).getStrOp()){
+                case "Tim":
+                    myViewHolder.operadora.setTextColor(context.getResources().getColor(R.color.tim));
+                    break;
+                case "Claro BR":
+                    myViewHolder.operadora.setTextColor(context.getResources().getColor(R.color.clarobr));
+                    break;
+                case "Nextel":
+                    myViewHolder.operadora.setTextColor(context.getResources().getColor(R.color.nextel));
+                    break;
+                case "Oi":
+                    myViewHolder.operadora.setTextColor(context.getResources().getColor(R.color.oi));
+                    break;
+            }
+        }
     }
 
     @Override
@@ -236,6 +258,7 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.MyViewHo
         public ImageView foto;
         public TextView tvModel;
         public TextView tvBrand;
+        public TextView operadora;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -243,7 +266,7 @@ public class ContatoAdapter extends RecyclerView.Adapter<ContatoAdapter.MyViewHo
             foto = (ImageView) itemView.findViewById(R.id.iv_car);
             tvModel = (TextView) itemView.findViewById(R.id.tv_model);
             tvBrand = (TextView) itemView.findViewById(R.id.tv_brand);
-
+            operadora = (TextView) itemView.findViewById(R.id.tv_operadora);
             //itemView.setOnClickListener(this);
         }
 

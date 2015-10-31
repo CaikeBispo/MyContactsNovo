@@ -17,6 +17,7 @@
         android:layout_width="fill_parent"
         android:textSize="20dp"
         android:layout_marginLeft="5dp" />
+
     <TextView android:id="@+id/phone"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"

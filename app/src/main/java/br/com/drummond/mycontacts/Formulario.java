@@ -47,7 +47,7 @@ public class Formulario extends ActionBarActivity {
     private Contato contato;
     private ContatoDAO dao;
     private ImageButton botao;
-    private Button btnOp;
+    private ImageButton btnOp;
     private Spinner spnOp;
     private boolean i;
     private MainActivity MainActtivity;
@@ -108,7 +108,7 @@ public class Formulario extends ActionBarActivity {
             }
         });
 
-        btnOp = (Button) findViewById(R.id.btnOp);
+        btnOp = (ImageButton) findViewById(R.id.btnOp);
         spnOp = (Spinner) findViewById(R.id.operadora);
         btnOp.setOnClickListener(new View.OnClickListener() {
 

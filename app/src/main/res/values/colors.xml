@@ -12,4 +12,10 @@
 
     <color name="colorFAB">#03A9F4</color>
     <color name="colorFABpressed">#1976D2</color>
+
+    <color name="clarobr">#f21c40</color>
+    <color name="tim">#20a9df</color>
+    <color name="vivo">#47c43a</color>
+    <color name="oi">#d5be24</color>
+    <color name="nextel">#f67809</color>
 </resources>

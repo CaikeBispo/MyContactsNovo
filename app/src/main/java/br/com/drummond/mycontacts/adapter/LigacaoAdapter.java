@@ -73,7 +73,7 @@ public class LigacaoAdapter extends RecyclerView.Adapter<LigacaoAdapter.MyViewHo
         //myViewHolder.ivCar.setImageResource(mList.get(position).getFoto());
         if(mList.get(position).getFoto() != null){
             Bitmap fotocontato= BitmapFactory.decodeFile(mList.get(position).getFoto());
-            Bitmap fotoreduzida = Bitmap.createScaledBitmap(fotocontato, 250, 250, true);
+            Bitmap fotoreduzida = Bitmap.createScaledBitmap(fotocontato, 120, 120, true);
 
             myViewHolder.foto.setImageBitmap(RoundImage.getRoundedCornerBitmap(fotoreduzida));
         }
@@ -83,8 +83,26 @@ public class LigacaoAdapter extends RecyclerView.Adapter<LigacaoAdapter.MyViewHo
         }
         myViewHolder.tvModel.setText(mList.get(position).getNome());
         myViewHolder.tvBrand.setText(mList.get(position).getTelefone());
-        //myViewHolder.tvHour.setText( mList.get(position).getHoraligacao());
-
+        if(mList.get(position).getOpTelein().isEmpty()){
+            myViewHolder.operadora.setText("Vazio -");
+        }
+        else {
+            myViewHolder.operadora.setText(mList.get(position).getOpTelein()+" - ");
+            switch (mList.get(position).getOpTelein()){
+                case "Tim":
+                    myViewHolder.operadora.setTextColor(context.getResources().getColor(R.color.tim));
+                    break;
+                case "Claro BR":
+                    myViewHolder.operadora.setTextColor(context.getResources().getColor(R.color.clarobr));
+                    break;
+                case "Nextel":
+                    myViewHolder.operadora.setTextColor(context.getResources().getColor(R.color.nextel));
+                    break;
+                case "Oi":
+                    myViewHolder.operadora.setTextColor(context.getResources().getColor(R.color.oi));
+                    break;
+            }
+        }
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         try {
             java.util.Date date=format.parse(mList.get(position).getHoraligacao());
@@ -108,6 +126,7 @@ public class LigacaoAdapter extends RecyclerView.Adapter<LigacaoAdapter.MyViewHo
         public TextView tvModel;
         public TextView tvBrand;
         public TextView tvHour;
+        public TextView operadora;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -116,6 +135,7 @@ public class LigacaoAdapter extends RecyclerView.Adapter<LigacaoAdapter.MyViewHo
             tvModel = (TextView) itemView.findViewById(R.id.tv_model);
             tvBrand = (TextView) itemView.findViewById(R.id.tv_brand);
             tvHour= (TextView) itemView.findViewById(R.id.tv_hour);
+            operadora= (TextView) itemView.findViewById(R.id.tv_operadora);
 
             itemView.setOnClickListener(this);
         }

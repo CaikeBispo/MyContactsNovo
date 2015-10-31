@@ -149,7 +149,10 @@ public class MainActivity extends ActionBarActivity{
                                 Intent irSobre = new Intent(MainActivity.this, About.class);
                                 startActivity(irSobre);
                                 break;
-                            case 7:
+                            case 2:
+                                Toast.makeText(MainActivity.this, "Backup de contatos",Toast.LENGTH_SHORT).show();
+                                break;
+                            case 3:
                                 Intent intent = new Intent(Intent.ACTION_SEND);
                                 intent.setType("message/rfc822");
                                 intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"support@mycontacts.com.br"});
@@ -187,28 +190,28 @@ public class MainActivity extends ActionBarActivity{
                         navigationDrawerLeft.getAdapter().notifyDataSetChanged();
                     }
                 })
-                .withOnDrawerItemLongClickListener(new Drawer.OnDrawerItemLongClickListener() {
+                /*withOnDrawerItemLongClickListener(new Drawer.OnDrawerItemLongClickListener() {
                     @Override
                     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
                         //Clique Longo em algum item do NAVIGATIO N DRAWER
                         Toast.makeText(MainActivity.this, "onItemLongClick: " + i, Toast.LENGTH_SHORT).show();
                         return false;
                     }
-                })
+                })*/
                 .build();
 
         //Abaixo criando os itens do menu do NAVIGATION DRAWER
         navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Sobre").withIcon(getResources().getDrawable(R.drawable.ic_nav_about)));
-        navigationDrawerLeft.addItem(new SectionDrawerItem().withName("Grupos"));
+        /*navigationDrawerLeft.addItem(new SectionDrawerItem().withName("Grupos"));
         navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Grupo1").withIcon(getResources().getDrawable(R.drawable.ic_nav_group)));
-        navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Grupo2").withIcon(getResources().getDrawable(R.drawable.ic_nav_group)));
+        navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Grupo2").withIcon(getResources().getDrawable(R.drawable.ic_nav_group)));*/
 
         /*navigationDrawerLeft.addItem(new SectionDrawerItem().withName("Configurações"));
         navigationDrawerLeft.addItem(new SwitchDrawerItem().withName("Notificação").withChecked(true).withOnCheckedChangeListener(OnCheckedChangeListener));
         navigationDrawerLeft.addItem(new ToggleDrawerItem().withName("News").withChecked(true).withOnCheckedChangeListener(OnCheckedChangeListener));
         */
         navigationDrawerLeft.addItem(new DividerDrawerItem());
-        navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Avalie").withIcon(getResources().getDrawable(R.drawable.ic_nav_avalie)));
+        //navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Avalie").withIcon(getResources().getDrawable(R.drawable.ic_nav_avalie)));
         navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Backup").withIcon(getResources().getDrawable(R.drawable.ic_nav_cloud_upload)));
         navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Contato").withIcon(getResources().getDrawable(R.drawable.email)));
     }
@@ -224,17 +227,17 @@ public class MainActivity extends ActionBarActivity{
         switch(position){
             case 0:
                 return( isSelecetd ? R.drawable.ic_nav_about_selected : R.drawable.ic_nav_about );
-            case 2:
+            /*case 2:
               return( isSelecetd ? R.drawable.ic_nav_group_selected : R.drawable.ic_nav_group );
             case 3:
                 return( isSelecetd ? R.drawable.ic_nav_group_selected : R.drawable.ic_nav_group );
             case 5:
-                return( isSelecetd ? R.drawable.ic_nav_avalie_disabled : R.drawable.ic_nav_avalie );
-            case 6:
+                return( isSelecetd ? R.drawable.ic_nav_avalie_disabled : R.drawable.ic_nav_avalie );*/
+            case 2:
                 return( isSelecetd ? R.drawable.ic_nav_cloud_upload_selected : R.drawable.ic_nav_cloud_upload );
-            case 7:
+            case 3:
                 return( isSelecetd ? R.drawable.email_selected : R.drawable.email );
-            case 8:
+            case 5:
                 return( isSelecetd ? R.drawable.email_selected : R.drawable.email );
         }
         return(0);

@@ -163,11 +163,11 @@ public class Cadastro extends Activity {
             ImageView img = (ImageView)
                     findViewById(R.id.startCamera);
 
-            // Obtém o tamanho da ImageView
+            // Obtem o tamanho da ImageView
             int targetW = img.getWidth();
             int targetH = img.getHeight();
 
-            // Obtém a largura e altura da foto
+            // Obtem a largura e altura da foto
             BitmapFactory.Options bmOptions =
                     new BitmapFactory.Options();
             bmOptions.inJustDecodeBounds = true;
@@ -182,7 +182,7 @@ public class Cadastro extends Activity {
                     photoW/targetW, photoH/targetH);
 
             // Decodifica o arquivo de imagem em
-            // um Bitmap que preencherá a ImageView
+            // um Bitmap que preenchera a ImageView
             bmOptions.inJustDecodeBounds = false;
             bmOptions.inSampleSize = scaleFactor;
             bmOptions.inPurgeable = true;
