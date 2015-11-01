@@ -4,6 +4,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -54,7 +55,11 @@ public class NotificationUtils {
                         .setWhen(System.currentTimeMillis())
                         .setLights(Color.BLUE,1000,5000);
 
-        mBuilder.setVibrate(new long[]{1, 1000, 500, 500});
+        SharedPreferences prefs=ctx.getSharedPreferences("mycontacts", ctx.MODE_PRIVATE);
+        boolean vibrate=prefs.getBoolean("vibrate", false);
+        if(vibrate) {
+            mBuilder.setVibrate(new long[]{1, 1000, 500, 500});
+        }
         mBuilder.setPriority(NotificationCompat.PRIORITY_LOW);
         mBuilder.setVisibility(NotificationCompat.VISIBILITY_PRIVATE);
 

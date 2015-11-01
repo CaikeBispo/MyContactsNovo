@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -78,12 +79,36 @@ public class MainActivity extends ActionBarActivity{
 
     private AtualizadorDePosicao atualizador;
 
+    public static final String PREF_NAME="mycontacts";
+    public Boolean vibrate;
+    public Boolean notifications;
+
 
     private OnCheckedChangeListener OnCheckedChangeListener=new OnCheckedChangeListener(){
 
         @Override
         public void onCheckedChanged(IDrawerItem iDrawerItem, CompoundButton compoundButton, boolean b) {
-            Toast.makeText(MainActivity.this,"onCheckedChanged: "+(b? "true":"false"),Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this,"Notificação: "+(b? "true":"false"+" = "),Toast.LENGTH_SHORT).show();
+            //Obtem a instancia de shared preferences
+            SharedPreferences prefs=getSharedPreferences(PREF_NAME,MODE_PRIVATE);
+            SharedPreferences.Editor editor=prefs.edit();
+            setNotifications(b);
+            editor.putBoolean("notifications",b);
+            editor.commit();
+        }
+    };
+
+    private OnCheckedChangeListener OnCheckedChangeListenerVibrate=new OnCheckedChangeListener(){
+
+        @Override
+        public void onCheckedChanged(IDrawerItem iDrawerItem, CompoundButton compoundButton, boolean b) {
+            Toast.makeText(MainActivity.this,"Vibrar: "+(b? "true":"false"+" = "),Toast.LENGTH_SHORT).show();
+            //Obtem a instancia de shared preferences
+            SharedPreferences prefs=getSharedPreferences(PREF_NAME,MODE_PRIVATE);
+            SharedPreferences.Editor editor=prefs.edit();
+            setVibrate(b);
+            editor.putBoolean("vibrate", b);
+            editor.commit();
         }
     };
 
@@ -104,6 +129,11 @@ public class MainActivity extends ActionBarActivity{
         mToolbar.setTitle("MyContacts");
         //mToolbar.setLogo(R.drawable.ic_launcher);
         setSupportActionBar(mToolbar);
+
+        //Obtem a instancia de shared preferences
+        SharedPreferences prefs=getSharedPreferences(PREF_NAME,MODE_PRIVATE);
+        setVibrate(prefs.getBoolean("vibrate", false));
+        setNotifications(prefs.getBoolean("notifications", false));
 
 
         //TABS
@@ -149,10 +179,10 @@ public class MainActivity extends ActionBarActivity{
                                 Intent irSobre = new Intent(MainActivity.this, About.class);
                                 startActivity(irSobre);
                                 break;
-                            case 2:
+                            case 5:
                                 Toast.makeText(MainActivity.this, "Backup de contatos",Toast.LENGTH_SHORT).show();
                                 break;
-                            case 3:
+                            case 6:
                                 Intent intent = new Intent(Intent.ACTION_SEND);
                                 intent.setType("message/rfc822");
                                 intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"support@mycontacts.com.br"});
@@ -180,9 +210,9 @@ public class MainActivity extends ActionBarActivity{
                             }
                         }
 
-                        /*if(i <= 3){
+                        if(i <= 3){
                             ((PrimaryDrawerItem) iDrawerItem).setIcon(getResources().getDrawable( getCorretcDrawerIcon( i, true ) ));
-                        }*/
+                        }
 
                         ((PrimaryDrawerItem) iDrawerItem).setIcon(getResources().getDrawable( getCorretcDrawerIcon( i, true ) ));
 
@@ -206,10 +236,10 @@ public class MainActivity extends ActionBarActivity{
         navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Grupo1").withIcon(getResources().getDrawable(R.drawable.ic_nav_group)));
         navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Grupo2").withIcon(getResources().getDrawable(R.drawable.ic_nav_group)));*/
 
-        /*navigationDrawerLeft.addItem(new SectionDrawerItem().withName("Configurações"));
-        navigationDrawerLeft.addItem(new SwitchDrawerItem().withName("Notificação").withChecked(true).withOnCheckedChangeListener(OnCheckedChangeListener));
-        navigationDrawerLeft.addItem(new ToggleDrawerItem().withName("News").withChecked(true).withOnCheckedChangeListener(OnCheckedChangeListener));
-        */
+        navigationDrawerLeft.addItem(new SectionDrawerItem().withName("Configurações"));
+        navigationDrawerLeft.addItem(new SwitchDrawerItem().withName("Notificação").withChecked(getNotifications()).withOnCheckedChangeListener(OnCheckedChangeListener));
+        navigationDrawerLeft.addItem(new ToggleDrawerItem().withName("Vibrar").withChecked(getVibrate()).withOnCheckedChangeListener(OnCheckedChangeListenerVibrate));
+
         navigationDrawerLeft.addItem(new DividerDrawerItem());
         //navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Avalie").withIcon(getResources().getDrawable(R.drawable.ic_nav_avalie)));
         navigationDrawerLeft.addItem(new PrimaryDrawerItem().withName("Backup").withIcon(getResources().getDrawable(R.drawable.ic_nav_cloud_upload)));
@@ -227,20 +257,34 @@ public class MainActivity extends ActionBarActivity{
         switch(position){
             case 0:
                 return( isSelecetd ? R.drawable.ic_nav_about_selected : R.drawable.ic_nav_about );
-            /*case 2:
+            /*case 1:
               return( isSelecetd ? R.drawable.ic_nav_group_selected : R.drawable.ic_nav_group );
-            case 3:
-                return( isSelecetd ? R.drawable.ic_nav_group_selected : R.drawable.ic_nav_group );
-            case 5:
-                return( isSelecetd ? R.drawable.ic_nav_avalie_disabled : R.drawable.ic_nav_avalie );*/
             case 2:
-                return( isSelecetd ? R.drawable.ic_nav_cloud_upload_selected : R.drawable.ic_nav_cloud_upload );
+                return( isSelecetd ? R.drawable.ic_nav_group_selected : R.drawable.ic_nav_group );
             case 3:
-                return( isSelecetd ? R.drawable.email_selected : R.drawable.email );
+                return( isSelecetd ? R.drawable.ic_nav_avalie_disabled : R.drawable.ic_nav_avalie );*/
             case 5:
+                return( isSelecetd ? R.drawable.ic_nav_cloud_upload_selected : R.drawable.ic_nav_cloud_upload );
+            case 6:
                 return( isSelecetd ? R.drawable.email_selected : R.drawable.email );
         }
         return(0);
+    }
+
+    public Boolean getVibrate() {
+        return vibrate;
+    }
+
+    public void setVibrate(Boolean vibrate) {
+        this.vibrate = vibrate;
+    }
+
+    public Boolean getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(Boolean notifications) {
+        this.notifications = notifications;
     }
 
     /*@Override

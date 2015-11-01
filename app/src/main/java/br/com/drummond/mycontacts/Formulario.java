@@ -85,8 +85,10 @@ public class Formulario extends ActionBarActivity {
                 //Pega a coordenada para atualizar ou salvar o contato
                 if(!contato.getEndereco().isEmpty()){
                     LatLng local = new Localizador(Formulario.this).gettCoordenada(contato.getEndereco());
-                    contato.setLatitude(local.latitude);
-                    contato.setLongitude(local.longitude);
+                    if(local != null){
+                        contato.setLatitude(local.latitude);
+                        contato.setLongitude(local.longitude);
+                    }
                 }
 
                 if (contatoAlterar == null && contatoMostrar == null){

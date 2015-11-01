@@ -3,6 +3,7 @@ package br.com.drummond.mycontacts.mapa;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -89,9 +90,11 @@ public class AtualizadorDePosicao implements LocationListener {
                                         distance = distance(local,localContato);
                                         if(distance < 3000){
                                             int id=6565;
-                                            //Toast.makeText(activity,"A "+distance+" mts do "+mList.get(i).getNome()+"!!!",Toast.LENGTH_SHORT).show();
-                                            //NotificationUtils.criarNotificacaoSimples(activity, "A "+String.format("%.3f",distance)+" mts do "+mList.get(i).getNome()+"!!!","Que tal tomar um café? =D", id);
-                                            NotificationUtils.criarNotificacaoSimples(activity, "Você está próximo do "+mList.get(i).getNome(),"Você está a apenas "+String.format("%.3f",distance)+" mts. Que tal passar para tomar uma xícara de café?!", id);
+                                            SharedPreferences prefs=activity.getSharedPreferences("mycontacts",activity.MODE_PRIVATE);
+                                            boolean notefy=prefs.getBoolean("notifications", false);
+                                            if(notefy){
+                                                NotificationUtils.criarNotificacaoSimples(activity, "Você está próximo do "+mList.get(i).getNome(),"Você está a apenas "+String.format("%.3f",distance)+" mts. Que tal passar para tomar uma xícara de café?!", id);
+                                            }
                                         }
                                     }
                                 }
