@@ -115,7 +115,7 @@ public class AtualizadorDePosicao implements LocationListener {
                                                                     ContatoDAO dao= new ContatoDAO(activity);
                                                                     dao.alterarDataMapa(mList.get(i));
 
-                                                                    NotificationUtils.criarNotificacaoSimples(activity, "Você está próximo do "+mList.get(i).getNome(),"Você está a apenas "+String.format("%.3f",distance)+" mts. Que tal passar para tomar uma xícara de café?!", id);
+                                                                    NotificationUtils.criarNotificacaoSimples(activity, "Você está próximo do "+mList.get(i).getNome(),"Você está a apenas "+String.format("%.3f",distance)+" mts. Que tal passar para tomar uma xícara de café?!", id,mList.get(i));
                                                                     break;
                                                                 }
                                                             }
@@ -128,7 +128,7 @@ public class AtualizadorDePosicao implements LocationListener {
                                                                     ContatoDAO dao= new ContatoDAO(activity);
                                                                     dao.alterarDataMapa(mList.get(i));
 
-                                                                    NotificationUtils.criarNotificacaoSimples(activity, "Você está próximo do "+mList.get(i).getNome(),"Você está a apenas "+String.format("%.3f",distance)+" mts. Que tal passar para tomar uma xícara de café?!", id);
+                                                                    NotificationUtils.criarNotificacaoSimples(activity, "Você está próximo do "+mList.get(i).getNome(),"Você está a apenas "+String.format("%.3f",distance)+" mts. Que tal passar para tomar uma xícara de café?!", id,mList.get(i));
                                                                     break;
                                                                 }
 
@@ -138,7 +138,7 @@ public class AtualizadorDePosicao implements LocationListener {
                                                             ContatoDAO dao= new ContatoDAO(activity);
                                                             dao.alterarDataMapa(mList.get(i));
 
-                                                            NotificationUtils.criarNotificacaoSimples(activity, "Você está próximo do "+mList.get(i).getNome(),"Você está a apenas "+String.format("%.3f",distance)+" mts. Que tal passar para tomar uma xícara de café?!", id);
+                                                            NotificationUtils.criarNotificacaoSimples(activity, "Você está próximo do "+mList.get(i).getNome(),"Você está a apenas "+String.format("%.3f",distance)+" mts. Que tal passar para tomar uma xícara de café?!", id,mList.get(i));
                                                             break;
                                                         }
                                                     } catch (ParseException e) {
@@ -148,7 +148,7 @@ public class AtualizadorDePosicao implements LocationListener {
                                                 else{
                                                     ContatoDAO dao= new ContatoDAO(activity);
                                                     dao.alterarDataMapa(mList.get(i));
-                                                    NotificationUtils.criarNotificacaoSimples(activity, "Você está próximo do "+mList.get(i).getNome(),"Você está a apenas "+String.format("%.3f",distance)+" mts. Que tal passar para tomar uma xícara de café?!", id);
+                                                    NotificationUtils.criarNotificacaoSimples(activity, "Você está próximo do "+mList.get(i).getNome(),"Você está a apenas "+String.format("%.3f",distance)+" mts. Que tal passar para tomar uma xícara de café?!", id,mList.get(i));
                                                     break;
                                                 }
                                             }

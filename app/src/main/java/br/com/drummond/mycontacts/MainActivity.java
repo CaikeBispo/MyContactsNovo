@@ -88,7 +88,6 @@ public class MainActivity extends ActionBarActivity{
 
         @Override
         public void onCheckedChanged(IDrawerItem iDrawerItem, CompoundButton compoundButton, boolean b) {
-            Toast.makeText(MainActivity.this,"Notificação: "+(b? "true":"false"+" = "),Toast.LENGTH_SHORT).show();
             //Obtem a instancia de shared preferences
             SharedPreferences prefs=getSharedPreferences(PREF_NAME,MODE_PRIVATE);
             SharedPreferences.Editor editor=prefs.edit();
@@ -102,7 +101,6 @@ public class MainActivity extends ActionBarActivity{
 
         @Override
         public void onCheckedChanged(IDrawerItem iDrawerItem, CompoundButton compoundButton, boolean b) {
-            Toast.makeText(MainActivity.this,"Vibrar: "+(b? "true":"false"+" = "),Toast.LENGTH_SHORT).show();
             //Obtem a instancia de shared preferences
             SharedPreferences prefs=getSharedPreferences(PREF_NAME,MODE_PRIVATE);
             SharedPreferences.Editor editor=prefs.edit();

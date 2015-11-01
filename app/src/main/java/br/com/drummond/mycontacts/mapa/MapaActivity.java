@@ -41,6 +41,9 @@ public class MapaActivity extends ActionBarActivity{
 
 
         if(contatoMostrar != null){
+            Bundle b=new Bundle();
+            Toast.makeText(this,"Bundle "+intent.getSerializableExtra("trace"), Toast.LENGTH_SHORT).show();
+            Boolean trace= (Boolean) intent.getSerializableExtra("trace");
             String nome;
             if(contatoMostrar.getNome().isEmpty()){
                 nome=contatoMostrar.getTelefone();
@@ -49,9 +52,26 @@ public class MapaActivity extends ActionBarActivity{
                 nome=contatoMostrar.getNome();
             }
             //Caso tenha contato pra mostrar
-            mToolbar.setTitle("Localizacao de: "+nome);
-            setSupportActionBar(mToolbar);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            if(trace != null){
+                if(trace){
+                    mToolbar.setTitle("Rota ate: "+nome);
+                    setSupportActionBar(mToolbar);
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                    mapa.setTrace(true);
+                }
+                else{
+                    mToolbar.setTitle("Localizacao de: "+nome);
+                    setSupportActionBar(mToolbar);
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                    mapa.setTrace(false);
+                }
+            }
+            else{
+                mToolbar.setTitle("Localizacao de: "+nome);
+                setSupportActionBar(mToolbar);
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                mapa.setTrace(false);
+            }
             mapa.setContatoMostrar(contatoMostrar);
             ft.replace(R.id.mapa, mapa);
             ft.commit();

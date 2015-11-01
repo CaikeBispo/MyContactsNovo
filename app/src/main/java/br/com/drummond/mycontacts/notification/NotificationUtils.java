@@ -19,31 +19,36 @@ import java.io.IOException;
 import br.com.drummond.mycontacts.Formulario;
 import br.com.drummond.mycontacts.MainActivity;
 import br.com.drummond.mycontacts.R;
+import br.com.drummond.mycontacts.lista.modelo.Contato;
+import br.com.drummond.mycontacts.mapa.MapaActivity;
 
 /**
  * Created by fabianoabreu on 21/10/2015.
  */
 public class NotificationUtils {
-    public static PendingIntent criarPendingIntent(Context ctx,String title,String texto, int id){
-        Intent resultIntent= new Intent(ctx,Formulario.class);
+    public static PendingIntent criarPendingIntent(Context ctx,String title,String texto, int id,Contato contato){
+        Intent resultIntent= new Intent(ctx,MapaActivity.class);
 
+        resultIntent.putExtra("contatoMostrar", contato);
+        resultIntent.putExtra("trace",true);
         //Enviando dados juntos
-        Bundle b=new Bundle();
-        b.putString("data","teste");
+        /*Bundle b=new Bundle();
+        b.putString("trace","ok");
+        resultIntent.putExtras(b);*/
 
-        resultIntent.putExtras(b);
+        //resultIntent.putExtras(b);
 
         //Simular uma pilha de atividades para que a app volte pra home da app e não pra home do SO
         TaskStackBuilder stackBuilder=TaskStackBuilder.create(ctx);
-        stackBuilder.addParentStack(Formulario.class);
+        stackBuilder.addParentStack(MapaActivity.class);
         stackBuilder.addNextIntent(resultIntent);
 
         return stackBuilder.getPendingIntent(
                 0,PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
-    public static void criarNotificacaoSimples(final Context ctx,String title,String texto, int id){
-        PendingIntent resultPendingIntent = criarPendingIntent(ctx,title,texto,id);
+    public static void criarNotificacaoSimples(final Context ctx,String title,String texto, int id,Contato contato){
+        PendingIntent resultPendingIntent = criarPendingIntent(ctx,title,texto,id,contato);
 
 
         NotificationCompat.Builder mBuilder=

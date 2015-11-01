@@ -1,5 +1,6 @@
 package br.com.drummond.mycontacts.fragments;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ import br.com.drummond.mycontacts.mapa.Localizador;
  */
 public class MapaFragment extends SupportMapFragment{
     private Contato contatoMostrar;
+    private Boolean trace;
     @Override
     public void onResume() {
         super.onResume();
@@ -98,5 +100,13 @@ public class MapaFragment extends SupportMapFragment{
 
     public void setContatoMostrar(Contato contatoMostrar) {
         this.contatoMostrar = contatoMostrar;
+    }
+
+    public Boolean getTrace() {
+        return trace;
+    }
+
+    public void setTrace(Boolean trace) {
+        this.trace = trace;
     }
 }
