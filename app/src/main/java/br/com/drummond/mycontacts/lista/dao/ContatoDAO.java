@@ -1,6 +1,8 @@
 package br.com.drummond.mycontacts.lista.dao;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -47,6 +49,8 @@ public class ContatoDAO extends SQLiteOpenHelper{
         values.put("latitude", contato.getLatitude());
         values.put("longitude", contato.getLongitude());
 
+        values.put("data_mapa", "");
+
         getWritableDatabase().insert("Contatos", null, values);
     }
 
@@ -54,7 +58,7 @@ public class ContatoDAO extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         String ddl = "CREATE TABLE Contatos (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "nome TEXT UNIQUE NOT NULL, telefone TEXT, email TEXT, tipoEmail TEXT," +
-                "endereco TEXT, tipoEndereco TEXT, foto TEXT, operadora TEXT,latitude REAL,longitude REAL);";
+                "endereco TEXT, tipoEndereco TEXT, foto TEXT, operadora TEXT,latitude REAL,longitude REAL, data_mapa TEXT);";
         db.execSQL(ddl);
     }
 
@@ -70,7 +74,7 @@ public class ContatoDAO extends SQLiteOpenHelper{
     }
 
     public List<Contato> getLista() {
-        String[] colunas = {"id", "nome", "telefone", "email", "tipoEmail","endereco","tipoEndereco" ,"foto", "operadora","latitude","longitude"};
+        String[] colunas = {"id", "nome", "telefone", "email", "tipoEmail","endereco","tipoEndereco" ,"foto", "operadora","latitude","longitude","data_mapa"};
 
         Cursor cursor = getWritableDatabase().query("Contatos", colunas, null, null, null, null, null);
         //Retorna um Cursor, atraves dele que vamos buscar os dados.
@@ -99,13 +103,15 @@ public class ContatoDAO extends SQLiteOpenHelper{
             contato.setLatitude(cursor.getDouble(9));
             contato.setLongitude(cursor.getDouble(10));
 
+            contato.setData_mapa(cursor.getString(11));
+
             arrContato.add(contato);
         }
         return arrContato;
     }
 
     public List<Contato> listaSearch() {
-        String[] colunas = {"id", "nome", "telefone", "email", "tipoEmail","endereco","tipoEndereco" ,"foto", "operadora","latitude","longitude"};
+        String[] colunas = {"id", "nome", "telefone", "email", "tipoEmail","endereco","tipoEndereco" ,"foto", "operadora","latitude","longitude","data_mapa"};
 
         Cursor cursor = getWritableDatabase().query("Contatos", colunas, null, null, null, null, null);
         //Retorna um Cursor, atraves dele que vamos buscar os dados.
@@ -132,6 +138,8 @@ public class ContatoDAO extends SQLiteOpenHelper{
             contato.setStrOp(cursor.getString(8));
             contato.setLatitude(cursor.getDouble(9));
             contato.setLongitude(cursor.getDouble(10));
+
+            contato.setData_mapa(cursor.getString(11));
 
             arrContato.add(contato);
         }
@@ -164,6 +172,19 @@ public class ContatoDAO extends SQLiteOpenHelper{
 
         values.put("latitude", contato.getLatitude());
         values.put("longitude", contato.getLongitude());
+
+        values.put("data_mapa", contato.getData_mapa());
+
+        String[] args = {contato.getId().toString()};
+        getWritableDatabase().update("Contatos", values, "id=?", args);
+    }
+
+    public void alterarDataMapa(Contato contato) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        String date = sdf.format(new Date());
+        ContentValues values = new ContentValues();
+
+        values.put("data_mapa",date);
 
         String[] args = {contato.getId().toString()};
         getWritableDatabase().update("Contatos", values, "id=?", args);

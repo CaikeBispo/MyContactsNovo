@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Contato implements Serializable{
     private Long id;
-    private String nome, telefone, email, endereco, foto,  opTelein;
+    private String nome, telefone, email, endereco, foto,  opTelein,data_mapa;
     int operadora;
     private int tipoendereco;
     private int tipoemail;
@@ -99,5 +99,13 @@ public class Contato implements Serializable{
 
     public void setLongitude(Double longitude) {
         this.longitude = longitude;
+    }
+
+    public String getData_mapa() {
+        return data_mapa;
+    }
+
+    public void setData_mapa(String data_mapa) {
+        this.data_mapa = data_mapa;
     }
 }

@@ -132,6 +132,7 @@ private RecyclerView mRecyclerView;
         contato.setNome(ligacao.getNome());
         contato.setTelefone(ligacao.getTelefone());
         contato.setFoto(ligacao.getFoto());
+        contato.setStrOp(ligacao.getOpTelein());
 
         //Chaando o metodo para call do intent e salvando a liga��o
         LigacaoAdapter adapter = (LigacaoAdapter) mRecyclerView.getAdapter();

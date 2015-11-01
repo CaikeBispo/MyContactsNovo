@@ -14,6 +14,10 @@ import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import br.com.drummond.mycontacts.MainActivity;
@@ -93,7 +97,60 @@ public class AtualizadorDePosicao implements LocationListener {
                                             SharedPreferences prefs=activity.getSharedPreferences("mycontacts",activity.MODE_PRIVATE);
                                             boolean notefy=prefs.getBoolean("notifications", false);
                                             if(notefy){
-                                                NotificationUtils.criarNotificacaoSimples(activity, "Você está próximo do "+mList.get(i).getNome(),"Você está a apenas "+String.format("%.3f",distance)+" mts. Que tal passar para tomar uma xícara de café?!", id);
+                                                if(!mList.get(i).getData_mapa().isEmpty()){
+                                                    DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                                                    try {
+                                                        //data da ultima notificacao deste contato
+                                                        java.util.Date date =(java.util.Date) formatter.parse(mList.get(i).getData_mapa());
+                                                        java.util.Date datetual= new java.util.Date(); // data atual
+
+                                                        if(date.getYear() == datetual.getYear() && date.getMonth() == datetual.getMonth() && date.getDate() == date.getDate()){
+                                                            //Caso estejam no mesmo dd/MM/Ano
+                                                            if(date.getHours() == datetual.getHours()){
+                                                                //Caso estejam no mesmo range de hora
+                                                                if(datetual.getMinutes() - date.getMinutes() >= 20){
+                                                                    //Caso os minutos da hora atual - menos ultima visualizacao do contato seja maior que 20
+
+                                                                    //grava data de exibicao
+                                                                    ContatoDAO dao= new ContatoDAO(activity);
+                                                                    dao.alterarDataMapa(mList.get(i));
+
+                                                                    NotificationUtils.criarNotificacaoSimples(activity, "Você está próximo do "+mList.get(i).getNome(),"Você está a apenas "+String.format("%.3f",distance)+" mts. Que tal passar para tomar uma xícara de café?!", id);
+                                                                    break;
+                                                                }
+                                                            }
+                                                            else{
+                                                                int d1,d2;
+                                                                d1=60 - datetual.getMinutes();
+                                                                d2=date.getMinutes();
+                                                                if(d1 + d2 >= 20){
+                                                                    //grava data de exibicao
+                                                                    ContatoDAO dao= new ContatoDAO(activity);
+                                                                    dao.alterarDataMapa(mList.get(i));
+
+                                                                    NotificationUtils.criarNotificacaoSimples(activity, "Você está próximo do "+mList.get(i).getNome(),"Você está a apenas "+String.format("%.3f",distance)+" mts. Que tal passar para tomar uma xícara de café?!", id);
+                                                                    break;
+                                                                }
+
+                                                            }
+                                                        }
+                                                        else{
+                                                            ContatoDAO dao= new ContatoDAO(activity);
+                                                            dao.alterarDataMapa(mList.get(i));
+
+                                                            NotificationUtils.criarNotificacaoSimples(activity, "Você está próximo do "+mList.get(i).getNome(),"Você está a apenas "+String.format("%.3f",distance)+" mts. Que tal passar para tomar uma xícara de café?!", id);
+                                                            break;
+                                                        }
+                                                    } catch (ParseException e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                }
+                                                else{
+                                                    ContatoDAO dao= new ContatoDAO(activity);
+                                                    dao.alterarDataMapa(mList.get(i));
+                                                    NotificationUtils.criarNotificacaoSimples(activity, "Você está próximo do "+mList.get(i).getNome(),"Você está a apenas "+String.format("%.3f",distance)+" mts. Que tal passar para tomar uma xícara de café?!", id);
+                                                    break;
+                                                }
                                             }
                                         }
                                     }
