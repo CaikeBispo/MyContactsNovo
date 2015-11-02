@@ -90,28 +90,39 @@ public class Cadastro extends Activity {
                 //SQLiteUser db = new SQLiteUser(this);
                 //makeText(getApplication(), pass + passConfirm, Toast.LENGTH_SHORT).show();
 
+                if (editName.getText().length() == 0){
+                    editName.requestFocus();
+                    //Log.i("Erro", "editname");
+                    Toast.makeText(getApplication(), "Preencha seu nome", Toast.LENGTH_SHORT).show();
+
+
+                }
+                else if(editMail.getText().length() < 6) {
+                    //Log.i("Erro", "editmail");
+                    Toast.makeText(getApplication(), "E-mail invaido", Toast.LENGTH_SHORT).show();
+
+                }
+                else if (editPass.getText().length() < 3){
+                    //Log.i("Erro", "senha ");
+                    Toast.makeText(getApplication(), "Senha invalida, digite ao menos 3 digitos ", Toast.LENGTH_SHORT).show();
+                }
+                else if (editPassConfirm.getText().length() < 3){
+                    //Log.i("Erro", "Confirmar senha ");
+                    Toast.makeText(getApplication(), "Confirmar senha invalida, digite ao menos 3 digitos  ", Toast.LENGTH_SHORT).show();
+                }
                 //if(pass.equals(passConfirm)) {
-                if(pass == pass) {
+                else if (pass.toString().equals(passConfirm.toString())) {
                     Log.d("teste edit name",(editName.getText().toString()));
                     db.addUser(new User(editName.getText().toString(), editSurname.getText().toString(), editMail.getText().toString(), editPass.getText().toString(), reset, isLogado, "foto"));
                     String x = "ck";
                     String name = "ck";
                     db.close();
-                    // get all books
-                    /*List<User> list = db.getAllUsers(x);
-                    if (list.size() == 1)
-                    {
-
-
-                    }*/
-                    //db.getUser(1);
 
                     makeText(getApplicationContext(), "Cadastro realizado com sucesso.", Toast.LENGTH_SHORT).show();
 
                     // getting back to mainActivity
                     Intent startCadastro = new Intent(Cadastro.this, MainActivity.class);
                     startActivity(startCadastro);
-
                 }
                 else
                     makeText(getApplicationContext(), "As senhas nao conferem", Toast.LENGTH_LONG).show();
