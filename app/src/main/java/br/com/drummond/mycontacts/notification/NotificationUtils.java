@@ -14,6 +14,8 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.app.TaskStackBuilder;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.io.IOException;
 
 import br.com.drummond.mycontacts.Formulario;
@@ -26,11 +28,12 @@ import br.com.drummond.mycontacts.mapa.MapaActivity;
  * Created by fabianoabreu on 21/10/2015.
  */
 public class NotificationUtils {
-    public static PendingIntent criarPendingIntent(Context ctx,String title,String texto, int id,Contato contato){
+    public static PendingIntent criarPendingIntent(Context ctx,String title,String texto, int id,Contato contato,Double[] doub){
         Intent resultIntent= new Intent(ctx,MapaActivity.class);
 
         resultIntent.putExtra("contatoMostrar", contato);
         resultIntent.putExtra("trace",true);
+        resultIntent.putExtra("LatLong",doub);
         //Enviando dados juntos
         /*Bundle b=new Bundle();
         b.putString("trace","ok");
@@ -47,8 +50,8 @@ public class NotificationUtils {
                 0,PendingIntent.FLAG_UPDATE_CURRENT);
     }
 
-    public static void criarNotificacaoSimples(final Context ctx,String title,String texto, int id,Contato contato){
-        PendingIntent resultPendingIntent = criarPendingIntent(ctx,title,texto,id,contato);
+    public static void criarNotificacaoSimples(final Context ctx,String title,String texto, int id,Contato contato,Double[] doub){
+        PendingIntent resultPendingIntent = criarPendingIntent(ctx,title,texto,id,contato,doub);
 
 
         NotificationCompat.Builder mBuilder=
