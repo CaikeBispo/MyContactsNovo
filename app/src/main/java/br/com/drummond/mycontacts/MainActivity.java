@@ -54,7 +54,9 @@ import br.com.drummond.mycontacts.externals.SlidingTabLayout;
 import br.com.drummond.mycontacts.fragments.ContatoFragment;
 import br.com.drummond.mycontacts.fragments.Historico;
 import br.com.drummond.mycontacts.lista.dao.ContatoDAO;
+import br.com.drummond.mycontacts.lista.dao.UserDAO;
 import br.com.drummond.mycontacts.lista.modelo.Contato;
+import br.com.drummond.mycontacts.lista.modelo.User;
 import br.com.drummond.mycontacts.mapa.AtualizadorDePosicao;
 import br.com.drummond.mycontacts.notification.NotificationUtils;
 
@@ -144,8 +146,16 @@ public class MainActivity extends ActionBarActivity{
 
         //vars of autenticacao.java
         Intent intent = getIntent();
-        String nome  = intent.getStringExtra("nome");
-
+        String nomeCad = intent.getStringExtra("nameCad");
+        String emailCad = intent.getStringExtra("email");
+        final UserDAO db = new UserDAO(this);
+        //db.getUser(nomeCad);
+        List<User> list = db.getUser(nomeCad);
+        final User user = list.get(0);
+        String name = user.getName();
+        String mail = user.getEmail();
+        Log.d("email Main -> ", mail);
+        String foto = user.getFoto();
         //HEADER NAVIGATION DRAWER
         headerNavigationLeft= new AccountHeader()
                 .withActivity(this)
@@ -154,7 +164,7 @@ public class MainActivity extends ActionBarActivity{
                 .withThreeSmallProfileImages(false)
                 .withHeaderBackground(R.drawable.camaro)
                 .addProfiles(
-                        new ProfileDrawerItem().withName(nome).withEmail("teste1@teste.com.br").withIcon(getResources().getDrawable(R.drawable.person_1))
+                        new ProfileDrawerItem().withName(name).withEmail(mail).withIcon(getResources().getDrawable(R.drawable.person_1))
 
                 )
                 .build();

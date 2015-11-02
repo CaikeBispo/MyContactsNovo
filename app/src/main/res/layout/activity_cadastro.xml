@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:inputType="text"
             android:ems="10"
-            android:id="@+id/mail"
+            android:id="@+id/email"
             android:hint="E-mail"/>
 
         <EditText

@@ -42,7 +42,7 @@ public class UserDAO extends SQLiteOpenHelper{
 
     public void addUser(User user){
         Log.d("addUser", user.getName().toString() + user.getLastName().toString() + user.getEmail().toString() + user.getPassword().toString() + user.getFoto().toString());
-
+        Log.d("email -------> ", user.getEmail());
 
         //Get reference to writable DB
         SQLiteDatabase db = this.getWritableDatabase();
@@ -65,7 +65,7 @@ public class UserDAO extends SQLiteOpenHelper{
         db.close();
         Log.d("teste", "sqliteFoi");
     }
-    public User getUser(int id){
+    /*public User getUser(int id){
         SQLiteDatabase db = this.getReadableDatabase();
 
         //build the query
@@ -93,6 +93,31 @@ public class UserDAO extends SQLiteOpenHelper{
 
         return user;
     }
+    */
+    public List<User> getUser(String inputName){
+        List<User> users = new LinkedList<User>();
+        String query = "SELECT * FROM " + TableUser + " WHERE name = '"+ inputName +"'";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        User user = null;
+        if(cursor.moveToFirst()){
+            do {
+                user = new User(KEY_NAME, KEY_LAST_NAME, KEY_EMAIL, KEY_PASSWORD, KEY_RESET, KEY_IS_LOGADO, KEY_FOTO);
+                //user.setName(cursor.getString(1));
+                user.setName(cursor.getString(1));
+                //user.setLastName(cursor.getString(2));
+
+                users.add(user);
+            } while (cursor.moveToNext());
+        }
+        for(User teste: users)
+            Log.i("getAllUsers() Email -> ", teste.getEmail());
+
+        return users;
+    }
+
     public List<User> getAllUsers(String inputName, String inputPassword){
         List<User> users = new LinkedList<User>();
         String query = "SELECT * FROM " + TableUser + " WHERE name = '"+ inputName +"' and password = '"

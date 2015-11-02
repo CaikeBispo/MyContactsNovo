@@ -72,7 +72,7 @@ public class Cadastro extends Activity {
 
         editName = (EditText) findViewById(R.id.name);
         editSurname = (EditText) findViewById(R.id.lastName);
-        editMail = (EditText) findViewById(R.id.mail);
+        editMail = (EditText) findViewById(R.id.email);
         editPass = (EditText) findViewById(R.id.pass);
         editPassConfirm = (EditText) findViewById(R.id.passCofirm);
 
@@ -94,13 +94,10 @@ public class Cadastro extends Activity {
                     editName.requestFocus();
                     //Log.i("Erro", "editname");
                     Toast.makeText(getApplication(), "Preencha seu nome", Toast.LENGTH_SHORT).show();
-
-
                 }
                 else if(editMail.getText().length() < 6) {
                     //Log.i("Erro", "editmail");
                     Toast.makeText(getApplication(), "E-mail invaido", Toast.LENGTH_SHORT).show();
-
                 }
                 else if (editPass.getText().length() < 3){
                     //Log.i("Erro", "senha ");
@@ -112,7 +109,7 @@ public class Cadastro extends Activity {
                 }
                 //if(pass.equals(passConfirm)) {
                 else if (pass.toString().equals(passConfirm.toString())) {
-                    Log.d("teste edit name",(editName.getText().toString()));
+                    Log.d("teste edit name",(editMail.getText().toString()));
                     db.addUser(new User(editName.getText().toString(), editSurname.getText().toString(), editMail.getText().toString(), editPass.getText().toString(), reset, isLogado, "foto"));
                     String x = "ck";
                     String name = "ck";
@@ -121,8 +118,12 @@ public class Cadastro extends Activity {
                     makeText(getApplicationContext(), "Cadastro realizado com sucesso.", Toast.LENGTH_SHORT).show();
 
                     // getting back to mainActivity
-                    Intent startCadastro = new Intent(Cadastro.this, MainActivity.class);
-                    startActivity(startCadastro);
+                    String subName = editName.getText().toString();
+                    String subMail = editMail.getText().toString();
+                    Intent startMainActivity = new Intent(Cadastro.this, MainActivity.class);
+                    startMainActivity.putExtra("nameCad", subName);
+                    startMainActivity.putExtra("email", subMail);
+                    startActivity(startMainActivity);
                 }
                 else
                     makeText(getApplicationContext(), "As senhas nao conferem", Toast.LENGTH_LONG).show();

@@ -54,7 +54,7 @@ public class Autenticacao extends Activity {
                 List<User> list = db.getAllUsers(inputName, inputPassword);
                 if (list.size() >= 1) {
                     Intent startCadastro = new Intent(Autenticacao.this, MainActivity.class);
-                    startCadastro.putExtra("nome", inputName);
+                    startCadastro.putExtra("nameCad", inputName);
                     startActivity(startCadastro);
                 }
                 else
@@ -69,6 +69,7 @@ public class Autenticacao extends Activity {
             @Override
             public void onClick(View v) {
                 Intent startCadastro = new Intent(Autenticacao.this, Cadastro.class);
+
                 startActivity(startCadastro);
             }
         });
