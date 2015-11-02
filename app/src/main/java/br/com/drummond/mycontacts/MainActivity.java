@@ -83,7 +83,6 @@ public class MainActivity extends ActionBarActivity{
     public Boolean vibrate;
     public Boolean notifications;
 
-
     private OnCheckedChangeListener OnCheckedChangeListener=new OnCheckedChangeListener(){
 
         @Override
@@ -143,6 +142,10 @@ public class MainActivity extends ActionBarActivity{
         mSlidingTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.white));
         mSlidingTabLayout.setViewPager(mViewPager);
 
+        //vars of autenticacao.java
+        Intent intent = getIntent();
+        String nome  = intent.getStringExtra("nome");
+
         //HEADER NAVIGATION DRAWER
         headerNavigationLeft= new AccountHeader()
                 .withActivity(this)
@@ -151,7 +154,7 @@ public class MainActivity extends ActionBarActivity{
                 .withThreeSmallProfileImages(false)
                 .withHeaderBackground(R.drawable.camaro)
                 .addProfiles(
-                        new ProfileDrawerItem().withName("Fabiano de Lima").withEmail("teste1@teste.com.br").withIcon(getResources().getDrawable(R.drawable.person_1))
+                        new ProfileDrawerItem().withName(nome).withEmail("teste1@teste.com.br").withIcon(getResources().getDrawable(R.drawable.person_1))
 
                 )
                 .build();
