@@ -147,14 +147,14 @@ public class MainActivity extends ActionBarActivity{
         //vars of autenticacao.java
         Intent intent = getIntent();
         String nomeCad = intent.getStringExtra("nameCad");
-        String emailCad = intent.getStringExtra("email");
+        //String emailCad = intent.getStringExtra("email");
         final UserDAO db = new UserDAO(this);
         //db.getUser(nomeCad);
         List<User> list = db.getUser(nomeCad);
         final User user = list.get(0);
         String name = user.getName();
+        String lastName = user.getLastName();
         String mail = user.getEmail();
-        Log.d("email Main -> ", mail);
         String foto = user.getFoto();
         //HEADER NAVIGATION DRAWER
         headerNavigationLeft= new AccountHeader()
@@ -162,9 +162,9 @@ public class MainActivity extends ActionBarActivity{
                 .withCompactStyle(false)
                 .withSavedInstance(savedInstanceState)
                 .withThreeSmallProfileImages(false)
-                .withHeaderBackground(R.drawable.camaro)
+                .withHeaderBackground(R.drawable.fundo)
                 .addProfiles(
-                        new ProfileDrawerItem().withName(name).withEmail(mail).withIcon(getResources().getDrawable(R.drawable.person_1))
+                        new ProfileDrawerItem().withName(name+" "+lastName).withEmail(mail).withIcon(getResources().getDrawable(R.drawable.person_1))
 
                 )
                 .build();

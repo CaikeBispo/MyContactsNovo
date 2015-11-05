@@ -97,7 +97,7 @@ public class Cadastro extends Activity {
                 }
                 else if(editMail.getText().length() < 6) {
                     //Log.i("Erro", "editmail");
-                    Toast.makeText(getApplication(), "E-mail invaido", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplication(), "E-mail invalido", Toast.LENGTH_SHORT).show();
                 }
                 else if (editPass.getText().length() < 3){
                     //Log.i("Erro", "senha ");

@@ -41,7 +41,7 @@ public class UserDAO extends SQLiteOpenHelper{
             KEY_LAST_NAME, KEY_EMAIL, KEY_PASSWORD, KEY_RESET, KEY_FOTO};
 
     public void addUser(User user){
-        Log.d("addUser", user.getName().toString() + user.getLastName().toString() + user.getEmail().toString() + user.getPassword().toString() + user.getFoto().toString());
+        //Log.d("addUser", user.getName().toString() + user.getLastName().toString() + user.getEmail().toString() + user.getPassword().toString() + user.getFoto().toString());
         Log.d("email -------> ", user.getEmail());
 
         //Get reference to writable DB
@@ -52,6 +52,7 @@ public class UserDAO extends SQLiteOpenHelper{
         values.put(KEY_NAME, user.getName());
         values.put(KEY_LAST_NAME, user.getLastName());
         values.put(KEY_EMAIL, user.getEmail());
+        Log.d("email ---> ---> ", user.getEmail());
         values.put(KEY_PASSWORD, user.getPassword());
         values.put(KEY_RESET, user.getReset());
         //values.put(KEY_IS_LOGADO, user.getisLogado());
@@ -107,13 +108,14 @@ public class UserDAO extends SQLiteOpenHelper{
                 user = new User(KEY_NAME, KEY_LAST_NAME, KEY_EMAIL, KEY_PASSWORD, KEY_RESET, KEY_IS_LOGADO, KEY_FOTO);
                 //user.setName(cursor.getString(1));
                 user.setName(cursor.getString(1));
-                //user.setLastName(cursor.getString(2));
-
+                user.setLastName(cursor.getString(2));
+                user.setEmail(cursor.getString(3));
+                user.setFoto(cursor.getString(6));
                 users.add(user);
             } while (cursor.moveToNext());
         }
         for(User teste: users)
-            Log.i("getAllUsers() Email -> ", teste.getEmail());
+            Log.i("getUsers() Email -> ", teste.getEmail());
 
         return users;
     }
