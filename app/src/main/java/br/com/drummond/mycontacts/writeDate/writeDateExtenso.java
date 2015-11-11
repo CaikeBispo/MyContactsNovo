@@ -25,8 +25,32 @@ public class writeDateExtenso {
          // retorna o dia da semana: 1=domingo, 2=segunda-feira, ..., 7=sabado
         Calendar data = new GregorianCalendar(a, m-1, d);
         int ds = data.get(Calendar.DAY_OF_WEEK);
+        String hour;
+        String minutes;
+        String seconds;
+
+        if(dt.getHours() <10){
+            hour="0"+dt.getHours();
+        }
+        else{
+            hour=""+dt.getHours();
+        }
+
+        if(dt.getMinutes() <10){
+            minutes="0"+dt.getMinutes();
+        }
+        else{
+            minutes=""+dt.getMinutes();
+        }
+
+        if(dt.getSeconds() <10){
+            seconds="0"+dt.getSeconds();
+        }
+        else{
+            seconds=""+dt.getSeconds();
+        }
         //return(d + " de " + NomeDoMes(m) + " de " + a + " (" + DiaDaSemana(ds) + ").");
-        return (DiaDaSemana(ds)+", "+d+" de "+NomeDoMes(m)+" de "+a+" as "+dt.getHours()+":"+dt.getMinutes()+":"+dt.getSeconds());
+        return (DiaDaSemana(ds)+", "+d+" de "+NomeDoMes(m)+" de "+a+" as "+hour+":"+minutes+":"+seconds);
     }
 
 }
