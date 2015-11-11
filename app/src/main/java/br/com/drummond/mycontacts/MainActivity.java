@@ -165,9 +165,10 @@ public class MainActivity extends ActionBarActivity{
                 .withHeaderBackground(R.drawable.fundo)
                 .addProfiles(
                         new ProfileDrawerItem().withName(name+" "+lastName).withEmail(mail).withIcon(getResources().getDrawable(R.drawable.person_1))
-
                 )
                 .build();
+        Log.i("foto",user.getFoto());
+
 
         //NAVIGATION DRAWER LEFT
         navigationDrawerLeft= new Drawer()

@@ -130,7 +130,7 @@ public class AtualizadorDePosicao implements LocationListener {
                                                                     dao.alterarDataMapa(mList.get(i));
 
                                                                     Double[] doub=new Double[]{latitude,longitude};
-                                                                    NotificationUtils.criarNotificacaoSimples(activity, "Você está próximo do "+mList.get(i).getNome(),"Você está a apenas "+String.format("%.3f",distance)+" mts. Que tal passar para tomar uma xícara de café?!", id,mList.get(i),doub);
+                                                                    NotificationUtils.criarNotificacaoSimples(activity, "Você está próximo de "+mList.get(i).getNome(),"Você está a apenas "+String.format("%.3f",distance)+" mts. Que tal passar para tomar uma xícara de café?!", id,mList.get(i),doub);
                                                                     break;
                                                                 }
 
