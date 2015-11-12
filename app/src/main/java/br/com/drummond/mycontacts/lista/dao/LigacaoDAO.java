@@ -61,6 +61,10 @@ public class LigacaoDAO extends SQLiteOpenHelper {
         Cursor cursor = getWritableDatabase().query("Ligacoes", colunas, null,
                 null, null, null, null);
 
+        /*String query="Select * from Ligacoes ORDER BY id DESC";
+        Cursor cursor = getWritableDatabase().rawQuery(query,null);*/
+
+
         ArrayList<Ligacao> ligacoes = new ArrayList<Ligacao>();
 
         while (cursor.moveToNext()) {

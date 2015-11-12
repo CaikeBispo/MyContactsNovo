@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.drummond.mycontacts.MainActivity;
@@ -67,8 +68,12 @@ private RecyclerView mRecyclerView;
         List<Ligacao> listAux = dao.getListaLigacao();
         dao.close();
 
-        //Log.i("Lista","Teste: "+listAux.size());
-        LigacaoAdapter adapter = new LigacaoAdapter(getActivity(), listAux);
+        ArrayList<Ligacao> list = new ArrayList<Ligacao>();
+        for(int i=listAux.size();i>0;i--){
+            Log.i("list",""+i+listAux.get(i-1).getHoraligacao());
+            list.add(listAux.get(i-1));
+        }
+        LigacaoAdapter adapter = new LigacaoAdapter(getActivity(), list);
         //adapter.setRecyclerViewOnClickListenerHack(this);
         mRecyclerView.setAdapter(adapter);
     }
@@ -78,7 +83,12 @@ private RecyclerView mRecyclerView;
         List<Ligacao> listAux = dao.getListaLigacao();
         dao.close();
 
-        LigacaoAdapter adapter = new LigacaoAdapter(getActivity(), listAux);
+        ArrayList<Ligacao> list = new ArrayList<Ligacao>();
+        for(int i=listAux.size();i>0;i--){
+            Log.i("list",""+i+listAux.get(i-1).getHoraligacao());
+            list.add(listAux.get(i-1));
+        }
+        LigacaoAdapter adapter = new LigacaoAdapter(getActivity(), list);
         //adapter.setRecyclerViewOnClickListenerHack(this);
         mRecyclerView.setAdapter(adapter);
     }
