@@ -84,7 +84,7 @@ public class LigacaoAdapter extends RecyclerView.Adapter<LigacaoAdapter.MyViewHo
         myViewHolder.tvModel.setText(mList.get(position).getNome());
         myViewHolder.tvBrand.setText(mList.get(position).getTelefone());
         if(mList.get(position).getOpTelein().isEmpty()){
-            myViewHolder.operadora.setText("Vazio -");
+            myViewHolder.operadora.setText("");
         }
         else {
             myViewHolder.operadora.setText(mList.get(position).getOpTelein()+" - ");
