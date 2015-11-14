@@ -104,6 +104,7 @@ public class UserDAO extends SQLiteOpenHelper{
 
         User user = null;
         if(cursor.moveToFirst()){
+
             do {
                 user = new User(KEY_NAME, KEY_LAST_NAME, KEY_EMAIL, KEY_PASSWORD, KEY_RESET, KEY_IS_LOGADO, KEY_FOTO);
                 //user.setName(cursor.getString(1));

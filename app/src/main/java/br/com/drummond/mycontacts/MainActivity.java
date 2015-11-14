@@ -229,17 +229,9 @@ public class MainActivity extends ActionBarActivity{
                         ((PrimaryDrawerItem) iDrawerItem).setIcon(getResources().getDrawable( getCorretcDrawerIcon( i, true ) ));
 
                         mPositionClicked = i;
-                        navigationDrawerLeft.getAdapter().notifyDataSetChanged();
+                        //navigationDrawerLeft.getAdapter().notifyDataSetChanged();
                     }
                 })
-                /*withOnDrawerItemLongClickListener(new Drawer.OnDrawerItemLongClickListener() {
-                    @Override
-                    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l, IDrawerItem iDrawerItem) {
-                        //Clique Longo em algum item do NAVIGATIO N DRAWER
-                        Toast.makeText(MainActivity.this, "onItemLongClick: " + i, Toast.LENGTH_SHORT).show();
-                        return false;
-                    }
-                })*/
                 .build();
 
         //Abaixo criando os itens do menu do NAVIGATION DRAWER
