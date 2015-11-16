@@ -70,7 +70,6 @@ private RecyclerView mRecyclerView;
 
         ArrayList<Ligacao> list = new ArrayList<Ligacao>();
         for(int i=listAux.size();i>0;i--){
-            Log.i("list",""+i+listAux.get(i-1).getHoraligacao());
             list.add(listAux.get(i-1));
         }
         LigacaoAdapter adapter = new LigacaoAdapter(getActivity(), list);
@@ -85,7 +84,6 @@ private RecyclerView mRecyclerView;
 
         ArrayList<Ligacao> list = new ArrayList<Ligacao>();
         for(int i=listAux.size();i>0;i--){
-            Log.i("list",""+i+listAux.get(i-1).getHoraligacao());
             list.add(listAux.get(i-1));
         }
         LigacaoAdapter adapter = new LigacaoAdapter(getActivity(), list);
@@ -101,11 +99,17 @@ private RecyclerView mRecyclerView;
     @Override
     public void onClickListener(View view, int position) {
         //Pegando a lista de ligaes
+
         final LigacaoDAO dao = new LigacaoDAO(getActivity());
         List<Ligacao> listAux = dao.getListaLigacao();
         dao.close();
 
-        final Ligacao ligacao= listAux.get(position);
+        ArrayList<Ligacao> list = new ArrayList<Ligacao>();
+        for(int i=listAux.size();i>0;i--){
+            list.add(listAux.get(i-1));
+        }
+
+        final Ligacao ligacao= list.get(position);
 
         String op_outro = ligacao.getOpTelein();
         if (MainActivity.operator.equals(op_outro)) {
