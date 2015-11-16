@@ -74,9 +74,15 @@ public class ContatoDAO extends SQLiteOpenHelper{
     }
 
     public List<Contato> getLista() {
+        /*
+        Comentado , para começar a ordenar contatos em ordem crescente de acordo com nome
         String[] colunas = {"id", "nome", "telefone", "email", "tipoEmail","endereco","tipoEndereco" ,"foto", "operadora","latitude","longitude","data_mapa"};
 
-        Cursor cursor = getWritableDatabase().query("Contatos", colunas, null, null, null, null, null);
+        Cursor cursor = getWritableDatabase().query("Contatos", colunas, null, null, null, null, null);*/
+
+        String query= "Select * from Contatos order by nome ASC";
+        Cursor cursor = getWritableDatabase().rawQuery(query,null);
+
         //Retorna um Cursor, atraves dele que vamos buscar os dados.
 
         //moveToNext vai para o primeiro registro, no caso aponta todos os dados de um contato
