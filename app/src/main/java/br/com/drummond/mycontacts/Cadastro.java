@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.Menu;
@@ -26,6 +27,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import br.com.drummond.mycontacts.lista.dao.UserDAO;
 import br.com.drummond.mycontacts.lista.modelo.User;
@@ -50,9 +53,9 @@ public class Cadastro extends Activity {
         imageClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(getApplicationContext(), "Click na imagem inicia captura de camera", Toast.LENGTH_SHORT).show();
-                takeAPicture(view);
-                //selectImage();
+        //Toast.makeText(getApplicationContext(), "Click na imagem inicia captura de camera", Toast.LENGTH_SHORT).show();
+        takeAPicture(view);
+        //selectImage();
 
             }
         });
@@ -80,22 +83,23 @@ public class Cadastro extends Activity {
 
         //final String pass;
         final String pass = editPass.getText().toString();
-        final String passConfirm = editPass.getText().toString();
-
+        final String passConfirm = editPassConfirm.getText().toString();
 
         registerUser = (Button) findViewById(R.id.registerUser);
         registerUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //SQLiteUser db = new SQLiteUser(this);
-                //makeText(getApplication(), pass + passConfirm, Toast.LENGTH_SHORT).show();
 
-                if (editName.getText().length() == 0){
+                if (caminhoFoto == null){
+                    Toast.makeText(getApplication(), "Insira sua imagem de perfil", Toast.LENGTH_SHORT).show();
+                }
+
+                else if (editName.getText().length() == 0){
                     editName.requestFocus();
                     //Log.i("Erro", "editname");
                     Toast.makeText(getApplication(), "Preencha seu nome", Toast.LENGTH_SHORT).show();
                 }
-                else if(editMail.getText().length() < 6) {
+                else if(!isValidEmail(editMail.getText().toString())) {
                     //Log.i("Erro", "editmail");
                     Toast.makeText(getApplication(), "E-mail invalido", Toast.LENGTH_SHORT).show();
                 }
@@ -107,12 +111,9 @@ public class Cadastro extends Activity {
                     //Log.i("Erro", "Confirmar senha ");
                     Toast.makeText(getApplication(), "Confirmar senha invalida, digite ao menos 3 digitos  ", Toast.LENGTH_SHORT).show();
                 }
-                //if(pass.equals(passConfirm)) {
-                else if (pass.toString().equals(passConfirm.toString())) {
+                else if (editPass.getText().toString().equals(editPassConfirm.getText().toString())) {
                     Log.d("teste edit name",(editMail.getText().toString()));
-                    db.addUser(new User(editName.getText().toString(), editSurname.getText().toString(), editMail.getText().toString(), editPass.getText().toString(), reset, isLogado, "foto"));
-                    String x = "ck";
-                    String name = "ck";
+                    db.addUser(new User(editName.getText().toString(), editSurname.getText().toString(), editMail.getText().toString(), editPass.getText().toString(), reset, isLogado, caminhoFoto.toString()));
                     db.close();
 
                     makeText(getApplicationContext(), "Cadastro realizado com sucesso.", Toast.LENGTH_SHORT).show();
@@ -122,7 +123,6 @@ public class Cadastro extends Activity {
                     String subMail = editMail.getText().toString();
                     Intent startMainActivity = new Intent(Cadastro.this, MainActivity.class);
                     startMainActivity.putExtra("nameCad", subName);
-                    startMainActivity.putExtra("email", subMail);
                     startActivity(startMainActivity);
                 }
                 else
@@ -135,6 +135,8 @@ public class Cadastro extends Activity {
                 */
 
     }
+
+
 
     public void selectImage() {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
@@ -275,5 +277,13 @@ public class Cadastro extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public final static boolean isValidEmail(CharSequence target) {
+        if (TextUtils.isEmpty(target)) {
+            return false;
+        } else {
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+        }
     }
 }

@@ -264,9 +264,7 @@ public class Formulario extends ActionBarActivity {
                 Intent irHome=new Intent(this,MainActivity.class);
                 startActivity(irHome);
                 break;
-            case R.id.add_campo:
-                Toast.makeText(Formulario.this, "Adicionar campo", Toast.LENGTH_SHORT).show();
-                break;
+
             case R.id.deletar:
                 AlertDialog ad = new AlertDialog.Builder(this)
                         .create();

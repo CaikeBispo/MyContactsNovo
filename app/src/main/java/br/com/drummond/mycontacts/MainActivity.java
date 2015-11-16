@@ -146,16 +146,17 @@ public class MainActivity extends ActionBarActivity{
 
         //vars of autenticacao.java
         Intent intent = getIntent();
+        //if(getIntent().hasExtra()){}
         String nomeCad = intent.getStringExtra("nameCad");
-        //String emailCad = intent.getStringExtra("email");
+
         final UserDAO db = new UserDAO(this);
-        //db.getUser(nomeCad);
         List<User> list = db.getUser(nomeCad);
         final User user = list.get(0);
         String name = user.getName();
         String lastName = user.getLastName();
         String mail = user.getEmail();
         String foto = user.getFoto();
+        Log.i("getUser() Foto main -> ", user.getFoto());
         //HEADER NAVIGATION DRAWER
         headerNavigationLeft= new AccountHeader()
                 .withActivity(this)

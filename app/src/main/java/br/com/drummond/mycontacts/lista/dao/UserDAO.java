@@ -42,7 +42,7 @@ public class UserDAO extends SQLiteOpenHelper{
 
     public void addUser(User user){
         //Log.d("addUser", user.getName().toString() + user.getLastName().toString() + user.getEmail().toString() + user.getPassword().toString() + user.getFoto().toString());
-        Log.d("email -------> ", user.getEmail());
+        Log.d("foto -------> ", user.getFoto());
 
         //Get reference to writable DB
         SQLiteDatabase db = this.getWritableDatabase();
@@ -52,11 +52,11 @@ public class UserDAO extends SQLiteOpenHelper{
         values.put(KEY_NAME, user.getName());
         values.put(KEY_LAST_NAME, user.getLastName());
         values.put(KEY_EMAIL, user.getEmail());
-        Log.d("email ---> ---> ", user.getEmail());
         values.put(KEY_PASSWORD, user.getPassword());
         values.put(KEY_RESET, user.getReset());
         //values.put(KEY_IS_LOGADO, user.getisLogado());
         values.put(KEY_FOTO, user.getFoto());
+        Log.d("foto ---> ---> ", user.getFoto());
         //Inserting datas
         db.insert(TableUser, //table
                 null, //NullColumnHack
@@ -116,7 +116,7 @@ public class UserDAO extends SQLiteOpenHelper{
             } while (cursor.moveToNext());
         }
         for(User teste: users)
-            Log.i("getUsers() Email -> ", teste.getEmail());
+            Log.i("getUsers() Foto -> ", teste.getFoto());
 
         return users;
     }
