@@ -51,7 +51,7 @@ public class PhoneEditText extends EditText {
         final int maxNumberLength = 11;
         this.setKeyListener(keylistenerNumber);
 
-        this.setText("(  )     -     ");
+        this.setText("(  )     -    ");
         this.setSelection(1);
 
         this.addTextChangedListener(new TextWatcher() {
@@ -81,8 +81,8 @@ public class PhoneEditText extends EditText {
 
 				/* Split phone number into parts... */
                 String ddd = paddedNumber.substring(0, 2);
-                String part1 = paddedNumber.substring(2, 6);
-                String part2 = paddedNumber.substring(6, 11).trim();
+                String part1 = paddedNumber.substring(2, 7);
+                String part2 = paddedNumber.substring(7, 11).trim();
 
 				/* build the masked phone number... */
                 String phone = "(" + ddd + ") " + part1 + "-" + part2;

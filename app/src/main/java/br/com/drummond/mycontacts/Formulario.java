@@ -92,17 +92,17 @@ public class Formulario extends ActionBarActivity {
                 }
 
                 if (contatoAlterar == null && contatoMostrar == null){
-
-                    Log.i("Antes do if ", ":"+contato.getTelefone());
-                    if (contato.getTelefone().equals("(  )     -     ") || contato.getTelefone().equals("")){
+                    if (contato.getTelefone().equals("(  )     -    ") || contato.getTelefone().equals("")){
                         contato.setTelefone("");
                     }
-                    Log.i("Depois do if ", ":"+contato.getTelefone());
-
+                   if (contato.getOperadora() == 0 ){
+                        contato.setOperadora(8);
+                    }
+                    Log.i("Operadora Setadp:", ""+contato.getOperadora());
                     dao.salva(contato);
                 } else if (contatoAlterar != null) {
                     Log.i("Telefone", contato.getTelefone());
-                    if (contato.getTelefone().equals("(  )     -     ") || contato.getTelefone().equals("") || contato.getTelefone().equals("(  )     -")){
+                    if (contato.getTelefone().equals("(  )     -    ") || contato.getTelefone().equals("") || contato.getTelefone().equals("(  )     -")){
                         contato.setTelefone("");
                     }
                     dao.alterar(contato);
@@ -134,7 +134,7 @@ public class Formulario extends ActionBarActivity {
                             telAjustado = telAjustado.replace("-", "");
                             telAjustado = telAjustado.replace(" ", "");
 
-                            Log.i("Telefon Digitado: ", ""+telAjustado);
+                            Log.i("Telefone Digitado: ", ""+telAjustado);
 
 
                             //String URL = "http://consultaoperadora1.telein.com.br/sistema/consulta_resumida.php?numero="+telAjustado+"&chave=74b451b7a6ef79a57085";
@@ -152,7 +152,7 @@ public class Formulario extends ActionBarActivity {
                                     //btnOp.setText(NomeOperadora);
                                     ArrayAdapter<String> adapterSpinner;
                                     int layoutSpinner = android.R.layout.simple_spinner_item;
-                                    String[] arrayOperadoras ={"", "Claro BR", "Fixo", "Nextel", "Oi", "Tim", "Vivo", "Outro"};
+                                    String[] arrayOperadoras ={"Operadora", "Claro BR", "Fixo", "Nextel", "Oi", "Tim", "Vivo", "Outro", ""};
 
                                     adapterSpinner = new ArrayAdapter<String>(getApplication(), layoutSpinner, arrayOperadoras);
 
@@ -163,7 +163,7 @@ public class Formulario extends ActionBarActivity {
                                     } else {
                                         AlertDialog.Builder caixaDialogo = new AlertDialog.Builder(Formulario.this);
                                         caixaDialogo.setTitle("Operadora não localizada.");
-                                        caixaDialogo.setMessage("Verifique se você digitou o número corretamente. \nCaso esteja certo, por favor preencha a operadora através do combo");
+                                        caixaDialogo.setMessage("Verifique se você digitou o número corretamente. \nCaso esteja certo, por favor preencha a operadora através da caixa de opções");
 
                                         caixaDialogo.setNeutralButton("OK",new DialogInterface.OnClickListener() {
                                             @Override

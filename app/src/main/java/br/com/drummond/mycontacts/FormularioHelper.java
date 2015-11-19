@@ -41,7 +41,7 @@ public class FormularioHelper {
         //emailtipo= (Spinner) formulario.findViewById(R.id.emailtipo);
         enderecotipo= (Spinner) formulario.findViewById(R.id.enderecotipo);
 
-        String[] nomesOperadoras ={"", "Claro BR", "Fixo", "Nextel", "Oi", "Tim", "Vivo", "Outro"};
+        String[] nomesOperadoras ={"Operadora", "Claro BR", "Fixo", "Nextel", "Oi", "Tim", "Vivo", "Outro", ""};
         String[] tipos ={"Casa", "Trabalho", "Outro"};
 
         int layoutSpinner = android.R.layout.simple_spinner_item;
