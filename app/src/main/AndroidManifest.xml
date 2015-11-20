@@ -24,8 +24,6 @@
     <uses-permission android:name="com.android.providers.gfs.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-
-
     <!-- Quando a permissão abaixo estava habilitada, o maps apenas funcionava no wifi -->
     <!-- <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> -->
 
@@ -62,10 +60,10 @@
             android:name=".Formulario"
             android:label="@string/title_activity_formulario"
             android:parentActivityName=".MainActivity"
-            android:windowSoftInputMode="stateHidden">
+            android:windowSoftInputMode="stateHidden" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".About"
@@ -87,7 +85,7 @@
         <activity
             android:name=".Autenticacao"
             android:label="MyContacts"
-            android:windowSoftInputMode="adjustResize|adjustPan">
+            android:windowSoftInputMode="adjustResize|adjustPan" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -97,6 +95,10 @@
         <activity
             android:name=".Cadastro"
             android:label="@string/title_activity_cadastro" >
+        </activity>
+        <activity
+            android:name=".Senha"
+            android:label="@string/title_activity_senha" >
         </activity>
     </application>
 

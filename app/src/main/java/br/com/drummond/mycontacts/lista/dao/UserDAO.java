@@ -36,9 +36,10 @@ public class UserDAO extends SQLiteOpenHelper{
     private static final String KEY_RESET = "reset";
     private static final String KEY_IS_LOGADO = "isLogado";
     private static final String KEY_FOTO = "foto";
+    private static final String KEY_RECUPERAR_SENHA = "recuperarSenha";
 
     private static final String [] COLUMNS = {KEY_ID, KEY_NAME,
-            KEY_LAST_NAME, KEY_EMAIL, KEY_PASSWORD, KEY_RESET, KEY_FOTO};
+            KEY_LAST_NAME, KEY_EMAIL, KEY_PASSWORD, KEY_RESET, KEY_FOTO, KEY_RECUPERAR_SENHA};
 
     public void addUser(User user){
         //Log.d("addUser", user.getName().toString() + user.getLastName().toString() + user.getEmail().toString() + user.getPassword().toString() + user.getFoto().toString());
@@ -57,6 +58,8 @@ public class UserDAO extends SQLiteOpenHelper{
         //values.put(KEY_IS_LOGADO, user.getisLogado());
         values.put(KEY_FOTO, user.getFoto());
         Log.d("foto ---> ---> ", user.getFoto());
+        values.put(KEY_RECUPERAR_SENHA, user.getRecoverPass());
+        Log.d("RPass---> ---> ", user.getRecoverPass());
         //Inserting datas
         db.insert(TableUser, //table
                 null, //NullColumnHack
@@ -106,17 +109,49 @@ public class UserDAO extends SQLiteOpenHelper{
         if(cursor.moveToFirst()){
 
             do {
-                user = new User(KEY_NAME, KEY_LAST_NAME, KEY_EMAIL, KEY_PASSWORD, KEY_RESET, KEY_IS_LOGADO, KEY_FOTO);
+                user = new User(KEY_NAME, KEY_LAST_NAME, KEY_EMAIL, KEY_PASSWORD, KEY_RESET, KEY_IS_LOGADO, KEY_FOTO, KEY_RECUPERAR_SENHA);
                 //user.setName(cursor.getString(1));
                 user.setName(cursor.getString(1));
                 user.setLastName(cursor.getString(2));
+                user.setPassword(cursor.getString(4));
                 user.setEmail(cursor.getString(3));
                 user.setFoto(cursor.getString(6));
+                user.setRecoverPass(cursor.getString(7));
                 users.add(user);
             } while (cursor.moveToNext());
         }
         for(User teste: users)
-            Log.i("getUsers() Foto -> ", teste.getFoto());
+            Log.i("Recuperarsenha -> ", teste.getRecoverPass());
+
+        return users;
+    }
+
+    public List<User> getAnswer(String paramSenha){
+        List<User> users = new LinkedList<User>();
+        String query = "SELECT * FROM " + TableUser + " WHERE recuperarSenha = '"+ paramSenha +"'";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        User user = null;
+        if(cursor.moveToFirst()){
+
+            do {
+                user = new User(KEY_NAME, KEY_LAST_NAME, KEY_EMAIL, KEY_PASSWORD, KEY_RESET, KEY_IS_LOGADO, KEY_FOTO, KEY_RECUPERAR_SENHA);
+                //user.setName(cursor.getString(1));
+                user.setName(cursor.getString(1));
+                user.setLastName(cursor.getString(2));
+                user.setPassword(cursor.getString(4));
+                user.setEmail(cursor.getString(3));
+                user.setFoto(cursor.getString(6));
+                if(paramSenha.equals(paramSenha)){
+                    user.setRecoverPass(cursor.getString(7));}
+                users.add(user);
+            } while (cursor.moveToNext());
+        }
+        for(User teste: users)
+            //Log.i("getUsers() Foto -> ", teste.getFoto());
+            Log.i("Recuperar senha -> ", teste.getRecoverPass());
 
         return users;
     }
@@ -132,7 +167,7 @@ public class UserDAO extends SQLiteOpenHelper{
         User user = null;
         if(cursor.moveToFirst()){
             do {
-                user = new User(KEY_NAME, KEY_LAST_NAME, KEY_EMAIL, KEY_PASSWORD, KEY_RESET, KEY_IS_LOGADO, KEY_FOTO);
+                user = new User(KEY_NAME, KEY_LAST_NAME, KEY_EMAIL, KEY_PASSWORD, KEY_RESET, KEY_IS_LOGADO, KEY_FOTO, KEY_RECUPERAR_SENHA);
                 //user.setName(cursor.getString(1));
                 user.setName(cursor.getString(1));
                 //user.setLastName(cursor.getString(2));
@@ -150,7 +185,7 @@ public class UserDAO extends SQLiteOpenHelper{
         String DDL = "CREATE TABLE user (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "name TEXT UNIQUE, lastName TEXT, email TEXT, " +
-                "password TEXT, reset TEXT, foto TEXT" +
+                "password TEXT, reset TEXT, foto TEXT, recuperarSenha TEXT" +
                 ");";
         db.execSQL(DDL);
     }

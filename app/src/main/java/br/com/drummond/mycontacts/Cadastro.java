@@ -71,13 +71,14 @@ public class Cadastro extends Activity {
         final EditText editPassConfirm;
         final String reset = "s";
         final String isLogado = "true";
-
+        final EditText editPerguntaSecreta;
 
         editName = (EditText) findViewById(R.id.name);
         editSurname = (EditText) findViewById(R.id.lastName);
         editMail = (EditText) findViewById(R.id.email);
         editPass = (EditText) findViewById(R.id.pass);
         editPassConfirm = (EditText) findViewById(R.id.passCofirm);
+        editPerguntaSecreta = (EditText) findViewById(R.id.perguntaSecreta);
 
 
 
@@ -103,6 +104,9 @@ public class Cadastro extends Activity {
                     //Log.i("Erro", "editmail");
                     Toast.makeText(getApplication(), "E-mail invalido", Toast.LENGTH_SHORT).show();
                 }
+                else if (editPerguntaSecreta.getText().length() < 5){
+                    Toast.makeText(getApplication(), "Por favor responda a pergunta secreta", Toast.LENGTH_SHORT).show();
+                }
                 else if (editPass.getText().length() < 3){
                     //Log.i("Erro", "senha ");
                     Toast.makeText(getApplication(), "Senha invalida, digite ao menos 3 digitos ", Toast.LENGTH_SHORT).show();
@@ -111,9 +115,10 @@ public class Cadastro extends Activity {
                     //Log.i("Erro", "Confirmar senha ");
                     Toast.makeText(getApplication(), "Confirmar senha invalida, digite ao menos 3 digitos  ", Toast.LENGTH_SHORT).show();
                 }
+
                 else if (editPass.getText().toString().equals(editPassConfirm.getText().toString())) {
-                    Log.d("teste edit name",(editMail.getText().toString()));
-                    db.addUser(new User(editName.getText().toString(), editSurname.getText().toString(), editMail.getText().toString(), editPass.getText().toString(), reset, isLogado, caminhoFoto.toString()));
+                    Log.d("teste EditPergunta",(editPerguntaSecreta.getText().toString()));
+                    db.addUser(new User(editName.getText().toString(), editSurname.getText().toString(), editMail.getText().toString(), editPass.getText().toString(), reset, isLogado, caminhoFoto.toString(), editPerguntaSecreta.getText().toString()));
                     db.close();
 
                     makeText(getApplicationContext(), "Cadastro realizado com sucesso.", Toast.LENGTH_SHORT).show();

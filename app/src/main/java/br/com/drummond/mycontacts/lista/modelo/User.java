@@ -7,9 +7,18 @@ import android.widget.EditText;
  */
 public class User {
 
-    private String name, lastName, email, password, reset, isLogado, foto;
+    private String name;
+    private String lastName;
+    private String email;
+    private String password;
+    private String reset;
+    private String isLogado;
+    private String foto;
+    private String recoverPass;
 
-    public User(String name, String lastName, String email, String password, String reset, String isLogado, String foto) {
+
+
+    public User(String name, String lastName, String email, String password, String reset, String isLogado, String foto, String recoverPass) {
 
         super();
 
@@ -20,10 +29,18 @@ public class User {
         this.reset = reset;
         this.isLogado = isLogado;
         this.foto = foto;
+        this.recoverPass = recoverPass;
 
     }
 
 
+    public String getRecoverPass() {
+        return recoverPass;
+    }
+
+    public void setRecoverPass(String recoverPass) {
+        this.recoverPass = recoverPass;
+    }
 
 
     public String getName() {
