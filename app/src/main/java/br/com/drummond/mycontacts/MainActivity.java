@@ -147,10 +147,10 @@ public class MainActivity extends ActionBarActivity{
         //vars of autenticacao.java
         Intent intent = getIntent();
         //if(getIntent().hasExtra()){}
-        String nomeCad = intent.getStringExtra("nameCad");
+        String nomeCa = Autenticacao.teste;
 
         final UserDAO db = new UserDAO(this);
-        List<User> list = db.getUser(nomeCad);
+        List<User> list = db.getUser(nomeCa);
         final User user = list.get(0);
         String name = user.getName();
         String lastName = user.getLastName();

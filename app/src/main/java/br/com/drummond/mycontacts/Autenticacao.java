@@ -21,8 +21,9 @@ import static android.widget.Toast.makeText;
 
 
 public class Autenticacao extends Activity {
+    public String inputName;
 
-
+    public static String teste;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +50,12 @@ public class Autenticacao extends Activity {
         loginPressed = (Button) findViewById(R.id.entrar);
         final EditText user = (EditText) findViewById(R.id.user);
         final EditText pass = (EditText) findViewById(R.id.pass);
-
+        teste = user.getText().toString();
         loginPressed.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                String inputName = user.getText().toString();
+                inputName = user.getText().toString();
+                teste = inputName;
                 String inputPassword = pass.getText().toString();
                 List<User> list = db.getAllUsers(inputName, inputPassword);
                 if (list.size() >= 1) {
@@ -73,7 +75,6 @@ public class Autenticacao extends Activity {
             @Override
             public void onClick(View v) {
                 Intent startCadastro = new Intent(Autenticacao.this, Cadastro.class);
-
                 startActivity(startCadastro);
             }
         });
