@@ -96,7 +96,7 @@ public class Formulario extends ActionBarActivity {
                         contato.setTelefone("");
                     }
                    if (contato.getOperadora() == 0 ){
-                        contato.setOperadora(8);
+                        contato.setStrOp("");
                     }
                     Log.i("Operadora Setadp:", ""+contato.getOperadora());
                     dao.salva(contato);
