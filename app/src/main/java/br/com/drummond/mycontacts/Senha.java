@@ -40,16 +40,16 @@ public class Senha extends ActionBarActivity {
         actionRec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    final UserDAO dbase = new UserDAO(Senha.this);
-                    List<User> lista = dbase.getAnswer(tip.getText().toString());
-                    final User usuario = lista.get(0);
-                    returnPass.setText("Seu usuario e: '" + usuario.getName() + "'" + " e sua senha e: '" +
-                            usuario.getPassword() + "'");
-                }
-                catch (Exception e){
-                    returnPass.setText("Nome incorreto!");
-                }
+                    try {
+                        final UserDAO dbase = new UserDAO(Senha.this);
+                        List<User> lista = dbase.getAnswer(tip.getText().toString());
+                        final User usuario = lista.get(0);
+                        returnPass.setText("Seu usuario e: '" + usuario.getName() + "'" + " e sua senha e: '" +
+                                usuario.getPassword() + "'");
+                    }
+                    catch (Exception e){
+                        returnPass.setText("Nome incorreto!");
+                    }
                 }
 
         });
@@ -68,8 +68,7 @@ public class Senha extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        Intent startHome = new Intent(Senha.this, MainActivity.class);
+        Intent startHome = new Intent(Senha.this, Autenticacao.class);
         startActivity(startHome);
 
         return super.onOptionsItemSelected(item);
