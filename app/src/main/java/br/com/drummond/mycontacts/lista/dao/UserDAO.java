@@ -129,13 +129,10 @@ public class UserDAO extends SQLiteOpenHelper{
     public List<User> getAnswer(String paramSenha){
         List<User> users = new LinkedList<User>();
         String query = "SELECT * FROM " + TableUser + " WHERE recuperarSenha = '"+ paramSenha +"'";
-
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
-
         User user = null;
         if(cursor.moveToFirst()){
-
             do {
                 user = new User(KEY_NAME, KEY_LAST_NAME, KEY_EMAIL, KEY_PASSWORD, KEY_RESET, KEY_IS_LOGADO, KEY_FOTO, KEY_RECUPERAR_SENHA);
                 //user.setName(cursor.getString(1));
@@ -150,7 +147,6 @@ public class UserDAO extends SQLiteOpenHelper{
             } while (cursor.moveToNext());
         }
         for(User teste: users)
-            //Log.i("getUsers() Foto -> ", teste.getFoto());
             Log.i("Recuperar senha -> ", teste.getRecoverPass());
 
         return users;

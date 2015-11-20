@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-
     tools:context="br.com.drummond.mycontacts.About"
     android:id="@+id/textView"
     android:weightSum="1">

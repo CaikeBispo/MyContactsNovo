@@ -1,7 +1,9 @@
 package br.com.drummond.mycontacts;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,51 +17,42 @@ import java.util.List;
 import br.com.drummond.mycontacts.lista.dao.UserDAO;
 import br.com.drummond.mycontacts.lista.modelo.User;
 
-
 public class Senha extends ActionBarActivity {
 
+    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_senha);
+
+        /* Header teste */
+        mToolbar= (Toolbar) findViewById(R.id.tb_senha);
+        setSupportActionBar(mToolbar);
+        mToolbar.setTitle("Sobre o MyContacts");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         final EditText tip = (EditText)findViewById(R.id.perguntaSecreta);
         final TextView returnPass = (TextView)findViewById(R.id.retornaSenha);
-        String a = tip.getText().toString();
-        final String passFromDB;
-
-        if(a.length() >= 2) {
-
-            final UserDAO db = new UserDAO(this);
-            List<User> list = db.getAnswer(tip.getText().toString());
-            final User user = list.get(0);
-            passFromDB = user.getRecoverPass();
-            Log.d("Pass filho da mae -> ", user.getRecoverPass().toString());
-        }
-
-        else
-            passFromDB = " ";
-
 
         Button actionRec;
         actionRec = (Button)findViewById(R.id.recoverPassword);
         actionRec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //returnPass.setText("Sua senha e: " + tip.getText());
-                if(passFromDB.length() > 3)
-                    returnPass.setText("Sua senha e: " + passFromDB);
-                else {
+                try {
                     final UserDAO dbase = new UserDAO(Senha.this);
                     List<User> lista = dbase.getAnswer(tip.getText().toString());
-                    //List<User> lista = dbase.getUser("manuelad");
                     final User usuario = lista.get(0);
-                    returnPass.setText("Seu usario e: '"+usuario.getName()+"'"+" e sua senha e: '" +
-                        usuario.getPassword()+"'");
+                    returnPass.setText("Seu usuario e: '" + usuario.getName() + "'" + " e sua senha e: '" +
+                            usuario.getPassword() + "'");
                 }
-            }
-        });
+                catch (Exception e){
+                    returnPass.setText("Nome incorreto!");
+                }
+                }
 
+        });
     }
 
     @Override
@@ -76,10 +69,8 @@ public class Senha extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        Intent startHome = new Intent(Senha.this, MainActivity.class);
+        startActivity(startHome);
 
         return super.onOptionsItemSelected(item);
     }
