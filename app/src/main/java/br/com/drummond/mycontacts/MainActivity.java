@@ -148,7 +148,7 @@ public class MainActivity extends ActionBarActivity{
         Intent intent = getIntent();
         //if(getIntent().hasExtra()){}
         String nomeCa = Autenticacao.teste;
-
+        /*
         final UserDAO db = new UserDAO(this);
         List<User> list = db.getUser(nomeCa);
         final User user = list.get(0);
@@ -156,7 +156,7 @@ public class MainActivity extends ActionBarActivity{
         String lastName = user.getLastName();
         String mail = user.getEmail();
         String foto = user.getFoto();
-        Log.i("getUser() Foto main -> ", user.getFoto());
+        Log.i("getUser() Foto main -> ", user.getFoto()); */
         //HEADER NAVIGATION DRAWER
         headerNavigationLeft= new AccountHeader()
                 .withActivity(this)
@@ -165,10 +165,10 @@ public class MainActivity extends ActionBarActivity{
                 .withThreeSmallProfileImages(false)
                 .withHeaderBackground(R.drawable.fundo)
                 .addProfiles(
-                        new ProfileDrawerItem().withName(name+" "+lastName).withEmail(mail).withIcon(getResources().getDrawable(R.drawable.person_1))
+                        new ProfileDrawerItem().withName("Maira Bocci").withEmail("maira@gmail.com").withIcon(getResources().getDrawable(R.drawable.person_1))
                 )
                 .build();
-        Log.i("foto",user.getFoto());
+        //Log.i("foto",user.getFoto());
 
 
         //NAVIGATION DRAWER LEFT
