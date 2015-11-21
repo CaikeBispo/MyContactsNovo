@@ -6,10 +6,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.media.Image;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -23,11 +21,11 @@ public class FormularioHelper {
     private EditText editNome, editTelefone, editEmail, editEndereco;
     private ImageView foto;
     private ImageButton editOperadora;
-    //private Spinner emailtipo;
-    private Spinner spnOp, enderecotipo;
+    private Spinner spnOp, enderecotipo, spnemailtipo;
     private Contato contato;
     ArrayAdapter<String> adapterSpinner;
     ArrayAdapter<String> adapterSpinnerTipo;
+    ArrayAdapter<String> adapterSpinnerEmailTipo;
     ArrayList<String> nomesOperadoras;
 
     public FormularioHelper(Formulario formulario) {
@@ -38,19 +36,21 @@ public class FormularioHelper {
         foto = (ImageView) formulario.findViewById(R.id.foto);
         spnOp = (Spinner) formulario.findViewById(R.id.operadora);
         editOperadora = (ImageButton) formulario.findViewById(R.id.btnOp);
-        //emailtipo= (Spinner) formulario.findViewById(R.id.emailtipo);
+        spnemailtipo = (Spinner) formulario.findViewById(R.id.emailtipo);
         enderecotipo= (Spinner) formulario.findViewById(R.id.enderecotipo);
 
         String[] nomesOperadoras ={"Operadora", "Claro BR", "Fixo", "Nextel", "Oi", "Tim", "Vivo", "Outro", ""};
         String[] tipos ={"Casa", "Trabalho", "Outro"};
+        String[] emailtipo ={"Pessoal", "Corporativo"};
 
         int layoutSpinner = android.R.layout.simple_spinner_item;
 
         adapterSpinner = new ArrayAdapter<String>(formulario, layoutSpinner, nomesOperadoras);
         adapterSpinnerTipo = new ArrayAdapter<String>(formulario, layoutSpinner, tipos);
+        adapterSpinnerEmailTipo = new ArrayAdapter<String>(formulario, layoutSpinner, emailtipo);
 
         spnOp.setAdapter(adapterSpinner);
-        //emailtipo.setAdapter(adapterSpinnerTipo);
+        spnemailtipo.setAdapter(adapterSpinnerEmailTipo);
         enderecotipo.setAdapter(adapterSpinnerTipo);
 
         contato = new Contato();
@@ -60,7 +60,7 @@ public class FormularioHelper {
         contato.setNome(editNome.getText().toString());
         contato.setTelefone(editTelefone.getText().toString());
         contato.setEmail(editEmail.getText().toString());
-        //contato.setTipoemail((int) emailtipo.getSelectedItemId());
+        contato.setTipoemail((int) spnemailtipo.getSelectedItemId());
         contato.setEndereco(editEndereco.getText().toString());
         contato.setTipoendereco((int) enderecotipo.getSelectedItemId());
         contato.setOperadora((int) spnOp.getSelectedItemId());
@@ -75,7 +75,7 @@ public class FormularioHelper {
         editNome.setText(contatoMostrar.getNome());
         editTelefone.setText(contatoMostrar.getTelefone());
         editEmail.setText(contatoMostrar.getEmail());
-        //emailtipo.setSelection(contatoMostrar.getTipoemail());
+        spnemailtipo.setSelection(contatoMostrar.getTipoemail());
         editEndereco.setText(contatoMostrar.getEndereco());
         enderecotipo.setSelection(contatoMostrar.getTipoendereco());
 
@@ -91,7 +91,7 @@ public class FormularioHelper {
             editNome.setEnabled(false);
             editTelefone.setEnabled(false);
             editEmail.setEnabled(false);
-            //emailtipo.setEnabled(false);
+            spnemailtipo.setEnabled(false);
             editEndereco.setEnabled(false);
             editEndereco.setTextColor(Color.rgb(190, 190, 190));
             enderecotipo.setEnabled(false);
