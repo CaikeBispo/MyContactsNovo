@@ -91,20 +91,17 @@ public class Formulario extends ActionBarActivity {
                     }
                 }
 
+                if (contato.getTelefone().equals("(  )     -    ") || contato.getTelefone().equals("") || contato.getTelefone().equals("(  )      -")){
+                    contato.setTelefone("");
+                }
+                if (contato.getOperadora() == 0 ){
+                    contato.setStrOp("");
+                }
+
                 if (contatoAlterar == null && contatoMostrar == null){
-                    if (contato.getTelefone().equals("(  )     -    ") || contato.getTelefone().equals("")){
-                        contato.setTelefone("");
-                    }
-                   if (contato.getOperadora() == 0 ){
-                        contato.setStrOp("");
-                    }
-                    Log.i("Operadora Setadp:", ""+contato.getOperadora());
                     dao.salva(contato);
                 } else if (contatoAlterar != null) {
-                    Log.i("Telefone", contato.getTelefone());
-                    if (contato.getTelefone().equals("(  )     -    ") || contato.getTelefone().equals("") || contato.getTelefone().equals("(  )     -")){
-                        contato.setTelefone("");
-                    }
+                    Log.i("Alterar mascara: ", contato.getTelefone());
                     dao.alterar(contato);
                 }
                 dao.close();
