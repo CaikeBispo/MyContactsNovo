@@ -52,6 +52,7 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
     private RecyclerView mRecyclerView;
     private List<Contato> mList;
     private FloatingActionButton fab;
+    String telLigacao;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -173,10 +174,21 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
         final Contato contato=listAux.get(position);
         String op_outro = contato.getStrOp();
 
-        //Log.i("Minha Operadora", MainActivity.operator);
+        telLigacao = contato.getTelefone();
 
-        if (MainActivity.operator.equals(op_outro)) {
-            efetuarLigacao(contato.getTelefone(), contato);
+        Log.i("Tel Antes ", ":"+telLigacao);
+
+        telLigacao = telLigacao.replace("(", "");
+        telLigacao = telLigacao.replace(")", "");
+        telLigacao = telLigacao.replace("-", "");
+        telLigacao = telLigacao.replace(" ", "");
+
+        Log.i("Tel Depois ", ":"+telLigacao);
+        telLigacao = 0+telLigacao;
+
+
+        if (MainActivity.operator.equals(op_outro) || contato.getStrOp().equals("")) {
+            efetuarLigacao(telLigacao, contato);
 
         } else {
             AlertDialog.Builder caixaDialogo = new AlertDialog.Builder(getActivity());
@@ -186,19 +198,6 @@ public class ContatoFragment extends Fragment implements RecyclerViewOnClickList
             caixaDialogo.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    String telLigacao;
-
-                    telLigacao = contato.getTelefone();
-
-                    Log.i("Tel Antes ", ":"+telLigacao);
-
-                    telLigacao = telLigacao.replace("(", "");
-                    telLigacao = telLigacao.replace(")", "");
-                    telLigacao = telLigacao.replace("-", "");
-                    telLigacao = telLigacao.replace(" ", "");
-
-                    Log.i("Tel Depois ", ":"+telLigacao);
-                    telLigacao = 0+telLigacao;
 
                     efetuarLigacao(telLigacao, contato);
                 }
