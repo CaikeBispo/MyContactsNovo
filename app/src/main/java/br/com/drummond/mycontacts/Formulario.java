@@ -134,10 +134,10 @@ public class Formulario extends ActionBarActivity {
                             Log.i("Telefone Digitado: ", ""+telAjustado);
 
 
-                            //String URL = "http://consultaoperadora1.telein.com.br/sistema/consulta_resumida.php?numero="+telAjustado+"&chave=74b451b7a6ef79a57085";
-                            //SynchronousHttpConnection httpConnection = new SynchronousHttpConnection();
-                            //response = httpConnection.post(URL);
-                            response = "41#962301830";
+                            String URL = "http://consultaoperadora1.telein.com.br/sistema/consulta_resumida.php?numero="+telAjustado+"&chave=74b451b7a6ef79a57085";
+                            SynchronousHttpConnection httpConnection = new SynchronousHttpConnection();
+                            response = httpConnection.post(URL);
+                            //response = "41#962301830";
 
                             NomeOperadora = classe_op.NomearOperadora(response);
 
