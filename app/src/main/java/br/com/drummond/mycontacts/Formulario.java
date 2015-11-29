@@ -131,7 +131,7 @@ public class Formulario extends ActionBarActivity {
                             telAjustado = telAjustado.replace("-", "");
                             telAjustado = telAjustado.replace(" ", "");
 
-                            Log.i("Telefone Digitado: ", ""+telAjustado);
+                            //Log.i("Telefone Digitado: ", ""+telAjustado);
 
 
                             String URL = "http://consultaoperadora1.telein.com.br/sistema/consulta_resumida.php?numero="+telAjustado+"&chave=74b451b7a6ef79a57085";
@@ -139,6 +139,7 @@ public class Formulario extends ActionBarActivity {
                             response = httpConnection.post(URL);
                             //response = "41#962301830";
 
+                            Log.i("RETORNO TELEIN", response.toString());
                             NomeOperadora = classe_op.NomearOperadora(response);
 
                             Log.i("RESPONSE ", ": " + NomeOperadora);

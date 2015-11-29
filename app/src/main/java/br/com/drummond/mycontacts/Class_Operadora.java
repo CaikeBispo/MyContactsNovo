@@ -12,6 +12,9 @@ public class Class_Operadora {
             case "15":
                 ddd = "Vivo";
                 break;
+            case "20":
+                ddd = "Vivo";
+                break;
             case "21":
                 ddd = "Claro BR";
                 break;
