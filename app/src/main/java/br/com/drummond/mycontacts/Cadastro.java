@@ -104,7 +104,7 @@ public class Cadastro extends Activity {
                     //Log.i("Erro", "editmail");
                     Toast.makeText(getApplication(), "E-mail invalido", Toast.LENGTH_SHORT).show();
                 }
-                else if (editPerguntaSecreta.getText().length() < 5){
+                else if (editPerguntaSecreta.getText().length() < 3){
                     Toast.makeText(getApplication(), "Por favor responda a pergunta secreta", Toast.LENGTH_SHORT).show();
                 }
                 else if (editPass.getText().length() < 3){

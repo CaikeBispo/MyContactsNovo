@@ -63,7 +63,7 @@ import br.com.drummond.mycontacts.notification.NotificationUtils;
 import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 
 
-public class MainActivity extends ActionBarActivity{
+public class MainActivity extends ActionBarActivity {
     private static String TAG = "LOG";
     private Toolbar mToolbar;
     private Drawer.Result navigationDrawerLeft;
@@ -81,30 +81,30 @@ public class MainActivity extends ActionBarActivity{
 
     private AtualizadorDePosicao atualizador;
 
-    public static final String PREF_NAME="mycontacts";
+    public static final String PREF_NAME = "mycontacts";
     public Boolean vibrate;
     public Boolean notifications;
 
-    private OnCheckedChangeListener OnCheckedChangeListener=new OnCheckedChangeListener(){
+    private OnCheckedChangeListener OnCheckedChangeListener = new OnCheckedChangeListener() {
 
         @Override
         public void onCheckedChanged(IDrawerItem iDrawerItem, CompoundButton compoundButton, boolean b) {
             //Obtem a instancia de shared preferences
-            SharedPreferences prefs=getSharedPreferences(PREF_NAME,MODE_PRIVATE);
-            SharedPreferences.Editor editor=prefs.edit();
+            SharedPreferences prefs = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
             setNotifications(b);
-            editor.putBoolean("notifications",b);
+            editor.putBoolean("notifications", b);
             editor.commit();
         }
     };
 
-    private OnCheckedChangeListener OnCheckedChangeListenerVibrate=new OnCheckedChangeListener(){
+    private OnCheckedChangeListener OnCheckedChangeListenerVibrate = new OnCheckedChangeListener() {
 
         @Override
         public void onCheckedChanged(IDrawerItem iDrawerItem, CompoundButton compoundButton, boolean b) {
             //Obtem a instancia de shared preferences
-            SharedPreferences prefs=getSharedPreferences(PREF_NAME,MODE_PRIVATE);
-            SharedPreferences.Editor editor=prefs.edit();
+            SharedPreferences prefs = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
             setVibrate(b);
             editor.putBoolean("vibrate", b);
             editor.commit();
@@ -130,14 +130,14 @@ public class MainActivity extends ActionBarActivity{
         setSupportActionBar(mToolbar);
 
         //Obtem a instancia de shared preferences
-        SharedPreferences prefs=getSharedPreferences(PREF_NAME,MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         setVibrate(prefs.getBoolean("vibrate", false));
         setNotifications(prefs.getBoolean("notifications", false));
 
 
         //TABS
-        mViewPager= (ViewPager) findViewById(R.id.vp_tabs);
-        mViewPager.setAdapter(new TabsAdapter(getSupportFragmentManager(),this));
+        mViewPager = (ViewPager) findViewById(R.id.vp_tabs);
+        mViewPager.setAdapter(new TabsAdapter(getSupportFragmentManager(), this));
 
         mSlidingTabLayout = (SlidingTabLayout) findViewById(R.id.slt_tabs);
         mSlidingTabLayout.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
@@ -145,34 +145,47 @@ public class MainActivity extends ActionBarActivity{
         mSlidingTabLayout.setViewPager(mViewPager);
 
         //vars of autenticacao.java
-        Intent intent = getIntent();
-        //if(getIntent().hasExtra()){}
-        String nomeCa = Autenticacao.teste;
-        /*
-        final UserDAO db = new UserDAO(this);
-        List<User> list = db.getUser(nomeCa);
-        final User user = list.get(0);
-        String name = user.getName();
-        String lastName = user.getLastName();
-        String mail = user.getEmail();
-        String foto = user.getFoto();
-        Log.i("getUser() Foto main -> ", user.getFoto()); */
-        //HEADER NAVIGATION DRAWER
-        headerNavigationLeft= new AccountHeader()
+        String nomeTeste = Autenticacao.teste;
+        if (nomeTeste != "1") {
+            String nomeCa = Autenticacao.teste;
+            final UserDAO db = new UserDAO(this);
+            List<User> list = db.getUser(nomeCa);
+            final User user = list.get(0);
+            String name = user.getName();
+            String lastName = user.getLastName();
+            String mail = user.getEmail();
+            String foto = user.getFoto();
+            Log.i("getUser() Foto main -> ", user.getFoto());
+
+            headerNavigationLeft = new AccountHeader()
                 .withActivity(this)
                 .withCompactStyle(false)
                 .withSavedInstance(savedInstanceState)
                 .withThreeSmallProfileImages(false)
                 .withHeaderBackground(R.drawable.fundo)
                 .addProfiles(
-                        new ProfileDrawerItem().withName("Maira Bocci").withEmail("maira@gmail.com").withIcon(getResources().getDrawable(R.drawable.person_1))
+                        new ProfileDrawerItem().withName(name + " " + lastName).withEmail(mail).withIcon(getResources().getDrawable(R.drawable.personicon))
                 )
                 .build();
+        } else{
+            //Toast.makeText(getApplicationContext(), "nao foi", Toast.LENGTH_LONG).show();
+            //HEADER NAVIGATION DRAWER
+            headerNavigationLeft = new AccountHeader()
+            .withActivity(this)
+            .withCompactStyle(false)
+            .withSavedInstance(savedInstanceState)
+            .withThreeSmallProfileImages(false)
+            .withHeaderBackground(R.drawable.fundo)
+            .addProfiles(
+                    new ProfileDrawerItem().withName("Usuário").withEmail("usuario@email.com").withIcon(getResources().getDrawable(R.drawable.personicon))
+            )
+            .build();
+    }
         //Log.i("foto",user.getFoto());
 
 
         //NAVIGATION DRAWER LEFT
-        navigationDrawerLeft= new Drawer()
+        navigationDrawerLeft = new Drawer()
                 .withActivity(this)
                 .withToolbar(mToolbar)
                 .withDisplayBelowToolbar(true)
@@ -187,13 +200,13 @@ public class MainActivity extends ActionBarActivity{
                         Fragment frag = null;
                         mItemDrawerSelected = i;
 
-                        switch (i){
+                        switch (i) {
                             case 0:
                                 Intent irSobre = new Intent(MainActivity.this, About.class);
                                 startActivity(irSobre);
                                 break;
                             case 5:
-                                Toast.makeText(MainActivity.this, "Backup de contatos",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Backup de contatos", Toast.LENGTH_SHORT).show();
                                 break;
                             case 6:
                                 Intent intent = new Intent(Intent.ACTION_SEND);
@@ -202,11 +215,11 @@ public class MainActivity extends ActionBarActivity{
                                 try {
                                     MainActivity.this.startActivity(Intent.createChooser(intent, "Enviar email com: "));
                                 } catch (Exception e) {
-                                    Toast.makeText(MainActivity.this, "O contato não possui email cadastrado!",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity.this, "O contato não possui email cadastrado!", Toast.LENGTH_SHORT).show();
                                 }
                                 break;
                             default:
-                                Toast.makeText(MainActivity.this,"Algum erro ocorreu!!! "+i,Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Algum erro ocorreu!!! " + i, Toast.LENGTH_SHORT).show();
                         }
 
                         for (int count = 0, tam = navigationDrawerLeft.getDrawerItems().size(); count < tam; count++) {
@@ -218,16 +231,16 @@ public class MainActivity extends ActionBarActivity{
                             }*/
                             if (count == mPositionClicked) {
                                 PrimaryDrawerItem aux = (PrimaryDrawerItem) navigationDrawerLeft.getDrawerItems().get(count);
-                                aux.setIcon(getResources().getDrawable( getCorretcDrawerIcon( count, false ) ));
+                                aux.setIcon(getResources().getDrawable(getCorretcDrawerIcon(count, false)));
                                 break;
                             }
                         }
 
-                        if(i <= 3){
-                            ((PrimaryDrawerItem) iDrawerItem).setIcon(getResources().getDrawable( getCorretcDrawerIcon( i, true ) ));
+                        if (i <= 3) {
+                            ((PrimaryDrawerItem) iDrawerItem).setIcon(getResources().getDrawable(getCorretcDrawerIcon(i, true)));
                         }
 
-                        ((PrimaryDrawerItem) iDrawerItem).setIcon(getResources().getDrawable( getCorretcDrawerIcon( i, true ) ));
+                        ((PrimaryDrawerItem) iDrawerItem).setIcon(getResources().getDrawable(getCorretcDrawerIcon(i, true)));
 
                         mPositionClicked = i;
                         //navigationDrawerLeft.getAdapter().notifyDataSetChanged();
@@ -258,10 +271,10 @@ public class MainActivity extends ActionBarActivity{
     }
 
 
-    private int getCorretcDrawerIcon(int position, boolean isSelecetd){
-        switch(position){
+    private int getCorretcDrawerIcon(int position, boolean isSelecetd) {
+        switch (position) {
             case 0:
-                return( isSelecetd ? R.drawable.ic_nav_about_selected : R.drawable.ic_nav_about );
+                return (isSelecetd ? R.drawable.ic_nav_about_selected : R.drawable.ic_nav_about);
             /*case 1:
               return( isSelecetd ? R.drawable.ic_nav_group_selected : R.drawable.ic_nav_group );
             case 2:
@@ -269,11 +282,11 @@ public class MainActivity extends ActionBarActivity{
             case 3:
                 return( isSelecetd ? R.drawable.ic_nav_avalie_disabled : R.drawable.ic_nav_avalie );*/
             case 5:
-                return( isSelecetd ? R.drawable.ic_nav_cloud_upload_selected : R.drawable.ic_nav_cloud_upload );
+                return (isSelecetd ? R.drawable.ic_nav_cloud_upload_selected : R.drawable.ic_nav_cloud_upload);
             case 6:
-                return( isSelecetd ? R.drawable.email_selected : R.drawable.email );
+                return (isSelecetd ? R.drawable.email_selected : R.drawable.email);
         }
-        return(0);
+        return (0);
     }
 
     public Boolean getVibrate() {

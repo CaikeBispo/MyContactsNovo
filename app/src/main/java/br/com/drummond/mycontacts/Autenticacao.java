@@ -23,7 +23,7 @@ import static android.widget.Toast.makeText;
 public class Autenticacao extends Activity {
     public String inputName;
 
-    public static String teste;
+    public static String teste = "1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class Autenticacao extends Activity {
         loginPressed = (Button) findViewById(R.id.entrar);
         final EditText user = (EditText) findViewById(R.id.user);
         final EditText pass = (EditText) findViewById(R.id.pass);
-        teste = user.getText().toString();
+        //teste = user.getText().toString();
         loginPressed.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
