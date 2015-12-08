@@ -41,6 +41,7 @@ public class Cadastro extends Activity {
     static final int REQUEST_IMAGE_OPEN = 1;
     String mCurrentPhotoPath;
     static File caminhoFoto = null;
+    public static String teste = "1";
 
 
     @Override
@@ -118,16 +119,17 @@ public class Cadastro extends Activity {
 
                 else if (editPass.getText().toString().equals(editPassConfirm.getText().toString())) {
                     Log.d("teste EditPergunta",(editPerguntaSecreta.getText().toString()));
+
                     db.addUser(new User(editName.getText().toString(), editSurname.getText().toString(), editMail.getText().toString(), editPass.getText().toString(), reset, isLogado, caminhoFoto.toString(), editPerguntaSecreta.getText().toString()));
                     db.close();
-
+                    teste = editName.getText().toString();
                     makeText(getApplicationContext(), "Cadastro realizado com sucesso.", Toast.LENGTH_SHORT).show();
 
                     // getting back to mainActivity
                     String subName = editName.getText().toString();
                     String subMail = editMail.getText().toString();
                     Intent startMainActivity = new Intent(Cadastro.this, MainActivity.class);
-                    startMainActivity.putExtra("nameCad", subName);
+                    //startMainActivity.putExtra("nameCad", subName);
                     startActivity(startMainActivity);
                 }
                 else

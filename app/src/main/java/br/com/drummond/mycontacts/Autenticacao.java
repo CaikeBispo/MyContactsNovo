@@ -60,7 +60,7 @@ public class Autenticacao extends Activity {
                 List<User> list = db.getAllUsers(inputName, inputPassword);
                 if (list.size() >= 1) {
                     Intent startCadastro = new Intent(Autenticacao.this, MainActivity.class);
-                    startCadastro.putExtra("nameCad", inputName);
+                    //startCadastro.putExtra("nameCad", inputName);
                     startActivity(startCadastro);
                 }
                 else
