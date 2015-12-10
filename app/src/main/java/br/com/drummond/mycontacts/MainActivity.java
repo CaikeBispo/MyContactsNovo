@@ -144,46 +144,6 @@ public class MainActivity extends ActionBarActivity {
         mSlidingTabLayout.setSelectedIndicatorColors(getResources().getColor(R.color.white));
         mSlidingTabLayout.setViewPager(mViewPager);
 
-        String nomeTeste2 = Cadastro.teste;
-
-        if(nomeTeste2.isEmpty()){
-            //vars of autenticacao.java
-            String nomeTeste = Autenticacao.teste;
-
-                //String nomeCa = Autenticacao.teste;
-                final UserDAO db = new UserDAO(this);
-                List<User> list = db.getUser(nomeTeste);
-                final User user = list.get(0);
-                String name = user.getName();
-                String lastName = user.getLastName();
-                String mail = user.getEmail();
-                String foto = user.getFoto();
-                Log.i("getUser() Foto main -> ", user.getFoto());
-
-                headerNavigationLeft = new AccountHeader()
-                        .withActivity(this)
-                        .withCompactStyle(false)
-                        .withSavedInstance(savedInstanceState)
-                        .withThreeSmallProfileImages(false)
-                        .withHeaderBackground(R.drawable.fundo)
-                        .addProfiles(
-                                new ProfileDrawerItem().withName(name + " " + lastName).withEmail(mail).withIcon(getResources().getDrawable(R.drawable.personicon))
-                        )
-                        .build();
-        }
-
-         else{
-
-            //String nomeCa = Autenticacao.teste;
-            final UserDAO db = new UserDAO(this);
-            List<User> list = db.getUser(nomeTeste2);
-            final User user = list.get(0);
-            String name = user.getName();
-            String lastName = user.getLastName();
-            String mail = user.getEmail();
-            String foto = user.getFoto();
-            Log.i("getUser() Foto main -> ", user.getFoto());
-
             headerNavigationLeft = new AccountHeader()
                     .withActivity(this)
                     .withCompactStyle(false)
@@ -191,10 +151,10 @@ public class MainActivity extends ActionBarActivity {
                     .withThreeSmallProfileImages(false)
                     .withHeaderBackground(R.drawable.fundo)
                     .addProfiles(
-                            new ProfileDrawerItem().withName(name + " " + lastName).withEmail(mail).withIcon(getResources().getDrawable(R.drawable.personicon))
+                            new ProfileDrawerItem().withName("Caike Bispo").withEmail("caikebispo@gmail.com").withIcon(getResources().getDrawable(R.drawable.personicon))
                     )
                     .build();
-    }
+
         //Log.i("foto",user.getFoto());
 
 
