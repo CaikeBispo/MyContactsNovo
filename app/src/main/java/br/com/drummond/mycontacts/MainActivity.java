@@ -150,9 +150,6 @@ public class MainActivity extends ActionBarActivity {
                     .withSavedInstance(savedInstanceState)
                     .withThreeSmallProfileImages(false)
                     .withHeaderBackground(R.drawable.fundo)
-                    .addProfiles(
-                            new ProfileDrawerItem().withName("Caike Bispo").withEmail("caikebispo@gmail.com").withIcon(getResources().getDrawable(R.drawable.personicon))
-                    )
                     .build();
 
         //Log.i("foto",user.getFoto());
